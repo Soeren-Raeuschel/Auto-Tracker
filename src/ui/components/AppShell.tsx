@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useAppShellViewModel } from '../viewmodels/useAppShellViewModel';
 import type { NavItemVM } from '../viewmodels/appShellViewModel';
+import { Icon } from './Icon';
 import './AppShell.css';
 
 /**
@@ -55,6 +56,7 @@ function NavItemLink({ item, compact = false }: { item: NavItemVM; compact?: boo
         }`
       }
     >
+      <Icon name={item.icon} size={compact ? 22 : 20} />
       <span className="app-shell__nav-label">{item.label}</span>
     </NavLink>
   );

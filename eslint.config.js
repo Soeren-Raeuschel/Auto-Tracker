@@ -22,4 +22,22 @@ export default tseslint.config(
       'no-console': ['warn', { allow: ['warn', 'error'] }],
     },
   },
+  {
+    // T10.8: Nur src/ui/components/Icon.tsx darf das Icon-Paket importieren.
+    files: ['src/**/*.{ts,tsx}'],
+    ignores: ['src/ui/components/Icon.tsx'],
+    rules: {
+      'no-restricted-imports': [
+        'error',
+        {
+          paths: [
+            {
+              name: 'lucide-react',
+              message: 'Icons nur ueber src/ui/components/Icon.tsx importieren.',
+            },
+          ],
+        },
+      ],
+    },
+  },
 );
