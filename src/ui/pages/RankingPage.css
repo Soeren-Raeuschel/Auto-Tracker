@@ -48,6 +48,54 @@
   min-width: 0;
 }
 
+/* T3.4: Filterleiste ueber der Liste. */
+.ranking__filters {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+
+.ranking__filter-row {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  flex-wrap: wrap;
+}
+
+.ranking__filter-row > .label {
+  min-width: 72px;
+}
+
+.ranking__chips {
+  display: flex;
+  gap: var(--s-2);
+  flex-wrap: wrap;
+}
+
+.ranking__chip {
+  min-height: 36px;
+  padding: 0 var(--s-3);
+  border-radius: var(--r-pill);
+  border: 1px solid var(--hairline);
+  background: var(--glass-top);
+  color: var(--text-2);
+  font-size: 13px;
+  cursor: pointer;
+  transition:
+    color var(--t-base) var(--ease),
+    border-color var(--t-base) var(--ease);
+}
+
+.ranking__chip:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.ranking__chip--active {
+  color: var(--text);
+  border-color: var(--accent);
+}
+
 @media (min-width: 1024px) {
   .ranking__head h1 {
     font-size: 38px;

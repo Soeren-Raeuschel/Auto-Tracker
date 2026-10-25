@@ -94,3 +94,86 @@ describe('toRankingViewModel', () => {
     expect(normalize(formatEuro(42990))).toBe('42.990 €');
   });
 });
+
+// ---- T3.4: Ranking filters ----
+import { applyRankingFilters, DEFAULT_RANKING_FILTERS } from './rankingViewModel';
+import type { UserCarState } from '../../domain/userState';
+import type { ScoredCar } from '../../domain/score';
+
+const scored = (id: string, powertrain: 'bev' | 'phev' | 'reev' = 'bev'): ScoredCar =>
+  ({
+    car: { ...car(id, 40000, true), powertrain },
+    total: 80,
+    excluded: false,
+    excludedBy: [],
+    unknownCount: 0,
+    details: [],
+  }) as unknown as ScoredCar;
+
+const state = (carId: string, status: UserCarState['status']): UserCarState => ({
+  carId,
+  status,
+  notes: '',
+  checklist: {},
+});
+
+describe('applyRankingFilters', () => {
+  const ranking = [scored('a'), scored('b', 'phev'), scored('c')];
+
+  it('keeps everything with default filters', () => {
+    expect(applyRankingFilters(ranking, [], DEFAULT_RANKING_FILTERS).map((s) => s.car.id)).toEqual([
+      'a',
+      'b',
+      'c',
+    ]);
+  });
+
+  it('hides rejected cars by default (no user state entry = watching, not rejected)', () => {
+    const states = [state('b', 'rejected')];
+    expect(
+      applyRankingFilters(ranking, states, DEFAULT_RANKING_FILTERS).map((s) => s.car.id),
+    ).toEqual(['a', 'c']);
+  });
+
+  it('shows rejected cars when hideRejected is off', () => {
+    const states = [state('b', 'rejected')];
+    const vm = applyRankingFilters(ranking, states, {
+      ...DEFAULT_RANKING_FILTERS,
+      hideRejected: false,
+    });
+    expect(vm.map((s) => s.car.id)).toEqual(['a', 'b', 'c']);
+  });
+
+  it('filters by status, treating missing entries as watching', () => {
+    const states = [state('a', 'interested'), state('b', 'test-drive-planned')];
+    const watching = applyRankingFilters(ranking, states, {
+      ...DEFAULT_RANKING_FILTERS,
+      status: 'watching',
+    });
+    expect(watching.map((s) => s.car.id)).toEqual(['c']);
+
+    const interested = applyRankingFilters(ranking, states, {
+      ...DEFAULT_RANKING_FILTERS,
+      status: 'interested',
+    });
+    expect(interested.map((s) => s.car.id)).toEqual(['a']);
+  });
+
+  it('filters by powertrain', () => {
+    const vm = applyRankingFilters(ranking, [], {
+      ...DEFAULT_RANKING_FILTERS,
+      powertrain: 'phev',
+    });
+    expect(vm.map((s) => s.car.id)).toEqual(['b']);
+  });
+
+  it('keeps only cars the user actually tracks when onlyWatchlist is on', () => {
+    const states = [state('a', 'interested'), state('b', 'rejected')];
+    const vm = applyRankingFilters(ranking, states, {
+      ...DEFAULT_RANKING_FILTERS,
+      onlyWatchlist: true,
+      hideRejected: false,
+    });
+    expect(vm.map((s) => s.car.id)).toEqual(['a']);
+  });
+});

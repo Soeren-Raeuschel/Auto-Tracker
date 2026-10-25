@@ -1,6 +1,12 @@
-import { carLabel, getAttributeValue, type AttributeValue } from '../../domain/car';
+import {
+  carLabel,
+  getAttributeValue,
+  type AttributeValue,
+  type Powertrain,
+} from '../../domain/car';
 import { findAttribute } from '../../domain/attributeCatalog';
 import type { Criterion } from '../../domain/criterion';
+import type { CarStatus, UserCarState } from '../../domain/userState';
 import type { ScoredCar } from '../../domain/score';
 
 /** Ready-to-render data. The view only displays it, it never computes anything. */
@@ -121,3 +127,58 @@ export function toRankingViewModel(ranking: ScoredCar[], criteria: Criterion[]):
   if (!first || first.excluded) return { hero: null, rest: rows };
   return { hero: first, rest: others };
 }
+
+/* ---------------- T3.4: Ranking filters (pure logic) ---------------- */
+
+export interface RankingFilters {
+  status: CarStatus | 'all';
+  powertrain: Powertrain | 'all';
+  onlyWatchlist: boolean;
+  hideRejected: boolean;
+}
+
+export const DEFAULT_RANKING_FILTERS: RankingFilters = {
+  status: 'all',
+  powertrain: 'all',
+  onlyWatchlist: false,
+  hideRejected: true,
+};
+
+/**
+ * Filtert das Ranking nach UserState-Status und Powertrain.
+ * - hideRejected: rejected Autos immer ausblenden (unabhaengig vom Status-Filter).
+ * - onlyWatchlist: nur Autos mit aktivem Status (watching/interested/test-drive-planned).
+ * Autos ohne UserState-Eintrag zaehlen als 'watching' (Default-Status).
+ */
+export function applyRankingFilters(
+  ranking: ScoredCar[],
+  states: readonly UserCarState[],
+  filters: RankingFilters,
+): ScoredCar[] {
+  const statusById = new Map(states.map((s) => [s.carId, s.status]));
+
+  return ranking.filter((scored) => {
+    const inList = statusById.has(scored.car.id);
+    const status: CarStatus = statusById.get(scored.car.id) ?? 'watching';
+
+    if (filters.hideRejected && status === 'rejected') return false;
+    if (filters.status !== 'all' && status !== filters.status) return false;
+    if (filters.powertrain !== 'all' && scored.car.powertrain !== filters.powertrain) return false;
+    if (filters.onlyWatchlist && (!inList || status === 'rejected')) return false;
+
+    return true;
+  });
+}
+
+export const STATUS_FILTER_LABELS: Record<CarStatus, string> = {
+  watching: 'Watchlist',
+  interested: 'Interested',
+  'test-drive-planned': 'Test Drive',
+  rejected: 'Rejected',
+};
+
+export const POWERTRAIN_FILTER_LABELS: Record<Powertrain, string> = {
+  bev: 'Electric',
+  phev: 'Hybrid',
+  reev: 'REEV',
+};
