@@ -123,10 +123,10 @@
     "powertrain": "bev",
     "attributes": {
       "priceEur": {
-        "value": 53600,
+        "value": 46600,
         "confidence": "estimated",
-        "source": "Preis, beim Händler prüfen",
-        "updatedAt": "2026-10-18"
+        "source": "UVP ab 46.600 € (Standard Range, xpeng.com), mit 2.500 € Tech-Prämie",
+        "updatedAt": "2026-10-25"
       },
       "panoramaRoof": {
         "value": true,
@@ -147,15 +147,15 @@
         "updatedAt": "2026-10-18"
       },
       "dcMaxKw": {
-        "value": 446,
+        "value": 350,
         "confidence": "estimated",
-        "source": "DC-Ladeleistung, beim Händler prüfen",
-        "updatedAt": "2026-10-18"
+        "source": "DC-Schnellladen 350 kW (xpeng.com)",
+        "updatedAt": "2026-10-25"
       },
       "rangeKm": {
-        "value": null,
+        "value": 455,
         "confidence": "estimated",
-        "source": "offen, beim Händler prüfen",
+        "source": "Reichweite WLTP 455 km (Standard Range, xpeng.com)",
         "updatedAt": "2026-10-25"
       },
       "batteryKwh": {
@@ -165,9 +165,9 @@
         "updatedAt": "2026-10-25"
       },
       "consumptionKwh100": {
-        "value": null,
+        "value": 15.2,
         "confidence": "estimated",
-        "source": "offen, beim Händler prüfen",
+        "source": "Stromverbrauch 15,2 kWh/100 km (Standard Range, xpeng.com)",
         "updatedAt": "2026-10-25"
       }
     }
@@ -641,10 +641,10 @@
     "powertrain": "bev",
     "attributes": {
       "priceEur": {
-        "value": 53000,
+        "value": 57910,
         "confidence": "estimated",
-        "source": "Preis, beim Händler prüfen",
-        "updatedAt": "2026-10-18"
+        "source": "Grundpreis VZ 4Drive 57.910 € (ADAC-Datenblatt); UPE ab 49.900 €",
+        "updatedAt": "2026-10-25"
       },
       "panoramaRoof": {
         "value": null,
@@ -665,15 +665,15 @@
         "updatedAt": "2026-10-18"
       },
       "dcMaxKw": {
-        "value": null,
+        "value": 135,
         "confidence": "estimated",
-        "source": "offen, beim Händler prüfen",
-        "updatedAt": "2026-10-18"
+        "source": "DC-Ladeleistung 135 kW (ADAC-Datenblatt)",
+        "updatedAt": "2026-10-25"
       },
       "rangeKm": {
-        "value": 490,
+        "value": 513,
         "confidence": "estimated",
-        "source": "rangeKm ca. (WLTP), beim Händler prüfen",
+        "source": "Reichweite WLTP 513 km (ADAC-Datenblatt)",
         "updatedAt": "2026-10-25"
       },
       "batteryKwh": {
@@ -683,9 +683,9 @@
         "updatedAt": "2026-10-25"
       },
       "consumptionKwh100": {
-        "value": null,
+        "value": 17.1,
         "confidence": "estimated",
-        "source": "offen, beim Händler prüfen",
+        "source": "Stromverbrauch kombiniert 17,1 kWh/100 km (ADAC)",
         "updatedAt": "2026-10-25"
       }
     },
@@ -862,5 +862,697 @@
       }
     },
     "variant": "Max"
+  },
+  {
+    "id": "huawei-aito-m7",
+    "brand": "Huawei",
+    "model": "AITO M7",
+    "bodyType": "suv",
+    "powertrain": "reev",
+    "variant": "EREV Pro+ 5-Sitzer AWD",
+    "attributes": {
+      "priceEur": {
+        "value": 34040,
+        "confidence": "estimated",
+        "source": "Startpreis Basis EREV Pro+ 5-Sitzer AWD (evautos25.de), beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "panoramaRoof": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "unbekannt, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "hud": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "unbekannt, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "massageSeats": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "unbekannt, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "dcMaxKw": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "DC-Ladeleistung offen, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "rangeKm": {
+        "value": 175,
+        "confidence": "estimated",
+        "source": "E-Reichweite ca. 175 km (CLTC), beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "batteryKwh": {
+        "value": 37,
+        "confidence": "estimated",
+        "source": "37-kWh-LFP-Batterie (evautos25.de), beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "consumptionKwh100": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "Verbrauch offen, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      }
+    }
+  },
+  {
+    "id": "leapmotor-b03x-promax",
+    "brand": "Leapmotor",
+    "model": "B03X",
+    "bodyType": "suv",
+    "powertrain": "bev",
+    "variant": "ProMax Design",
+    "attributes": {
+      "priceEur": {
+        "value": 29400,
+        "confidence": "estimated",
+        "source": "Grundpreis ProMax Design ab 29.400 € (ADAC), beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "panoramaRoof": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "unbekannt, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "hud": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "unbekannt, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "massageSeats": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "unbekannt, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "dcMaxKw": {
+        "value": 133,
+        "confidence": "estimated",
+        "source": "DC-Ladeleistung 133 kW laut ADAC-Datenblatt, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "rangeKm": {
+        "value": 382,
+        "confidence": "estimated",
+        "source": "Reichweite WLTP laut ADAC, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "batteryKwh": {
+        "value": 53,
+        "confidence": "estimated",
+        "source": "Batteriekapazität brutto 53,0 kWh laut ADAC, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "consumptionKwh100": {
+        "value": 15.7,
+        "confidence": "estimated",
+        "source": "Stromverbrauch kombiniert (WLTP) laut ADAC, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      }
+    }
+  },
+  {
+    "id": "xiaomi-yu7",
+    "brand": "Xiaomi",
+    "model": "YU7",
+    "bodyType": "suv",
+    "powertrain": "bev",
+    "attributes": {
+      "priceEur": {
+        "value": 30185,
+        "confidence": "estimated",
+        "source": "China-Preis Basis (umgerechnet ca. 30.185 €, AUTO BILD); EU-Marktstart offen",
+        "updatedAt": "2026-10-25"
+      },
+      "panoramaRoof": {
+        "value": true,
+        "confidence": "estimated",
+        "source": "Panoramaglasdach serienmäßig (AUTO BILD)",
+        "updatedAt": "2026-10-25"
+      },
+      "hud": {
+        "value": true,
+        "confidence": "estimated",
+        "source": "1,1 m breites Panorama-Display an der Windschutzscheibe (AUTO BILD)",
+        "updatedAt": "2026-10-25"
+      },
+      "massageSeats": {
+        "value": true,
+        "confidence": "estimated",
+        "source": "Vordersitze mit Massagefunktion (AUTO BILD)",
+        "updatedAt": "2026-10-25"
+      },
+      "dcMaxKw": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "DC-Ladeleistung offen, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "rangeKm": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "Reichweite offen, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "batteryKwh": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "Batteriekapazität offen, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "consumptionKwh100": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "Verbrauch offen, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      }
+    }
+  },
+  {
+    "id": "xpeng-mona-l05",
+    "brand": "Xpeng",
+    "model": "MONA L05",
+    "bodyType": "suv",
+    "powertrain": "bev",
+    "attributes": {
+      "priceEur": {
+        "value": 34900,
+        "confidence": "estimated",
+        "source": "Kalkulierter deutscher Einstiegspreis ca. 34.900–38.500 € (evautos25.de), beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "panoramaRoof": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "unbekannt, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "hud": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "unbekannt, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "massageSeats": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "unbekannt, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "dcMaxKw": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "400-Volt-System, DC-Leistung nicht genannt (evautos25.de)",
+        "updatedAt": "2026-10-25"
+      },
+      "rangeKm": {
+        "value": 480,
+        "confidence": "estimated",
+        "source": "ca. 480–515 km WLTP (aus CLTC 615–660 geschätzt, evautos25.de)",
+        "updatedAt": "2026-10-25"
+      },
+      "batteryKwh": {
+        "value": 71.1,
+        "confidence": "estimated",
+        "source": "71,1-kWh-LFP-Batterie (evautos25.de)",
+        "updatedAt": "2026-10-25"
+      },
+      "consumptionKwh100": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "Verbrauch offen, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      }
+    }
+  },
+  {
+    "id": "volvo-es90-ultra",
+    "brand": "Volvo",
+    "model": "ES90",
+    "bodyType": "sedan",
+    "powertrain": "bev",
+    "variant": "Single Motor Extended Range Ultra",
+    "attributes": {
+      "priceEur": {
+        "value": 83290,
+        "confidence": "estimated",
+        "source": "Grundpreis getestete Variante 83.290 € (ADAC); Basis Core ab 71.490 €",
+        "updatedAt": "2026-10-25"
+      },
+      "panoramaRoof": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "unbekannt, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "hud": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "unbekannt, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "massageSeats": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "unbekannt, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "dcMaxKw": {
+        "value": 310,
+        "confidence": "estimated",
+        "source": "DC-Ladeleistung 310 kW laut ADAC-Datenblatt",
+        "updatedAt": "2026-10-25"
+      },
+      "rangeKm": {
+        "value": 667,
+        "confidence": "estimated",
+        "source": "Reichweite WLTP laut ADAC (Ultra)",
+        "updatedAt": "2026-10-25"
+      },
+      "batteryKwh": {
+        "value": 92,
+        "confidence": "estimated",
+        "source": "Batteriekapazität brutto 92,0 kWh laut ADAC",
+        "updatedAt": "2026-10-25"
+      },
+      "consumptionKwh100": {
+        "value": 15.5,
+        "confidence": "estimated",
+        "source": "Stromverbrauch kombiniert (WLTP) laut ADAC",
+        "updatedAt": "2026-10-25"
+      }
+    }
+  },
+  {
+    "id": "zeekr-x-awd",
+    "brand": "Zeekr",
+    "model": "X",
+    "bodyType": "suv",
+    "powertrain": "bev",
+    "variant": "Privilege AWD Long Range",
+    "attributes": {
+      "priceEur": {
+        "value": 47990,
+        "confidence": "estimated",
+        "source": "UVP Privilege AWD (zeekr.eu), beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "panoramaRoof": {
+        "value": true,
+        "confidence": "estimated",
+        "source": "Festes Panorama-Schiebedach serienmäßig (zeekr.eu)",
+        "updatedAt": "2026-10-25"
+      },
+      "hud": {
+        "value": true,
+        "confidence": "estimated",
+        "source": "24,3-Zoll-AR-Head-up-Display (zeekr.eu)",
+        "updatedAt": "2026-10-25"
+      },
+      "massageSeats": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "unbekannt, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "dcMaxKw": {
+        "value": 230,
+        "confidence": "estimated",
+        "source": "DC-Ladeleistung AWD/Long Range (zeekr.eu)",
+        "updatedAt": "2026-10-25"
+      },
+      "rangeKm": {
+        "value": 415,
+        "confidence": "estimated",
+        "source": "Reichweite WLTP AWD (zeekr.eu)",
+        "updatedAt": "2026-10-25"
+      },
+      "batteryKwh": {
+        "value": 69,
+        "confidence": "estimated",
+        "source": "Batteriekapazität AWD (zeekr.eu)",
+        "updatedAt": "2026-10-25"
+      },
+      "consumptionKwh100": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "Verbrauch offen, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      }
+    }
+  },
+  {
+    "id": "byd-sealion-8-rwd",
+    "brand": "BYD",
+    "model": "Sealion 8",
+    "bodyType": "suv",
+    "powertrain": "bev",
+    "variant": "EV Heckantrieb",
+    "attributes": {
+      "priceEur": {
+        "value": 63000,
+        "confidence": "estimated",
+        "source": "Listenpreis ab 63.000 € (ludego.com), Pre-Launch, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "panoramaRoof": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "unbekannt, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "hud": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "unbekannt, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "massageSeats": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "unbekannt, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "dcMaxKw": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "945-Volt-Plattform mit bis zu ~1.000 kW (China-Spec, ludego.com); EU-Wert offen",
+        "updatedAt": "2026-10-25"
+      },
+      "rangeKm": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "Reichweite offen, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "batteryKwh": {
+        "value": 100.5,
+        "confidence": "estimated",
+        "source": "100,5-kWh-Blade-Batterie (ludego.com)",
+        "updatedAt": "2026-10-25"
+      },
+      "consumptionKwh100": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "Verbrauch offen, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      }
+    }
+  },
+  {
+    "id": "byd-sealion-7-awd",
+    "brand": "BYD",
+    "model": "Sealion 7",
+    "bodyType": "suv",
+    "powertrain": "bev",
+    "variant": "Excellence AWD",
+    "attributes": {
+      "priceEur": {
+        "value": 59990,
+        "confidence": "estimated",
+        "source": "Listenpreis Excellence AWD, BYD Deutschland, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "panoramaRoof": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "unbekannt, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "hud": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "unbekannt, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "massageSeats": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "unbekannt, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "dcMaxKw": {
+        "value": 230,
+        "confidence": "estimated",
+        "source": "DC-Ladeleistung Excellence AWD, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "rangeKm": {
+        "value": 502,
+        "confidence": "estimated",
+        "source": "Reichweite ca. (WLTP), beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "batteryKwh": {
+        "value": 82.5,
+        "confidence": "estimated",
+        "source": "Batteriekapazität ca., beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "consumptionKwh100": {
+        "value": 21.9,
+        "confidence": "estimated",
+        "source": "Verbrauch kombiniert (WLTP) laut byd.com (19,9–21,9), beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      }
+    }
+  },
+  {
+    "id": "geely-galaxy-e8",
+    "brand": "Geely",
+    "model": "Galaxy E8",
+    "bodyType": "sedan",
+    "powertrain": "bev",
+    "attributes": {
+      "priceEur": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "kein deutsches Angebot, kein DE-Preis verfügbar (geely.com)",
+        "updatedAt": "2026-10-25"
+      },
+      "panoramaRoof": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "unbekannt, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "hud": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "unbekannt, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "massageSeats": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "unbekannt, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "dcMaxKw": {
+        "value": 200,
+        "confidence": "estimated",
+        "source": "ca. 200 kW DC (Schätzung, kein offizieller EU-Wert)",
+        "updatedAt": "2026-10-25"
+      },
+      "rangeKm": {
+        "value": 665,
+        "confidence": "estimated",
+        "source": "ca. 665 km (CLTC, China-Spec), WLTP offen",
+        "updatedAt": "2026-10-25"
+      },
+      "batteryKwh": {
+        "value": 76,
+        "confidence": "estimated",
+        "source": "ca. 76 kWh (China-Spec), beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "consumptionKwh100": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "Verbrauch offen, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      }
+    }
+  },
+  {
+    "id": "arcfox-alpha-t5-520max",
+    "brand": "Arcfox",
+    "model": "Alpha T5",
+    "bodyType": "suv",
+    "powertrain": "bev",
+    "variant": "520 MAX",
+    "attributes": {
+      "priceEur": {
+        "value": 16200,
+        "confidence": "estimated",
+        "source": "China-Richtpreis 17.554 US-$ umgerechnet (semautomobile.com); kein EU-Angebot",
+        "updatedAt": "2026-10-25"
+      },
+      "panoramaRoof": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "unbekannt, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "hud": {
+        "value": true,
+        "confidence": "estimated",
+        "source": "AR-HUD über dem Fahrersitz (semautomobile.com)",
+        "updatedAt": "2026-10-25"
+      },
+      "massageSeats": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "unbekannt, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "dcMaxKw": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "Schnellladen 30–80 % in ca. 23 min (semautomobile.com), kW nicht genannt",
+        "updatedAt": "2026-10-25"
+      },
+      "rangeKm": {
+        "value": 520,
+        "confidence": "estimated",
+        "source": "520 km (CLTC, MIIT/semautomobile.com), WLTP offen",
+        "updatedAt": "2026-10-25"
+      },
+      "batteryKwh": {
+        "value": 67.3,
+        "confidence": "estimated",
+        "source": "Batterie 67,3 kWh (semautomobile.com)",
+        "updatedAt": "2026-10-25"
+      },
+      "consumptionKwh100": {
+        "value": 14.7,
+        "confidence": "estimated",
+        "source": "Verbrauch 14,7 kWh/100 km (semautomobile.com)",
+        "updatedAt": "2026-10-25"
+      }
+    }
+  },
+  {
+    "id": "byd-great-han",
+    "brand": "BYD",
+    "model": "Great Han",
+    "bodyType": "sedan",
+    "powertrain": "bev",
+    "attributes": {
+      "priceEur": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "kein DE-Preis bekannt (electrive.net, 16.10.2026)",
+        "updatedAt": "2026-10-25"
+      },
+      "panoramaRoof": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "unbekannt, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "hud": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "unbekannt, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "massageSeats": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "unbekannt, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "dcMaxKw": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "DC-Ladeleistung offen, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "rangeKm": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "Reichweite offen, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "batteryKwh": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "Batteriekapazität offen, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "consumptionKwh100": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "Verbrauch offen, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      }
+    }
+  },
+  {
+    "id": "peugeot-3008-phev-225",
+    "brand": "Peugeot",
+    "model": "3008",
+    "bodyType": "suv",
+    "powertrain": "phev",
+    "variant": "1.6 Plug-In Hybrid 225 GT Exclusive e-DSC7",
+    "attributes": {
+      "priceEur": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "kein Grundpreis im ADAC-Datenblatt extrahiert, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "panoramaRoof": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "unbekannt, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "hud": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "unbekannt, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "massageSeats": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "unbekannt, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "dcMaxKw": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "PHEV, DC-Laden nicht zutreffend",
+        "updatedAt": "2026-10-25"
+      },
+      "rangeKm": {
+        "value": 82,
+        "confidence": "estimated",
+        "source": "E-Reichweite laut Hersteller 82 km (ADAC), beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "batteryKwh": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "Batteriekapazität offen, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "consumptionKwh100": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "Verbrauch offen, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      }
+    }
   }
 ]
