@@ -1,0 +1,87 @@
+/* T10.5: Kriterien-Panel. Mobil Bottom Sheet, Desktop rechts fix. */
+.criteria-panel {
+  position: fixed;
+  inset: auto 0 0 0;
+  z-index: 30;
+  transform: translateY(110%);
+  transition: transform var(--t-base) var(--ease);
+  pointer-events: none;
+  padding-bottom: calc(var(--s-3) + env(safe-area-inset-bottom, 0px) + 76px);
+}
+
+.criteria-panel--open {
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.criteria-panel__card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+  padding: var(--s-4);
+  border-radius: var(--r-lg);
+  background: var(--glass-nav);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+}
+
+@supports not (backdrop-filter: blur(20px)) {
+  .criteria-panel__card {
+    background: #14161a;
+  }
+}
+
+.criteria-panel__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.criteria-panel__close {
+  display: grid;
+  place-items: center;
+  min-width: 44px;
+  min-height: 44px;
+  background: none;
+  border: 0;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.criteria-panel__close:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.criteria-panel__sliders {
+  display: grid;
+  gap: var(--s-3);
+}
+
+.criteria-panel__empty {
+  color: var(--text-2);
+  margin: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .criteria-panel {
+    transition: none;
+  }
+}
+
+/* Desktop: rechts fix im Seitenlayout, immer sichtbar. */
+@media (min-width: 1024px) {
+  .criteria-panel {
+    position: sticky;
+    inset: auto;
+    transform: none;
+    pointer-events: auto;
+    padding-bottom: 0;
+    align-self: start;
+    top: var(--s-5);
+  }
+
+  .criteria-panel__close {
+    display: none;
+  }
+}

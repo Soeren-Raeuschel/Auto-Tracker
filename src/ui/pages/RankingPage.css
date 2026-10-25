@@ -1,0 +1,75 @@
+/* T10.4/T10.5: Ranking-Seite mit Kriterien-Panel. Tokens aus tokens.css. */
+.ranking {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-5);
+}
+
+.ranking__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--s-3);
+}
+
+.ranking__head h1 {
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+
+/* Toggle nur mobil sichtbar (Panel ist unten fix). */
+.ranking__panel-toggle {
+  display: grid;
+  place-items: center;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--hairline);
+  background: var(--glass-top);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.ranking__panel-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.ranking__layout {
+  display: flex;
+  flex-direction: column;
+}
+
+.ranking__list {
+  display: grid;
+  gap: var(--s-3);
+  min-width: 0;
+}
+
+@media (min-width: 1024px) {
+  .ranking__head h1 {
+    font-size: 38px;
+  }
+
+  /* Desktop rechts, Panel fix sichtbar -> Toggle entfaellt. */
+  .ranking__panel-toggle {
+    display: none;
+  }
+
+  .ranking__layout {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: var(--s-5);
+  }
+
+  .ranking__list {
+    flex: 1;
+  }
+
+  .ranking__layout > .criteria-panel {
+    width: 300px;
+    flex-shrink: 0;
+  }
+}
