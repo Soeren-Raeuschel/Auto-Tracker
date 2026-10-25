@@ -1,0 +1,26 @@
+/* T13.1: Wrapper fuer Lottie-Stadium und Ersatz-Icon. Nur Tokens (DESIGN.md). */
+.lottie-animation {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+}
+
+.lottie-animation__stage {
+  display: none;
+  width: 64px;
+  height: 64px;
+}
+
+.lottie-animation__stage[data-active] {
+  display: block;
+}
+
+.lottie-animation__fallback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+}

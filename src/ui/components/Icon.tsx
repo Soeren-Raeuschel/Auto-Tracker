@@ -1,7 +1,11 @@
 import {
+  AlertTriangle,
   Bookmark,
+  Check,
   ChevronDown,
   GitCompare,
+  Inbox,
+  Loader,
   Newspaper,
   Search,
   SlidersHorizontal,
@@ -14,7 +18,17 @@ import {
  * darf (ESLint no-restricted-imports). Neue Icons = ein Eintrag in ICONS.
  */
 export type IconName =
-  'trophy' | 'newspaper' | 'compare' | 'bookmark' | 'chevronDown' | 'sliders' | 'search';
+  | 'trophy'
+  | 'newspaper'
+  | 'compare'
+  | 'bookmark'
+  | 'chevronDown'
+  | 'sliders'
+  | 'search'
+  | 'check'
+  | 'inbox'
+  | 'alert'
+  | 'loader';
 
 const ICONS: Record<IconName, LucideIcon> = {
   trophy: Trophy,
@@ -24,6 +38,10 @@ const ICONS: Record<IconName, LucideIcon> = {
   chevronDown: ChevronDown,
   sliders: SlidersHorizontal,
   search: Search,
+  check: Check,
+  inbox: Inbox,
+  alert: AlertTriangle,
+  loader: Loader,
 };
 
 /** Testbar exportiert: alle Namen und ihre Lucide-Komponente. */
