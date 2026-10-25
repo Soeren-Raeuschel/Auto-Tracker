@@ -43,7 +43,7 @@ module.exports = {
       to: {
         dependencyTypes: ['npm'],
         pathNot:
-          'node_modules/(react|react-dom|zod|react-router-dom|@fontsource-variable/manrope|lucide-react|lottie-web|vitest)/',
+          'node_modules/(react|react-dom|zod|react-router-dom|@fontsource-variable/manrope|lucide-react|lottie-web|@google/model-viewer|vitest)/',
       },
     },
   ],

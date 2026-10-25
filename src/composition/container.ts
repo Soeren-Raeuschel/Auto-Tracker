@@ -11,6 +11,11 @@ import { AutoScout24Provider } from '../infrastructure/listings/autoScout24Provi
 import { KleinanzeigenProvider } from '../infrastructure/listings/kleinanzeigenProvider';
 import { MobileDeProvider } from '../infrastructure/listings/mobileDeProvider';
 import type { ListingSearchProvider } from '../ports/listingSearchProvider';
+import type { ModelProvider } from '../ports/modelProvider';
+import {
+  FetchModelFileChecker,
+  GenericModelProvider,
+} from '../infrastructure/models/genericModelProvider';
 
 import { defaultEvaluators } from '../scoring/evaluators';
 import { ScoringEngine } from '../scoring/scoringEngine';
@@ -43,6 +48,11 @@ export function createContainer() {
       new AutoScout24Provider(),
       new KleinanzeigenProvider(),
     ] satisfies ListingSearchProvider[],
+    // T5.2: generisches Modell per bodyType aus public/models/<bodyType>.glb.
+    modelProvider: new GenericModelProvider(
+      import.meta.env.BASE_URL,
+      new FetchModelFileChecker(),
+    ) satisfies ModelProvider,
   };
 }
 

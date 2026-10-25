@@ -56,8 +56,10 @@ Entfallen: T2.4 (steckt in T10.4), T8.1 (steckt in T10.3 und T10.4), T8.2 (App i
   Erledigt: `vite-plugin-pwa` (generateSW) in `vite.config.ts`: Manifest (Name, Kurzname, lang "de", theme_color, standalone, Platzhalter-Icons `public/pwa-192.png`/`pwa-512.png`, auch maskable), App-Shell-Precache (inkl. Fonts/Icons), Runtime-Caching für `data/*.json` als Stale-While-Revalidate mit Ablauf. Registrierung in `main.tsx` über `virtual:pwa-register` (kein Inline-Skript, Rücksicht auf T12.4), TS-Typen via `vite-plugin-pwa/client`. Build erzeugt `manifest.webmanifest` + `sw.js` (15 Precache-Einträge); Offline-Start bleibt manuell zu prüfen (kein Dev-Server je Aufgabe). "Stand"-Zeitstempel kommt mit T7.3/T8.3 und wird durch SWR nicht behindert. `npm run check` grün.
 
 ## Phase F: 3D und Rechner
-- [ ] T5.1 `@google/model-viewer` installieren (erlaubt), TS-Typdeklaration anlegen.
-- [ ] T5.2 GenericModelProvider (ModelProvider-Port): Modell pro bodyType aus `public/models/<bodyType>.glb`. Fehlt die Datei, Platzhalter-Hinweis. Keine GLB-Dateien selbst anlegen, der Nutzer legt sie ab (Lizenz in `public/models/LICENSES.md`).
+- [x] T5.1 `@google/model-viewer` installieren (erlaubt), TS-Typdeklaration anlegen.
+  Erledigt: `@google/model-viewer` installiert (auch in `.dependency-cruiser.cjs` freigeschaltet), TS-Typen fuer `<model-viewer>` in `src/types/model-viewer.d.ts` (Attribut-Auswahl fuer T5.3: camera-controls, Hotspots usw.).
+- [x] T5.2 GenericModelProvider (ModelProvider-Port): Modell pro bodyType aus `public/models/<bodyType>.glb`. Fehlt die Datei, Platzhalter-Hinweis. Keine GLB-Dateien selbst anlegen, der Nutzer legt sie ab (Lizenz in `public/models/LICENSES.md`).
+  Erledigt: `src/infrastructure/models/genericModelProvider.ts` (Adapter auf den Port `ModelProvider`, jetzt `Promise<ModelRef | null>`): URL `models/<bodyType>.glb`, Existenz per HEAD (`FetchModelFileChecker` mit injizierbarem fetch), bei 404/Fehler `null` -> Platzhalter. Test (`genericModelProvider.test.ts`, 5 Tests), im Container registriert, `public/models/LICENSES.md` angelegt, keine GLB-Dateien erzeugt. `npm run check` gruen.
 - [ ] T5.3 CarViewer auf der Detailseite: drehen/zoomen, Hotspots aus Attributen (Pano, HUD, Massage, Laden).
 - [ ] T5.4 Optional: SpecificModelProvider, bevorzugt pro Auto-ID eine eigene GLB, sonst generisch.
 - [ ] T6.1 Attribute rangeKm, batteryKwh, consumptionKwh100 in Katalog und cars.json (nur belegte Werte, sonst null).
