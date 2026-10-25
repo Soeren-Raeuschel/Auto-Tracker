@@ -1,20 +1,27 @@
+import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { createContainer } from './composition/container';
-import { RankingTable } from './ui/RankingTable';
-import { useRankingViewModel } from './ui/viewmodels/useRankingViewModel';
+import { ROUTES } from './ui/routes';
+import { CarDetailPage } from './ui/pages/CarDetailPage';
+import { ComparePage } from './ui/pages/ComparePage';
+import { RankingPage } from './ui/pages/RankingPage';
+import { SettingsPage } from './ui/pages/SettingsPage';
 
 const container = createContainer();
 
+/**
+ * Routing (T2.1). HashRouter statt BrowserRouter: GitHub Pages (T7.8) liefert
+ * keinen SPA-Fallback, und `base: './'` hält die App portabel.
+ */
 export default function App() {
-  const { viewModel, error, loading } = useRankingViewModel(container);
-
   return (
-    <main
-      style={{ fontFamily: 'system-ui, sans-serif', maxWidth: 900, margin: '0 auto', padding: 16 }}
-    >
-      <h1>Auto-Tracker</h1>
-      {error && <p role="alert">Fehler: {error}</p>}
-      {loading && <p>Lade Daten ...</p>}
-      {!error && !loading && <RankingTable viewModel={viewModel} />}
-    </main>
+    <HashRouter>
+      <Routes>
+        <Route path={ROUTES.ranking} element={<RankingPage container={container} />} />
+        <Route path={ROUTES.settings} element={<SettingsPage />} />
+        <Route path={ROUTES.carDetail} element={<CarDetailPage />} />
+        <Route path={ROUTES.compare} element={<ComparePage />} />
+        <Route path="*" element={<Navigate to={ROUTES.ranking} replace />} />
+      </Routes>
+    </HashRouter>
   );
 }

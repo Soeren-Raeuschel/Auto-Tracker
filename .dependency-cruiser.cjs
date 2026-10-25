@@ -42,7 +42,8 @@ module.exports = {
       from: {},
       to: {
         dependencyTypes: ['npm'],
-        pathNot: 'node_modules/(react|react-dom|zod|@fontsource-variable/manrope|vitest)/',
+        pathNot:
+          'node_modules/(react|react-dom|zod|react-router-dom|@fontsource-variable/manrope|vitest)/',
       },
     },
   ],
