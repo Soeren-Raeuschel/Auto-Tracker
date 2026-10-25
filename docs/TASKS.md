@@ -33,7 +33,8 @@ Entfallen: T2.4 (steckt in T10.4), T8.1 (steckt in T10.3 und T10.4), T8.2 (App i
 ## Phase D: Autos, Watchlist, Vorschläge, Links (Meilenstein 2: komplette Kern-App)
 - [x] T3.1 UserState-Service/Hook: Status (nutzt `canTransition`), Notizen, Checkliste (hud, massage, acc, regen) über userStateRepository.
   Erledigt: Reine Logik in `userStateViewModel.ts` (Checklisten-Katalog hud/massage/acc/regen, Default "watching", Statuswechsel über `canTransition` mit null bei ungültig, `allowedTargets`, Notizen, Checklistenpunkte) mit Test; Hook `useUserStateViewModel` lädt/speichert über `userStateRepository` und publiziert `UserStateChanged`. UI folgt in T3.2. `npm run check` grün.
-- [ ] T3.2 Detailseite `/car/:id`: alle Attribute mit confidence/source, Status, Notizen, Probefahrt-Checkliste.
+- [x] T3.2 Detailseite `/car/:id`: alle Attribute mit confidence/source, Status, Notizen, Probefahrt-Checkliste.
+  Erledigt: Reine Logik in `carDetailViewModel.ts` (Attribut-Zeilen aus dem Katalog mit de-DE-Formatierung, confidence-Label, source, "unbekannt", Checklisten-Zeilen, Status-Optionen aus `allowedTargets`) mit Test; Hook `useCarDetailViewModel` lädt das Auto und nutzt `useUserStateViewModel`. `CarDetailPage` rendert nur (Status-Gruppe, Attributliste mit Badge/Quelle, Checkliste, Notizen-Textarea), Tokens laut DESIGN.md, Container aus `App.tsx`. `npm run check` grün.
 - [ ] T3.3 Vergleich `/compare`: 2 bis 3 Autos nebeneinander, Auswahl per `?ids=a,b,c`.
 - [ ] T3.4 Filter im Ranking: Status, Powertrain, "nur Watchlist", rejected ausblenden.
 - [ ] T4.1 SuggestionService `src/application/suggestionService.ts`: Autos über `settings.suggestionThreshold`, nicht rejected, nicht watching/interested; publiziert `NewCarSuggested`. Test.

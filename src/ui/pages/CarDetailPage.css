@@ -1,0 +1,121 @@
+/* Detailseite (T3.2). Tokens aus tokens.css, keine Logik im Markup. */
+.car-detail {
+  display: grid;
+  gap: var(--s-4);
+  align-content: start;
+}
+
+.car-detail__card {
+  padding: var(--s-4) var(--s-5);
+  display: grid;
+  gap: var(--s-3);
+}
+
+.car-detail__status {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+}
+
+.car-detail__status-button {
+  min-height: 44px;
+  padding: 0 var(--s-4);
+  border-radius: var(--r-pill);
+  border: 1px solid var(--hairline);
+  background: var(--glass-bottom);
+  color: var(--text-2);
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.car-detail__status-button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.car-detail__status-button:hover {
+  background: var(--hover);
+}
+
+.car-detail__status-button[data-current='true'] {
+  border-color: var(--accent-deep);
+  color: var(--accent);
+}
+
+.car-detail__attributes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--s-3) var(--s-5);
+}
+
+.car-detail__attribute {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-height: 44px;
+  justify-content: center;
+}
+
+.car-detail__attribute-value {
+  font-variant-numeric: tabular-nums;
+  font-size: 15px;
+  font-weight: 600;
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-2);
+  flex-wrap: wrap;
+}
+
+.car-detail__confidence,
+.car-detail__source {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.car-detail__checklist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--s-1);
+}
+
+.car-detail__check {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  min-height: 44px;
+  cursor: pointer;
+}
+
+.car-detail__check:focus-within {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.car-detail__check input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent);
+}
+
+.car-detail__notes {
+  width: 100%;
+  min-height: 96px;
+  padding: var(--s-3);
+  border-radius: var(--r-sm);
+  border: 1px solid var(--hairline);
+  background: var(--glass-bottom);
+  color: var(--text);
+  font: inherit;
+  resize: vertical;
+}
+
+.car-detail__notes:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
