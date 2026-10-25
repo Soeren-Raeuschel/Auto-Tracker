@@ -2,9 +2,11 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import type { Container } from '../../composition/container';
 import { GlassCard } from '../components/GlassCard';
+import { CarViewer } from '../components/CarViewer';
 import { Icon } from '../components/Icon';
 import { Label } from '../components/Label';
 import { useCarDetailViewModel } from '../viewmodels/useCarDetailViewModel';
+import { useCarViewerViewModel } from '../viewmodels/useCarViewerViewModel';
 import {
   confidenceLabel,
   listingLinks,
@@ -24,6 +26,7 @@ export function CarDetailPage({ container }: { container: Container }) {
   const { id } = useParams<{ id: string }>();
   const { car, viewModel, loading, error, changeStatus, changeNotes, changeChecklistItem } =
     useCarDetailViewModel(container, id);
+  const viewer = useCarViewerViewModel(container, car);
   const [maxPrice, setMaxPrice] = useState('');
   const [maxKm, setMaxKm] = useState('');
   const [minYear, setMinYear] = useState('');
@@ -42,6 +45,17 @@ export function CarDetailPage({ container }: { container: Container }) {
       {loading && <p>Lade Daten ...</p>}
       {viewModel && (
         <>
+          <GlassCard className="car-detail__card">
+            <Label>3D-Ansicht</Label>
+            <CarViewer
+              model={viewer.model}
+              loading={viewer.loading}
+              hotspots={viewer.hotspots}
+              alt={`3D-Modell: ${viewModel.label}`}
+              bodyType={car?.bodyType ?? 'other'}
+            />
+          </GlassCard>
+
           <GlassCard className="car-detail__card">
             <Label>Status</Label>
             <div className="car-detail__status" role="group" aria-label="Status">

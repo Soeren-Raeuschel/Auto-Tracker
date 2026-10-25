@@ -16,6 +16,7 @@ import {
   FetchModelFileChecker,
   GenericModelProvider,
 } from '../infrastructure/models/genericModelProvider';
+import { SpecificModelProvider } from '../infrastructure/models/specificModelProvider';
 
 import { defaultEvaluators } from '../scoring/evaluators';
 import { ScoringEngine } from '../scoring/scoringEngine';
@@ -48,10 +49,12 @@ export function createContainer() {
       new AutoScout24Provider(),
       new KleinanzeigenProvider(),
     ] satisfies ListingSearchProvider[],
-    // T5.2: generisches Modell per bodyType aus public/models/<bodyType>.glb.
-    modelProvider: new GenericModelProvider(
+    // T5.4: bevorzugt GLB pro Auto (public/models/cars/<id>.glb), sonst
+    // generisches Modell per bodyType aus public/models/<bodyType>.glb (T5.2).
+    modelProvider: new SpecificModelProvider(
       import.meta.env.BASE_URL,
       new FetchModelFileChecker(),
+      new GenericModelProvider(import.meta.env.BASE_URL, new FetchModelFileChecker()),
     ) satisfies ModelProvider,
   };
 }
