@@ -17,7 +17,7 @@ Entfallen: T2.4 (steckt in T10.4), T8.1 (steckt in T10.3 und T10.4), T8.2 (App i
 
 ## Phase B: Design-Fundament und Shell
 - [x] T10.1 Theme-Fundament: `@fontsource-variable/manrope` (erlaubt), `src/ui/theme/tokens.css` und `global.css` laut DESIGN.md (Reset, Hintergrund, Glow, `.label`, `.glass`, `:focus-visible`, Reduced-Motion), in `main.tsx` importieren.
-- [ ] T10.2 Basiskomponenten in `src/ui/components/`: GlassCard, Label, ScoreBar, ScoreRing, CarSilhouette, PrimaryButton. Je eine CSS-Datei, typisierte Props, nur Typecheck.
+- [x] T10.2 Basiskomponenten in `src/ui/components/`: GlassCard, Label, ScoreBar, ScoreRing, CarSilhouette, PrimaryButton. Je eine CSS-Datei, typisierte Props, nur Typecheck.
 - [ ] T2.1 Routing: `react-router-dom` (erlaubt). Routen: `/` Ranking, `/settings`, `/car/:id`, `/compare`, später `/news`.
 - [ ] T10.3 Responsive Layout-Shell (braucht T2.1): `AppShell` mit Sidebar (Desktop), schwebender TabBar (Mobil), Tablet-Variante. Breakpoints per CSS, Safe Areas beachten. Tabs: Ranking, News, Vergleich, Watchlist.
 - [ ] T10.8 Icon-Set (braucht T10.2): `lucide-react` (erlaubt, Lizenz kurz prüfen; Alternative `@phosphor-icons/react`). `src/ui/components/Icon.tsx` mit `IconName`-Union und Map auf einzelne Named Imports (Tree-Shaking), Props `size` (16/20/22), `aria-hidden`. Inline-SVGs in TabBar, Sidebar und Buttons ersetzen. Regeln siehe DESIGN.md, Abschnitt Icons. ESLint-Regel `no-restricted-imports` ergänzen, damit nur `Icon.tsx` das Icon-Paket importieren darf. Fertig, wenn: `npm run check` grün und kein Icon-Import außerhalb von `Icon.tsx`.

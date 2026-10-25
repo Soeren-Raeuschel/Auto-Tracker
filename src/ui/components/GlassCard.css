@@ -1,0 +1,4 @@
+/* GlassCard ist im Kern .glass aus global.css; hier nur ergänzende Standardwerte. */
+.glass {
+  border-radius: var(--r-md);
+}

@@ -1,0 +1,39 @@
+.primary-button {
+  min-height: 48px;
+  padding: 0 var(--s-5);
+  border: none;
+  border-radius: var(--r-pill);
+  background: var(--accent);
+  color: var(--bg);
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: var(--shadow-btn);
+  transition:
+    filter var(--t-fast) var(--ease),
+    transform var(--t-fast) var(--ease);
+}
+
+.primary-button:hover {
+  filter: brightness(1.08);
+}
+
+.primary-button:active {
+  transform: scale(0.98);
+}
+
+.primary-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (hover: none) {
+  .primary-button:hover {
+    filter: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .primary-button {
+    transition: none;
+  }
+}

@@ -1,0 +1,17 @@
+.car-silhouette {
+  position: relative;
+  width: 100%;
+}
+
+.car-silhouette__svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+/* Weicher Boden-Glow unter der Silhouette */
+.car-silhouette__glow {
+  fill: var(--glow-floor);
+  filter: blur(8px);
+  opacity: 0.6;
+}
