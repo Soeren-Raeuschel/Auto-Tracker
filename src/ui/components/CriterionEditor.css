@@ -1,0 +1,81 @@
+/* T2.3: Editor fuer ein Kriterium. Tokens aus tokens.css. */
+.criterion-editor {
+  border-radius: var(--r-md);
+  padding: var(--s-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+}
+
+.criterion-editor__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  font-weight: 700;
+}
+
+.criterion-editor__remove {
+  min-height: 44px;
+  padding: 0 var(--s-4);
+  border: none;
+  border-radius: var(--r-pill);
+  background: transparent;
+  color: var(--danger);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.criterion-editor__remove:hover {
+  background: var(--hover);
+}
+
+.criterion-editor__field,
+.criterion-editor__toggle,
+.criterion-editor__number label {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+
+.criterion-editor__toggle {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--s-3);
+  min-height: 44px;
+  color: var(--text-2);
+}
+
+.criterion-editor__toggle input,
+.criterion-editor__field input,
+.criterion-editor__number select,
+.criterion-editor__number input {
+  accent-color: var(--accent);
+}
+
+.criterion-editor__field input[type='range'] {
+  width: 100%;
+  min-height: 44px;
+}
+
+.criterion-editor__number {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--s-3);
+}
+
+.criterion-editor__number input,
+.criterion-editor__number select {
+  min-height: 44px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--hairline);
+  background: var(--glass-top);
+  color: var(--text);
+  padding: 0 var(--s-3);
+}
+
+@media (max-width: 480px) {
+  .criterion-editor__number {
+    grid-template-columns: 1fr;
+  }
+}

@@ -22,7 +22,7 @@ export default function App() {
       <AppShell>
         <Routes>
           <Route path={ROUTES.ranking} element={<RankingPage container={container} />} />
-          <Route path={ROUTES.settings} element={<SettingsPage />} />
+          <Route path={ROUTES.settings} element={<SettingsPage container={container} />} />
           <Route path={ROUTES.carDetail} element={<CarDetailPage />} />
           <Route path={ROUTES.compare} element={<ComparePage />} />
           <Route path={ROUTES.news} element={<NewsPage />} />

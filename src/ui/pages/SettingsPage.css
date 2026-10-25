@@ -1,0 +1,64 @@
+/* T2.3: Einstellungs-Seite. Tokens aus tokens.css. */
+.settings {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-5);
+}
+
+.settings h1 {
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+
+.settings__error {
+  color: var(--danger);
+}
+
+.settings__criteria {
+  display: grid;
+  gap: var(--s-3);
+}
+
+.settings__add-buttons,
+.settings__backup-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+}
+
+.settings__add-button {
+  min-height: 44px;
+  padding: 0 var(--s-4);
+  border-radius: var(--r-pill);
+  border: 1px solid var(--hairline);
+  background: var(--glass-top);
+  color: var(--text);
+  cursor: pointer;
+  transition: background var(--t-fast) var(--ease);
+}
+
+.settings__add-button:hover {
+  background: var(--hover);
+}
+
+.settings__import {
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--hairline);
+  background: var(--glass-top);
+  padding: 0 var(--s-4);
+}
+
+.settings__import input {
+  color: var(--text-2);
+}
+
+@media (min-width: 1024px) {
+  .settings h1 {
+    font-size: 38px;
+  }
+}
