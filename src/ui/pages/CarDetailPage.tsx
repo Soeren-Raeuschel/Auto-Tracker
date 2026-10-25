@@ -7,6 +7,7 @@ import { Icon } from '../components/Icon';
 import { Label } from '../components/Label';
 import { useCarDetailViewModel } from '../viewmodels/useCarDetailViewModel';
 import { useCarViewerViewModel } from '../viewmodels/useCarViewerViewModel';
+import { useTripViewModel } from '../viewmodels/useTripViewModel';
 import {
   confidenceLabel,
   listingLinks,
@@ -27,6 +28,7 @@ export function CarDetailPage({ container }: { container: Container }) {
   const { car, viewModel, loading, error, changeStatus, changeNotes, changeChecklistItem } =
     useCarDetailViewModel(container, id);
   const viewer = useCarViewerViewModel(container, car);
+  const trip = useTripViewModel(car);
   const [maxPrice, setMaxPrice] = useState('');
   const [maxKm, setMaxKm] = useState('');
   const [minYear, setMinYear] = useState('');
@@ -147,6 +149,27 @@ export function CarDetailPage({ container }: { container: Container }) {
                 ))}
             </div>
           </GlassCard>
+
+          {trip.viewModel && (
+            <GlassCard className="car-detail__card">
+              <Label>Ladestopps schätzen</Label>
+              <div className="car-detail__filter">
+                <span>Distanz (km)</span>
+                <input
+                  type="number"
+                  min={1}
+                  inputMode="numeric"
+                  value={trip.distanceInput}
+                  onChange={(e) => trip.setDistanceInput(e.target.value)}
+                  aria-label="Distanz in Kilometern"
+                />
+              </div>
+              {trip.viewModel.resultText && (
+                <p className="car-detail__trip-result">{trip.viewModel.resultText}</p>
+              )}
+              <p className="car-detail__trip-hint label">{trip.viewModel.hint}</p>
+            </GlassCard>
+          )}
 
           <GlassCard className="car-detail__card">
             <Label>Probefahrt-Checkliste</Label>

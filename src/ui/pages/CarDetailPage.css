@@ -120,6 +120,18 @@
   outline-offset: 2px;
 }
 
+/* Ladestopps schätzen (T6.2): Ergebnis und Prüfhinweis. */
+.car-detail__trip-result {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.car-detail__trip-hint {
+  margin: 0;
+}
+
 /* Gebrauchte suchen (T4.3): Filter-Eingaben und Portal-Links. */
 .car-detail__listing-filters {
   display: grid;

@@ -35,6 +35,24 @@
         "confidence": "estimated",
         "source": "DC-Ladeleistung, beim Händler prüfen",
         "updatedAt": "2026-10-18"
+      },
+      "rangeKm": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "offen, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "batteryKwh": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "offen, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "consumptionKwh100": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "offen, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
       }
     },
     "variant": "Ultra"
@@ -75,6 +93,24 @@
         "confidence": "estimated",
         "source": "DC-Ladeleistung, beim Händler prüfen",
         "updatedAt": "2026-10-18"
+      },
+      "rangeKm": {
+        "value": 550,
+        "confidence": "estimated",
+        "source": "rangeKm ca. (WLTP), beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "batteryKwh": {
+        "value": 87.5,
+        "confidence": "estimated",
+        "source": "batteryKwh ca. (WLTP), beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "consumptionKwh100": {
+        "value": 16.8,
+        "confidence": "estimated",
+        "source": "consumptionKwh100 ca. (WLTP), beim Händler prüfen",
+        "updatedAt": "2026-10-25"
       }
     },
     "variant": "Performance"
@@ -115,6 +151,24 @@
         "confidence": "estimated",
         "source": "DC-Ladeleistung, beim Händler prüfen",
         "updatedAt": "2026-10-18"
+      },
+      "rangeKm": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "offen, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "batteryKwh": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "offen, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "consumptionKwh100": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "offen, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
       }
     }
   },
@@ -154,6 +208,24 @@
         "confidence": "estimated",
         "source": "DC-Ladeleistung, beim Händler prüfen",
         "updatedAt": "2026-10-18"
+      },
+      "rangeKm": {
+        "value": 430,
+        "confidence": "estimated",
+        "source": "rangeKm ca. (WLTP), beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "batteryKwh": {
+        "value": 60.4,
+        "confidence": "estimated",
+        "source": "batteryKwh ca. (WLTP), beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "consumptionKwh100": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "offen, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
       }
     },
     "variant": "Max+"
@@ -194,6 +266,24 @@
         "confidence": "estimated",
         "source": "DC-Ladeleistung, beim Händler prüfen",
         "updatedAt": "2026-10-18"
+      },
+      "rangeKm": {
+        "value": 420,
+        "confidence": "estimated",
+        "source": "rangeKm ca. (WLTP), beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "batteryKwh": {
+        "value": 69.9,
+        "confidence": "estimated",
+        "source": "batteryKwh ca. (WLTP), beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "consumptionKwh100": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "offen, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
       }
     },
     "variant": "AWD"
@@ -234,6 +324,24 @@
         "confidence": "estimated",
         "source": "800 V, kW nicht in Tabelle, beim Händler prüfen",
         "updatedAt": "2026-10-18"
+      },
+      "rangeKm": {
+        "value": 570,
+        "confidence": "estimated",
+        "source": "rangeKm ca. (WLTP), beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "batteryKwh": {
+        "value": 84,
+        "confidence": "estimated",
+        "source": "batteryKwh ca. (WLTP), beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "consumptionKwh100": {
+        "value": 17.5,
+        "confidence": "estimated",
+        "source": "consumptionKwh100 ca. (WLTP), beim Händler prüfen",
+        "updatedAt": "2026-10-25"
       }
     },
     "variant": "UNIQ"
@@ -274,6 +382,24 @@
         "confidence": "estimated",
         "source": "DC-Ladeleistung, beim Händler prüfen",
         "updatedAt": "2026-10-18"
+      },
+      "rangeKm": {
+        "value": 515,
+        "confidence": "estimated",
+        "source": "rangeKm ca. (WLTP), beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "batteryKwh": {
+        "value": 100,
+        "confidence": "estimated",
+        "source": "batteryKwh ca. (WLTP), beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "consumptionKwh100": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "offen, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
       }
     },
     "variant": "AWD"
@@ -314,6 +440,24 @@
         "confidence": "estimated",
         "source": "PHEV, DC nicht in Tabelle, beim Händler prüfen",
         "updatedAt": "2026-10-18"
+      },
+      "rangeKm": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "offen, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "batteryKwh": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "offen, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "consumptionKwh100": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "offen, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
       }
     }
   },
@@ -353,6 +497,24 @@
         "confidence": "estimated",
         "source": "nicht in Tabelle, beim Händler prüfen",
         "updatedAt": "2026-10-18"
+      },
+      "rangeKm": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "offen, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "batteryKwh": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "offen, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "consumptionKwh100": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "offen, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
       }
     },
     "variant": "90x"
@@ -393,6 +555,24 @@
         "confidence": "estimated",
         "source": "DC-Ladeleistung, beim Händler prüfen",
         "updatedAt": "2026-10-18"
+      },
+      "rangeKm": {
+        "value": 552,
+        "confidence": "estimated",
+        "source": "rangeKm ca. (WLTP), beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "batteryKwh": {
+        "value": 80,
+        "confidence": "estimated",
+        "source": "batteryKwh ca. (WLTP), beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "consumptionKwh100": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "offen, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
       }
     }
   },
@@ -432,6 +612,24 @@
         "confidence": "estimated",
         "source": "DC-Ladeleistung, beim Händler prüfen",
         "updatedAt": "2026-10-18"
+      },
+      "rangeKm": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "offen, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "batteryKwh": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "offen, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "consumptionKwh100": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "offen, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
       }
     }
   },
@@ -471,6 +669,24 @@
         "confidence": "estimated",
         "source": "offen, beim Händler prüfen",
         "updatedAt": "2026-10-18"
+      },
+      "rangeKm": {
+        "value": 490,
+        "confidence": "estimated",
+        "source": "rangeKm ca. (WLTP), beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "batteryKwh": {
+        "value": 77,
+        "confidence": "estimated",
+        "source": "batteryKwh ca. (WLTP), beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "consumptionKwh100": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "offen, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
       }
     },
     "variant": "VZ"
@@ -511,6 +727,24 @@
         "confidence": "estimated",
         "source": "DC-Ladeleistung, beim Händler prüfen",
         "updatedAt": "2026-10-18"
+      },
+      "rangeKm": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "offen, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "batteryKwh": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "offen, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "consumptionKwh100": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "offen, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
       }
     }
   },
@@ -550,6 +784,24 @@
         "confidence": "estimated",
         "source": "DC-Ladeleistung, beim Händler prüfen",
         "updatedAt": "2026-10-18"
+      },
+      "rangeKm": {
+        "value": 500,
+        "confidence": "estimated",
+        "source": "rangeKm ca. (WLTP), beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "batteryKwh": {
+        "value": 88.5,
+        "confidence": "estimated",
+        "source": "batteryKwh ca. (WLTP), beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "consumptionKwh100": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "offen, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
       }
     }
   },
@@ -589,6 +841,24 @@
         "confidence": "estimated",
         "source": "DC-Ladeleistung, beim Händler prüfen",
         "updatedAt": "2026-10-18"
+      },
+      "rangeKm": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "offen, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "batteryKwh": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "offen, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
+      },
+      "consumptionKwh100": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "offen, beim Händler prüfen",
+        "updatedAt": "2026-10-25"
       }
     },
     "variant": "Max"
