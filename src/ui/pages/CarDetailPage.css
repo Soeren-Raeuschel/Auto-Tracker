@@ -132,6 +132,39 @@
   margin: 0;
 }
 
+/* Kosten pro Jahr (T6.3): Eingaben und Kostenzeilen. */
+.car-detail__filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--s-3);
+}
+
+.car-detail__tco-rows {
+  list-style: none;
+  margin: var(--s-3) 0 0;
+  padding: 0;
+  display: grid;
+  gap: var(--s-2);
+}
+
+.car-detail__tco-row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s-2);
+  font-size: 14px;
+}
+
+.car-detail__tco-row[data-total] {
+  margin-top: var(--s-1);
+  padding-top: var(--s-2);
+  border-top: 1px solid var(--hairline);
+  font-weight: 600;
+}
+
+.car-detail__tco-value {
+  font-variant-numeric: tabular-nums;
+}
+
 /* Gebrauchte suchen (T4.3): Filter-Eingaben und Portal-Links. */
 .car-detail__listing-filters {
   display: grid;

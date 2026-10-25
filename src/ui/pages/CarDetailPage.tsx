@@ -8,6 +8,7 @@ import { Label } from '../components/Label';
 import { useCarDetailViewModel } from '../viewmodels/useCarDetailViewModel';
 import { useCarViewerViewModel } from '../viewmodels/useCarViewerViewModel';
 import { useTripViewModel } from '../viewmodels/useTripViewModel';
+import { useTcoViewModel } from '../viewmodels/useTcoViewModel';
 import {
   confidenceLabel,
   listingLinks,
@@ -29,6 +30,7 @@ export function CarDetailPage({ container }: { container: Container }) {
     useCarDetailViewModel(container, id);
   const viewer = useCarViewerViewModel(container, car);
   const trip = useTripViewModel(car);
+  const tco = useTcoViewModel(car);
   const [maxPrice, setMaxPrice] = useState('');
   const [maxKm, setMaxKm] = useState('');
   const [minYear, setMinYear] = useState('');
@@ -168,6 +170,74 @@ export function CarDetailPage({ container }: { container: Container }) {
                 <p className="car-detail__trip-result">{trip.viewModel.resultText}</p>
               )}
               <p className="car-detail__trip-hint label">{trip.viewModel.hint}</p>
+            </GlassCard>
+          )}
+
+          {tco.viewModel && (
+            <GlassCard className="car-detail__card">
+              <Label>Kosten pro Jahr</Label>
+              <div className="car-detail__filters">
+                <label className="car-detail__filter">
+                  <span>Km pro Jahr</span>
+                  <input
+                    type="number"
+                    min={0}
+                    inputMode="numeric"
+                    value={tco.inputs.kmPerYear}
+                    onChange={(e) => tco.updateInput('kmPerYear', e.target.value)}
+                    aria-label="Kilometer pro Jahr"
+                  />
+                </label>
+                <label className="car-detail__filter">
+                  <span>Strompreis (EUR/kWh)</span>
+                  <input
+                    type="number"
+                    min={0}
+                    step="0.01"
+                    inputMode="decimal"
+                    value={tco.inputs.electricityPriceEurPerKwh}
+                    onChange={(e) => tco.updateInput('electricityPriceEurPerKwh', e.target.value)}
+                    aria-label="Strompreis in Euro pro kWh"
+                  />
+                </label>
+                <label className="car-detail__filter">
+                  <span>Versicherung (EUR/Jahr)</span>
+                  <input
+                    type="number"
+                    min={0}
+                    inputMode="numeric"
+                    value={tco.inputs.insuranceEurPerYear}
+                    onChange={(e) => tco.updateInput('insuranceEurPerYear', e.target.value)}
+                    aria-label="Versicherung in Euro pro Jahr"
+                  />
+                </label>
+                <label className="car-detail__filter">
+                  <span>Wertverlust (EUR/Jahr)</span>
+                  <input
+                    type="number"
+                    min={0}
+                    inputMode="numeric"
+                    value={tco.inputs.depreciationEurPerYear}
+                    onChange={(e) => tco.updateInput('depreciationEurPerYear', e.target.value)}
+                    aria-label="Wertverlust in Euro pro Jahr"
+                  />
+                </label>
+              </div>
+              <ul className="car-detail__tco-rows">
+                {tco.viewModel.costRows.map((row) => (
+                  <li
+                    key={row.key}
+                    className="car-detail__tco-row"
+                    data-total={row.isTotal || undefined}
+                  >
+                    <span className="car-detail__tco-label">{row.label}</span>
+                    <span className="car-detail__tco-value">{row.value}</span>
+                  </li>
+                ))}
+              </ul>
+              {tco.viewModel.hint && (
+                <p className="car-detail__trip-hint label">{tco.viewModel.hint}</p>
+              )}
             </GlassCard>
           )}
 
