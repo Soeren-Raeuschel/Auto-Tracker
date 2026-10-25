@@ -1,0 +1,48 @@
+/* T10.6: Skeleton-Ladezustand, Tokens aus tokens.css. */
+.skeleton {
+  display: grid;
+  gap: var(--s-3);
+}
+
+.skeleton__row {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr 120px 3ch;
+  align-items: center;
+  gap: var(--s-3);
+  min-height: 60px;
+  padding: var(--s-2) var(--s-3);
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+
+.skeleton__line {
+  height: 12px;
+  border-radius: var(--r-pill);
+  background: var(--track);
+}
+
+.skeleton__line--name {
+  height: 16px;
+}
+
+.skeleton__line--score {
+  justify-self: end;
+}
+
+/* Schmaler Gradienten-Streifen, per translateX ueber die Karte. */
+.skeleton__shimmer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent 0%, var(--hover) 50%, transparent 100%);
+  width: 40%;
+  transform: translateX(-120%);
+  animation: skeleton-shimmer 1.4s var(--ease) infinite;
+}
+
+@keyframes skeleton-shimmer {
+  to {
+    transform: translateX(340%);
+  }
+}

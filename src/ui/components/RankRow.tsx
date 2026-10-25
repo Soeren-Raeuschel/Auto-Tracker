@@ -4,12 +4,19 @@ import { Icon } from './Icon';
 import { ScoreBar } from './ScoreBar';
 import { confidenceBadgeLabel, type RankingRowVM } from '../viewmodels/rankingViewModel';
 
-/** Eine Zeile der Rangliste, aufklappbar mit Einzelscores. Rendert nur. */
-export function RankRow({ row }: { row: RankingRowVM }) {
+/**
+ * Eine Zeile der Rangliste, aufklappbar mit Einzelscores. Rendert nur.
+ * `delayMs` staffelt das Einblenden (T10.6), `data-row-id` dient dem FLIP-Hook.
+ */
+export function RankRow({ row, delayMs = 0 }: { row: RankingRowVM; delayMs?: number }) {
   const [open, setOpen] = useState(false);
   const badge = confidenceBadgeLabel(row.confidenceBadge);
   return (
-    <article className={`rank-row glass${row.excluded ? ' rank-row--excluded' : ''}`}>
+    <article
+      className={`rank-row glass rise${row.excluded ? ' rank-row--excluded' : ''}`}
+      data-row-id={row.id}
+      style={delayMs > 0 ? { animationDelay: `${delayMs}ms` } : undefined}
+    >
       <button
         type="button"
         className="rank-row__summary"

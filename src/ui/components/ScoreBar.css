@@ -13,6 +13,25 @@
   background: linear-gradient(90deg, var(--accent-deep), var(--accent));
   transform-origin: left;
   transition: transform var(--t-base) var(--ease);
+  /* Fuell-Animation (T10.6): scaleX 0 -> 1, danach steuert transition Live-Aenderungen. */
+  animation: score-bar-fill 1s var(--ease) 300ms backwards;
+}
+
+@keyframes score-bar-fill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+.score-bar__fill {
+  height: 100%;
+  width: 100%;
+  border-radius: var(--r-pill);
+  background: linear-gradient(90deg, var(--accent-deep), var(--accent));
+  transform-origin: left;
+  transition: transform var(--t-base) var(--ease);
 }
 
 @media (prefers-reduced-motion: reduce) {

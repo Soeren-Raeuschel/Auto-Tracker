@@ -9,6 +9,7 @@ import './AppShell.css';
  * Responsive Layout-Shell (T10.3). Breakpoints nur per CSS:
  * mobil <768 px schwebende TabBar, Tablet 768-1023 px Icon-Sidebar,
  * Desktop ab 1024 px Sidebar mit Labels. Safe Areas via env().
+ * T10.6: NavLink mit viewTransition -> 250 ms Ueberblendung beim Routenwechsel.
  */
 export function AppShell({ children }: { children: ReactNode }) {
   const navItems = useAppShellViewModel();
@@ -50,6 +51,7 @@ function NavItemLink({ item, compact = false }: { item: NavItemVM; compact?: boo
     <NavLink
       to={item.path}
       end={item.path === '/'}
+      viewTransition
       className={({ isActive }) =>
         `app-shell__nav-item${compact ? ' app-shell__nav-item--compact' : ''}${
           isActive ? ' app-shell__nav-item--active' : ''

@@ -21,6 +21,21 @@
   stroke-width: 4;
   stroke-linecap: round;
   transition: stroke-dashoffset var(--t-slow) var(--ease);
+  /* Fuell-Animation (T10.6): von 176 (leer) zum Zielwert, danach transition. */
+  animation: score-ring-fill 1.2s var(--ease) backwards;
+}
+
+@keyframes score-ring-fill {
+  from {
+    stroke-dashoffset: 176;
+  }
+}
+.score-ring__fill {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 4;
+  stroke-linecap: round;
+  transition: stroke-dashoffset var(--t-slow) var(--ease);
 }
 
 .score-ring__value {

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import type { Container } from '../../composition/container';
 import type { CarStatus } from '../../domain/userState';
@@ -7,10 +7,13 @@ import { HeroCard } from '../components/HeroCard';
 import { RankRow } from '../components/RankRow';
 import { CriteriaPanel } from '../components/CriteriaPanel';
 import { Icon } from '../components/Icon';
+import { SkeletonList } from '../components/SkeletonRow';
 import { useRankingViewModel } from '../viewmodels/useRankingViewModel';
 import { useSuggestionViewModel } from '../viewmodels/useSuggestionViewModel';
 import { SuggestionList } from '../components/SuggestionList';
 import { useCriteriaPanelViewModel } from '../viewmodels/useCriteriaPanelViewModel';
+import { useFlipReorder } from '../viewmodels/useFlipReorder';
+import { staggerDelayMs } from '../viewmodels/motionViewModel';
 import { STATUS_FILTER_LABELS, POWERTRAIN_FILTER_LABELS } from '../viewmodels/rankingViewModel';
 import { ROUTES } from '../routes';
 import './RankingPage.css';
@@ -40,6 +43,13 @@ export function RankingPage({ container }: { container: Container }) {
   const { sliders, error: panelError, setWeight } = useCriteriaPanelViewModel(container);
   const [panelOpen, setPanelOpen] = useState(false);
   const navigate = useNavigate();
+
+  // T10.6: FLIP-Umsortierung, wenn sich die Reihenfolge aendert.
+  const listRef = useRef<HTMLDivElement | null>(null);
+  const rowIds = [viewModel.hero?.id ?? '', ...viewModel.rest.map((row) => row.id)]
+    .filter(Boolean)
+    .join(',');
+  useFlipReorder(listRef, rowIds);
 
   return (
     <section className="ranking">
@@ -116,15 +126,16 @@ export function RankingPage({ container }: { container: Container }) {
 
       {error && <p role="alert">Fehler: {error}</p>}
       {panelError && <p role="alert">Fehler: {panelError}</p>}
-      {loading && <p>Lade Daten ...</p>}
+      {/* T10.6: Skeleton-Ladezustand statt Text */}
+      {loading && !error && <SkeletonList rows={5} />}
       {suggestions && !error && !loading && <SuggestionList suggestions={suggestions} />}
       {suggestionError && <p role="alert">Fehler: {suggestionError}</p>}
       {!error && !loading && (
         <div className="ranking__layout">
-          <div className="ranking__list">
+          <div className="ranking__list" ref={listRef}>
             {viewModel.hero && <HeroCard row={viewModel.hero} />}
-            {viewModel.rest.map((row) => (
-              <RankRow key={row.id} row={row} />
+            {viewModel.rest.map((row, index) => (
+              <RankRow key={row.id} row={row} delayMs={staggerDelayMs(index + 1)} />
             ))}
           </div>
           <CriteriaPanel

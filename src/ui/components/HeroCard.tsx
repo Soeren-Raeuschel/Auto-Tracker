@@ -1,13 +1,13 @@
-import './HeroCard.css';
 import { CarSilhouette } from './CarSilhouette';
 import { ScoreRing } from './ScoreRing';
 import { confidenceBadgeLabel, type RankingRowVM } from '../viewmodels/rankingViewModel';
+import './HeroCard.css';
 
 /** Auto auf Platz 1. Rendert nur, alle Werte kommen aus dem ViewModel. */
 export function HeroCard({ row }: { row: RankingRowVM }) {
   const badge = confidenceBadgeLabel(row.confidenceBadge);
   return (
-    <section className="hero" aria-label={`Beste Eignung: ${row.label}, ${row.score} von 100`}>
+    <section className="hero rise" aria-label={`Beste Eignung: ${row.label}, ${row.score} von 100`}>
       <p className="hero__eyebrow label">Beste Eignung</p>
       <div className="hero__grid">
         <div className="hero__car">
