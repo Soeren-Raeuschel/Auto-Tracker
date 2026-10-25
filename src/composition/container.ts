@@ -9,6 +9,7 @@ import { LocalStorageUserStateRepository } from '../infrastructure/localStorageU
 import { ValidatingCarRepository } from '../infrastructure/validatingCarRepository';
 import { defaultEvaluators } from '../scoring/evaluators';
 import { ScoringEngine } from '../scoring/scoringEngine';
+import { SuggestionService } from '../application/suggestionService';
 import { defaultSettings } from './defaultSettings';
 
 export function createContainer() {
@@ -17,6 +18,7 @@ export function createContainer() {
     defaultSettings,
   );
   const userStateRepository = new LocalStorageUserStateRepository(window.localStorage);
+  const eventBus = new EventBus();
 
   // Decorator chain: cache( validate( json ) )
   const carRepository = new CachingListRepository<Car>(
@@ -28,8 +30,9 @@ export function createContainer() {
     settingsRepository,
     userStateRepository,
     scoringEngine: new ScoringEngine(defaultEvaluators()),
-    eventBus: new EventBus(),
+    eventBus,
     backupService: new BackupService(settingsRepository, userStateRepository),
+    suggestionService: new SuggestionService(eventBus),
   };
 }
 

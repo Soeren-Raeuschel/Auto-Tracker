@@ -26,6 +26,7 @@ export function SettingsPage({ container }: { container: Container }) {
     withWeight,
     withKnockout,
     withNumberBounds,
+    setThreshold,
     exportBackup,
     importBackup,
   } = useSettingsViewModel(container);
@@ -75,6 +76,24 @@ export function SettingsPage({ container }: { container: Container }) {
               </div>
             </div>
           )}
+
+          <div className="settings__threshold">
+            <Label>Vorschläge</Label>
+            <label className="settings__threshold-row">
+              <span>Schwellwert (Score ab dem ein Auto vorgeschlagen wird)</span>
+              <input
+                type="number"
+                min={0}
+                max={100}
+                value={settings.suggestionThreshold}
+                onChange={(e) => {
+                  const value = e.target.valueAsNumber;
+                  if (Number.isFinite(value)) setThreshold(value);
+                }}
+                aria-label="Vorschlags-Schwellwert"
+              />
+            </label>
+          </div>
 
           <div className="settings__backup">
             <Label>Backup</Label>

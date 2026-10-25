@@ -8,6 +8,8 @@ import { RankRow } from '../components/RankRow';
 import { CriteriaPanel } from '../components/CriteriaPanel';
 import { Icon } from '../components/Icon';
 import { useRankingViewModel } from '../viewmodels/useRankingViewModel';
+import { useSuggestionViewModel } from '../viewmodels/useSuggestionViewModel';
+import { SuggestionList } from '../components/SuggestionList';
 import { useCriteriaPanelViewModel } from '../viewmodels/useCriteriaPanelViewModel';
 import { STATUS_FILTER_LABELS, POWERTRAIN_FILTER_LABELS } from '../viewmodels/rankingViewModel';
 import { ROUTES } from '../routes';
@@ -34,6 +36,7 @@ const POWERTRAIN_OPTION_LABELS: Record<(typeof POWERTRAIN_OPTIONS)[number], stri
 /** Ranking-Seite auf `/` (T10.4, T10.5, T3.4). Rendert nur, alle Werte aus den ViewModels. */
 export function RankingPage({ container }: { container: Container }) {
   const { viewModel, filters, updateFilters, error, loading } = useRankingViewModel(container);
+  const { viewModel: suggestions, error: suggestionError } = useSuggestionViewModel(container);
   const { sliders, error: panelError, setWeight } = useCriteriaPanelViewModel(container);
   const [panelOpen, setPanelOpen] = useState(false);
   const navigate = useNavigate();
@@ -114,6 +117,8 @@ export function RankingPage({ container }: { container: Container }) {
       {error && <p role="alert">Fehler: {error}</p>}
       {panelError && <p role="alert">Fehler: {panelError}</p>}
       {loading && <p>Lade Daten ...</p>}
+      {suggestions && !error && !loading && <SuggestionList suggestions={suggestions} />}
+      {suggestionError && <p role="alert">Fehler: {suggestionError}</p>}
       {!error && !loading && (
         <div className="ranking__layout">
           <div className="ranking__list">

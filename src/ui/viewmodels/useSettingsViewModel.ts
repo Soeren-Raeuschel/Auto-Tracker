@@ -44,8 +44,12 @@ export function useSettingsViewModel({
     };
   }, [settingsRepository]);
 
-  const persist = async (criteria: Criterion[]) => {
-    const next: Settings = { ...(settings as Settings), criteria };
+  const persist = async (criteria: Criterion[], threshold?: number) => {
+    const next: Settings = {
+      ...(settings as Settings),
+      criteria,
+      ...(threshold !== undefined ? { suggestionThreshold: threshold } : {}),
+    };
     try {
       await settingsRepository.save(next);
       setSettings(next);
@@ -69,6 +73,13 @@ export function useSettingsViewModel({
 
   const remove = (id: string) => {
     if (settings) void persist(removeCriterion(settings.criteria, id));
+  };
+
+  /** Schwellwert fuer Vorschlaege (T4.2), geklemmt auf 0-100. */
+  const setThreshold = (threshold: number) => {
+    if (!settings) return;
+    const clamped = Math.max(0, Math.min(100, Math.round(threshold)));
+    void persist(settings.criteria, clamped);
   };
 
   const exportBackup = () => backupService.exportJson();
@@ -98,6 +109,7 @@ export function useSettingsViewModel({
     withWeight,
     withKnockout,
     withNumberBounds,
+    setThreshold,
     exportBackup,
     importBackup,
     clearError: () => setError(null),
