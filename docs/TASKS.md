@@ -31,7 +31,8 @@ Entfallen: T2.4 (steckt in T10.4), T8.1 (steckt in T10.3 und T10.4), T8.2 (App i
   Erledigt: Reine Logik in `criteriaPanelViewModel.ts` (Slider-VMs mit Gewichts-Label, Füllprozent, K.-o.-Text) mit Test; Hook `useCriteriaPanelViewModel` speichert Gewicht über `settingsRepository` und publiziert `SettingsChanged` (Live-Sortierung). Neue Komponenten `CriteriaSlider` (4-px-Track, 16-px-Griff, 44-px-Trefferfläche) und `CriteriaPanel` (Desktop ≥1024 px rechts fix, mobil Bottom Sheet mit Toggle und „Kriterium hinzufügen“ -> /settings). `RankingPage` zweispaltig, `Icon` hat `sliders`. `npm run check` grün.
 
 ## Phase D: Autos, Watchlist, Vorschläge, Links (Meilenstein 2: komplette Kern-App)
-- [ ] T3.1 UserState-Service/Hook: Status (nutzt `canTransition`), Notizen, Checkliste (hud, massage, acc, regen) über userStateRepository.
+- [x] T3.1 UserState-Service/Hook: Status (nutzt `canTransition`), Notizen, Checkliste (hud, massage, acc, regen) über userStateRepository.
+  Erledigt: Reine Logik in `userStateViewModel.ts` (Checklisten-Katalog hud/massage/acc/regen, Default "watching", Statuswechsel über `canTransition` mit null bei ungültig, `allowedTargets`, Notizen, Checklistenpunkte) mit Test; Hook `useUserStateViewModel` lädt/speichert über `userStateRepository` und publiziert `UserStateChanged`. UI folgt in T3.2. `npm run check` grün.
 - [ ] T3.2 Detailseite `/car/:id`: alle Attribute mit confidence/source, Status, Notizen, Probefahrt-Checkliste.
 - [ ] T3.3 Vergleich `/compare`: 2 bis 3 Autos nebeneinander, Auswahl per `?ids=a,b,c`.
 - [ ] T3.4 Filter im Ranking: Status, Powertrain, "nur Watchlist", rejected ausblenden.
