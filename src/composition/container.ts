@@ -7,6 +7,11 @@ import { JsonCarRepository } from '../infrastructure/jsonCarRepository';
 import { LocalStorageSettingsRepository } from '../infrastructure/localStorageSettingsRepository';
 import { LocalStorageUserStateRepository } from '../infrastructure/localStorageUserStateRepository';
 import { ValidatingCarRepository } from '../infrastructure/validatingCarRepository';
+import { AutoScout24Provider } from '../infrastructure/listings/autoScout24Provider';
+import { KleinanzeigenProvider } from '../infrastructure/listings/kleinanzeigenProvider';
+import { MobileDeProvider } from '../infrastructure/listings/mobileDeProvider';
+import type { ListingSearchProvider } from '../ports/listingSearchProvider';
+
 import { defaultEvaluators } from '../scoring/evaluators';
 import { ScoringEngine } from '../scoring/scoringEngine';
 import { SuggestionService } from '../application/suggestionService';
@@ -33,6 +38,11 @@ export function createContainer() {
     eventBus,
     backupService: new BackupService(settingsRepository, userStateRepository),
     suggestionService: new SuggestionService(eventBus),
+    listingProviders: [
+      new MobileDeProvider(),
+      new AutoScout24Provider(),
+      new KleinanzeigenProvider(),
+    ] satisfies ListingSearchProvider[],
   };
 }
 

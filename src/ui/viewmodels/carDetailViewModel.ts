@@ -1,5 +1,7 @@
 import type { AttributeDefinition } from '../../domain/attributeCatalog';
+import type { ListingFilters, ListingSearchProvider } from '../../ports/listingSearchProvider';
 import { attributeCatalog } from '../../domain/attributeCatalog';
+
 import {
   carLabel,
   getAttributeValue,
@@ -78,7 +80,31 @@ export function checklistRows(checklist: Record<string, boolean>): ChecklistRowV
   }));
 }
 
+export interface ListingLinkVM {
+  portal: string;
+  url: string;
+}
+
+/** Such-Links der Portale fuer die Detailseite (T4.3), reine Funktion. */
+export function listingLinks(
+  car: Car,
+  filters: ListingFilters,
+  providers: readonly ListingSearchProvider[],
+): ListingLinkVM[] {
+  return providers.map((provider) => ({
+    portal: provider.portal,
+    url: provider.buildSearchUrl(car, filters),
+  }));
+}
+
+/** Rundet Eingaben auf ganze Zahlen, negatives oder nicht-numerisches wird verworfen. */
+export function toPositiveFilterValue(raw: string): number | undefined {
+  const parsed = Number.parseInt(raw, 10);
+  return Number.isNaN(parsed) || parsed <= 0 ? undefined : parsed;
+}
+
 // Pattern: MVVM. Pure function = easy to test without a browser.
+
 export function toCarDetailViewModel(
   car: Car,
   state: {

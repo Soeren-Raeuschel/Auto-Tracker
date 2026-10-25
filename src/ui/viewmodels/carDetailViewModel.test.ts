@@ -5,6 +5,8 @@ import {
   attributeRows,
   checklistRows,
   confidenceLabel,
+  listingLinks,
+  toPositiveFilterValue,
 } from './carDetailViewModel';
 
 const car: Car = {
@@ -86,5 +88,28 @@ describe('carDetailViewModel', () => {
     expect(vm.status).toBe('watching');
     expect(vm.notes).toBe('Probefahrt anfragen');
     expect(vm.label).toBe('Volkswagen ID.4');
+  });
+
+  it('builds listing links from the providers with the given filters (T4.3)', () => {
+    const providers = [
+      {
+        portal: 'A',
+        buildSearchUrl: (c: Car, f: { maxPriceEur?: number }) =>
+          `a?${c.brand}&${f.maxPriceEur ?? ''}`,
+      },
+      { portal: 'B', buildSearchUrl: () => 'b' },
+    ];
+    const links = listingLinks(car, { maxPriceEur: 20000 }, providers);
+    expect(links).toEqual([
+      { portal: 'A', url: 'a?Volkswagen&20000' },
+      { portal: 'B', url: 'b' },
+    ]);
+  });
+
+  it('parses positive filter inputs and drops the rest', () => {
+    expect(toPositiveFilterValue('20000')).toBe(20000);
+    expect(toPositiveFilterValue('abc')).toBeUndefined();
+    expect(toPositiveFilterValue('-5')).toBeUndefined();
+    expect(toPositiveFilterValue('')).toBeUndefined();
   });
 });

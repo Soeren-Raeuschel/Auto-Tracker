@@ -8,6 +8,7 @@ describe('Icon-Katalog (T10.8)', () => {
       'chevronDown',
       'compare',
       'newspaper',
+      'search',
       'sliders',
       'trophy',
     ]);

@@ -1,9 +1,15 @@
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import type { Container } from '../../composition/container';
 import { GlassCard } from '../components/GlassCard';
+import { Icon } from '../components/Icon';
 import { Label } from '../components/Label';
 import { useCarDetailViewModel } from '../viewmodels/useCarDetailViewModel';
-import { confidenceLabel } from '../viewmodels/carDetailViewModel';
+import {
+  confidenceLabel,
+  listingLinks,
+  toPositiveFilterValue,
+} from '../viewmodels/carDetailViewModel';
 import './CarDetailPage.css';
 
 const STATUS_LABELS: Record<string, string> = {
@@ -16,8 +22,17 @@ const STATUS_LABELS: Record<string, string> = {
 /** Detailseite auf `/car/:id` (T3.2). Rendert nur, alle Werte aus dem ViewModel. */
 export function CarDetailPage({ container }: { container: Container }) {
   const { id } = useParams<{ id: string }>();
-  const { viewModel, loading, error, changeStatus, changeNotes, changeChecklistItem } =
+  const { car, viewModel, loading, error, changeStatus, changeNotes, changeChecklistItem } =
     useCarDetailViewModel(container, id);
+  const [maxPrice, setMaxPrice] = useState('');
+  const [maxKm, setMaxKm] = useState('');
+  const [minYear, setMinYear] = useState('');
+
+  const searchFilters = {
+    maxPriceEur: toPositiveFilterValue(maxPrice),
+    maxMileageKm: toPositiveFilterValue(maxKm),
+    minYear: toPositiveFilterValue(minYear),
+  };
 
   return (
     <section className="car-detail">
@@ -63,6 +78,60 @@ export function CarDetailPage({ container }: { container: Container }) {
                 </li>
               ))}
             </ul>
+          </GlassCard>
+
+          <GlassCard className="car-detail__card">
+            <Label>Gebrauchte suchen</Label>
+            <div className="car-detail__listing-filters">
+              <label className="car-detail__filter">
+                <span>Preis bis (EUR)</span>
+                <input
+                  type="number"
+                  min={0}
+                  inputMode="numeric"
+                  value={maxPrice}
+                  onChange={(e) => setMaxPrice(e.target.value)}
+                  aria-label="Preis bis"
+                />
+              </label>
+              <label className="car-detail__filter">
+                <span>Km bis</span>
+                <input
+                  type="number"
+                  min={0}
+                  inputMode="numeric"
+                  value={maxKm}
+                  onChange={(e) => setMaxKm(e.target.value)}
+                  aria-label="Kilometerstand bis"
+                />
+              </label>
+              <label className="car-detail__filter">
+                <span>Baujahr ab</span>
+                <input
+                  type="number"
+                  min={1950}
+                  inputMode="numeric"
+                  value={minYear}
+                  onChange={(e) => setMinYear(e.target.value)}
+                  aria-label="Baujahr ab"
+                />
+              </label>
+            </div>
+            <div className="car-detail__listing-links">
+              {car &&
+                listingLinks(car, searchFilters, container.listingProviders).map((link) => (
+                  <a
+                    key={link.portal}
+                    className="car-detail__listing-link"
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Icon name="search" />
+                    {link.portal}
+                  </a>
+                ))}
+            </div>
           </GlassCard>
 
           <GlassCard className="car-detail__card">

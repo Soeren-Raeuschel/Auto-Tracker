@@ -3,6 +3,7 @@ import {
   ChevronDown,
   GitCompare,
   Newspaper,
+  Search,
   SlidersHorizontal,
   Trophy,
   type LucideIcon,
@@ -12,7 +13,8 @@ import {
  * Zentrale Icon-Komponente (T10.8). Einziger Ort, der `lucide-react` importieren
  * darf (ESLint no-restricted-imports). Neue Icons = ein Eintrag in ICONS.
  */
-export type IconName = 'trophy' | 'newspaper' | 'compare' | 'bookmark' | 'chevronDown' | 'sliders';
+export type IconName =
+  'trophy' | 'newspaper' | 'compare' | 'bookmark' | 'chevronDown' | 'sliders' | 'search';
 
 const ICONS: Record<IconName, LucideIcon> = {
   trophy: Trophy,
@@ -21,6 +23,7 @@ const ICONS: Record<IconName, LucideIcon> = {
   bookmark: Bookmark,
   chevronDown: ChevronDown,
   sliders: SlidersHorizontal,
+  search: Search,
 };
 
 /** Testbar exportiert: alle Namen und ihre Lucide-Komponente. */

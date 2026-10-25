@@ -46,6 +46,7 @@ export function useCarDetailViewModel(container: Container, id: string | undefin
   );
 
   return {
+    car,
     viewModel,
     loading: loading && !error,
     error: error ?? userState.error,
