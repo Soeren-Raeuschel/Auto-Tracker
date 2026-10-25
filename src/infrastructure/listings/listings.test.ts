@@ -31,6 +31,8 @@ describe('MobileDeProvider', () => {
     expect(parsed.origin).toBe('https://suchen.mobile.de');
     expect(parsed.pathname).toBe('/fahrzeuge/search.html');
     expect(parsed.searchParams.get('isSearchRequest')).toBe('true');
+    expect(parsed.searchParams.get('sb')).toBe('p');
+    expect(parsed.searchParams.get('od')).toBe('up');
     expect(parsed.searchParams.get('q')).toBe('Volkswagen ID.4 Pro');
     expect(parsed.searchParams.get('maxPrice')).toBe('20001');
     expect(parsed.searchParams.get('maxMileage')).toBe('50000');
@@ -53,6 +55,8 @@ describe('AutoScout24Provider', () => {
     expect(parsed.pathname).toBe('/lst');
     expect(parsed.searchParams.get('atype')).toBe('C');
     expect(parsed.searchParams.get('q')).toBe('Volkswagen ID.4 Pro');
+    expect(parsed.searchParams.get('sort')).toBe('price');
+    expect(parsed.searchParams.get('desc')).toBe('0');
     expect(parsed.searchParams.get('priceto')).toBe('20001');
     expect(parsed.searchParams.get('kmto')).toBe('50000');
     expect(parsed.searchParams.get('yearfrom')).toBe('2020');

@@ -15,11 +15,15 @@ export function freeTextQuery(car: { brand: string; model: string; variant?: str
 /**
  * mobile.de: Suchseite mit Freitext (q) und dokumentierten Filtern
  * (maxPrice, maxMileage, minFirstRegistrationDate als YYYY-MM-DD).
+ * Sortierung "Preis niedrigster zuerst": sb=p&od=up (im Browser verifiziert,
+ * Dropdown-Wert der Sortierung).
  * Nach dem Link-Bau im Browser pruefen.
  */
 export function mobileDeUrl(query: string, filters: ListingFilters): string {
   const params = new URLSearchParams();
   params.set('isSearchRequest', 'true');
+  params.set('sb', 'p');
+  params.set('od', 'up');
   params.set('q', query);
   if (filters.maxPriceEur !== undefined) {
     params.set('maxPrice', String(Math.round(filters.maxPriceEur)));
@@ -38,12 +42,16 @@ export function mobileDeUrl(query: string, filters: ListingFilters): string {
 
 /**
  * AutoScout24: Listen-Endpunkt /lst mit Freitext (q) und dokumentierten Filtern
- * (priceto, kmto, yearfrom). Nach dem Link-Bau im Browser pruefen.
+ * (priceto, kmto, yearfrom). Sortierung "Preis aufsteigend": sort=price&desc=0
+ * (im Browser verifiziert, Ergebnisliste zeigt "Sortieren: Preis aufsteigend").
+ * Nach dem Link-Bau im Browser pruefen.
  */
 export function autoScout24Url(query: string, filters: ListingFilters): string {
   const params = new URLSearchParams();
   params.set('atype', 'C');
   params.set('q', query);
+  params.set('sort', 'price');
+  params.set('desc', '0');
   if (filters.maxPriceEur !== undefined) {
     params.set('priceto', String(Math.round(filters.maxPriceEur)));
   }
