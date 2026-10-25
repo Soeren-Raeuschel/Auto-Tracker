@@ -16,7 +16,7 @@ Entfallen: T2.4 (steckt in T10.4), T8.1 (steckt in T10.3 und T10.4), T8.2 (App i
 - [x] T2.5 BackupService: `src/application/backupService.ts` (exportJson/importJson für Settings + UserState, Validierung, Test). Die Buttons kommen in T2.3.
 
 ## Phase B: Design-Fundament und Shell
-- [ ] T10.1 Theme-Fundament: `@fontsource-variable/manrope` (erlaubt), `src/ui/theme/tokens.css` und `global.css` laut DESIGN.md (Reset, Hintergrund, Glow, `.label`, `.glass`, `:focus-visible`, Reduced-Motion), in `main.tsx` importieren.
+- [x] T10.1 Theme-Fundament: `@fontsource-variable/manrope` (erlaubt), `src/ui/theme/tokens.css` und `global.css` laut DESIGN.md (Reset, Hintergrund, Glow, `.label`, `.glass`, `:focus-visible`, Reduced-Motion), in `main.tsx` importieren.
 - [ ] T10.2 Basiskomponenten in `src/ui/components/`: GlassCard, Label, ScoreBar, ScoreRing, CarSilhouette, PrimaryButton. Je eine CSS-Datei, typisierte Props, nur Typecheck.
 - [ ] T2.1 Routing: `react-router-dom` (erlaubt). Routen: `/` Ranking, `/settings`, `/car/:id`, `/compare`, später `/news`.
 - [ ] T10.3 Responsive Layout-Shell (braucht T2.1): `AppShell` mit Sidebar (Desktop), schwebender TabBar (Mobil), Tablet-Variante. Breakpoints per CSS, Safe Areas beachten. Tabs: Ranking, News, Vergleich, Watchlist.

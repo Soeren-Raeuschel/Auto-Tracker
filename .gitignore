@@ -1,0 +1,15 @@
+# Dependencies
+node_modules/
+
+# Test coverage
+coverage/
+
+# Build output
+dist/
+
+# Environment
+.env
+.env.*
+
+# OS/editor
+.DS_Store

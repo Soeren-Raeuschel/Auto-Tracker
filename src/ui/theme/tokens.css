@@ -1,0 +1,42 @@
+:root {
+  color-scheme: dark;
+  --bg: #08090b;
+  --text: #f5f6f8;
+  --text-2: #b4b9c2;
+  --muted: #7c828c; /* Kontrast auf --bg ca. 5:1 */
+  --accent: #5be0c0;
+  --accent-deep: #2fae91;
+  --accent-glow: rgba(91, 224, 192, 0.18);
+  --glass-top: rgba(255, 255, 255, 0.05);
+  --glass-bottom: rgba(255, 255, 255, 0.015);
+  --hairline: rgba(255, 255, 255, 0.08);
+  --hairline-soft: rgba(255, 255, 255, 0.06);
+  --track: rgba(255, 255, 255, 0.1);
+  --hover: rgba(255, 255, 255, 0.07);
+
+  --danger: #ff6b6b;
+  --glass-nav: rgba(20, 22, 26, 0.82);
+  --glow-floor: rgba(91, 224, 192, 0.35);
+  --inset-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  --shadow-btn: 0 8px 28px rgba(91, 224, 192, 0.28);
+  --shadow-knob: 0 2px 8px rgba(0, 0, 0, 0.5);
+
+  --font: 'Manrope Variable', system-ui, sans-serif;
+  --r-sm: 12px;
+  --r-md: 20px;
+  --r-lg: 30px;
+  --r-xl: 36px;
+  --r-pill: 999px;
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 20px;
+  --s-6: 28px;
+  --s-7: 36px;
+
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --t-fast: 200ms;
+  --t-base: 350ms;
+  --t-slow: 800ms;
+}
