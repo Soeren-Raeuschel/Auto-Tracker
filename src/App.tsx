@@ -7,6 +7,7 @@ import { ComparePage } from './ui/pages/ComparePage';
 import { NewsPage } from './ui/pages/NewsPage';
 import { RankingPage } from './ui/pages/RankingPage';
 import { SettingsPage } from './ui/pages/SettingsPage';
+import { ImportPage } from './ui/pages/ImportPage';
 import { WatchlistPage } from './ui/pages/WatchlistPage';
 
 const container = createContainer();
@@ -27,6 +28,7 @@ export default function App() {
           <Route path={ROUTES.compare} element={<ComparePage container={container} />} />
           <Route path={ROUTES.news} element={<NewsPage />} />
           <Route path={ROUTES.watchlist} element={<WatchlistPage />} />
+          <Route path={ROUTES.importCars} element={<ImportPage container={container} />} />
           <Route path="*" element={<Navigate to={ROUTES.ranking} replace />} />
         </Routes>
       </AppShell>

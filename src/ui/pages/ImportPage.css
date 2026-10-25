@@ -1,0 +1,132 @@
+.import-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4, 1rem);
+  max-width: 720px;
+  padding: var(--space-4, 1rem);
+}
+
+.import-page__card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3, 0.75rem);
+  padding: var(--space-4, 1rem);
+}
+
+.import-page__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.import-page__key-row {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.import-page__key-row input {
+  flex: 1;
+  min-width: 220px;
+  padding: 0.6rem 0.8rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.06);
+  color: inherit;
+  font: inherit;
+}
+
+.import-page__hint {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  line-height: 1.5;
+}
+
+.import-page__error {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #ff9a8a;
+  font-size: 0.9rem;
+}
+
+.import-page__success {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #8ce0a4;
+  font-size: 0.9rem;
+}
+
+.import-page__previews {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.import-page__preview {
+  padding: var(--space-4, 1rem);
+}
+
+.import-page__rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.25rem;
+}
+
+.import-page__rows li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.9rem;
+  padding: 0.15rem 0;
+}
+
+.import-page__row--missing {
+  opacity: 0.55;
+  font-style: italic;
+}
+
+.import-page__imported {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.import-page__imported li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.9rem;
+}
+
+.import-page__remove {
+  background: none;
+  border: none;
+  color: #ff9a8a;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.85rem;
+  padding: 0.25rem 0.5rem;
+}
+
+.import-page__export {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.import-page__export textarea {
+  width: 100%;
+  font-family: monospace;
+  font-size: 0.75rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.3);
+  color: inherit;
+  padding: 0.6rem;
+}

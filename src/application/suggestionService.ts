@@ -2,7 +2,6 @@ import type { Settings } from '../domain/settings';
 import type { ScoredCar } from '../domain/score';
 import type { CarStatus, UserCarState } from '../domain/userState';
 import type { EventBus } from './eventBus';
-
 /**
  * Status, die einen Vorschlag ausschliessen. Woertlich nach T4.1: Autos ohne
  * UserState-Eintrag und 'test-drive-planned' sind vorschlagsfaehig.

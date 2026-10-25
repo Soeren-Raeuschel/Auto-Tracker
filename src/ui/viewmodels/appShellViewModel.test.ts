@@ -2,12 +2,13 @@ import { describe, expect, it } from 'vitest';
 import { NAV_ITEMS, toAppShellViewModel } from './appShellViewModel';
 
 describe('appShellViewModel', () => {
-  it('hat die vier geforderten Tabs', () => {
+  it('hat die geforderten Tabs', () => {
     expect(NAV_ITEMS.map((item) => item.label)).toEqual([
       'Ranking',
       'News',
       'Vergleich',
       'Watchlist',
+      'Import',
     ]);
   });
 

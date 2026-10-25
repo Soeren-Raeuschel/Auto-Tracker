@@ -7,6 +7,11 @@ import { JsonCarRepository } from '../infrastructure/jsonCarRepository';
 import { LocalStorageSettingsRepository } from '../infrastructure/localStorageSettingsRepository';
 import { LocalStorageUserStateRepository } from '../infrastructure/localStorageUserStateRepository';
 import { ValidatingCarRepository } from '../infrastructure/validatingCarRepository';
+import { LocalStorageApiKeyRepository } from '../infrastructure/localStorageApiKeyRepository';
+import { LocalStorageImportedCarsRepository } from '../infrastructure/localStorageImportedCarsRepository';
+import { MergedCarRepository } from '../infrastructure/mergedCarRepository';
+import { createBrowserPageFetcher } from '../infrastructure/extraction/pageFetcher';
+import { GroqCarExtractor } from '../infrastructure/extraction/groqCarExtractor';
 import { AutoScout24Provider } from '../infrastructure/listings/autoScout24Provider';
 import { KleinanzeigenProvider } from '../infrastructure/listings/kleinanzeigenProvider';
 import { MobileDeProvider } from '../infrastructure/listings/mobileDeProvider';
@@ -30,10 +35,17 @@ export function createContainer() {
   );
   const userStateRepository = new LocalStorageUserStateRepository(window.localStorage);
   const eventBus = new EventBus();
+  const apiKeyRepository = new LocalStorageApiKeyRepository(window.localStorage);
+  const importedCarRepository = new LocalStorageImportedCarsRepository(window.localStorage);
 
-  // Decorator chain: cache( validate( json ) )
+  // Decorator chain: cache( validate( merge( json, imported ) ) )
   const carRepository = new CachingListRepository<Car>(
-    new ValidatingCarRepository(new JsonCarRepository(`${import.meta.env.BASE_URL}data/cars.json`)),
+    new ValidatingCarRepository(
+      new MergedCarRepository(
+        new JsonCarRepository(`${import.meta.env.BASE_URL}data/cars.json`),
+        importedCarRepository,
+      ),
+    ),
   );
 
   return {
@@ -44,6 +56,11 @@ export function createContainer() {
     eventBus,
     backupService: new BackupService(settingsRepository, userStateRepository),
     suggestionService: new SuggestionService(eventBus),
+    // URL-Import: Seite laden (Proxy) + per Groq extrahieren.
+    apiKeyRepository,
+    importedCarRepository,
+    pageFetcher: createBrowserPageFetcher(),
+    carExtractor: new GroqCarExtractor({ apiKeyRepository }),
     listingProviders: [
       new MobileDeProvider(),
       new AutoScout24Provider(),

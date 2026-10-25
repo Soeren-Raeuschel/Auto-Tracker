@@ -21,6 +21,7 @@ export const NAV_ITEMS: readonly NavItem[] = [
     icon: 'bookmark',
     disabled: true,
   },
+  { key: 'import', label: 'Import', path: ROUTES.importCars, icon: 'inbox', disabled: false },
 ];
 
 /** Ready-to-render Nav-Eintrag: aktiv, wenn der Pfad zur aktuellen Route passt. */

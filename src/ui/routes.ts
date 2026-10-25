@@ -9,6 +9,7 @@ export const ROUTES = {
   compare: '/compare',
   news: '/news',
   watchlist: '/watchlist',
+  importCars: '/import',
 } as const;
 
 export type RouteKey = keyof typeof ROUTES;
