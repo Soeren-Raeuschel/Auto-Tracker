@@ -1,16 +1,24 @@
-import { Bookmark, GitCompare, Newspaper, Trophy, type LucideIcon } from 'lucide-react';
+import {
+  Bookmark,
+  ChevronDown,
+  GitCompare,
+  Newspaper,
+  Trophy,
+  type LucideIcon,
+} from 'lucide-react';
 
 /**
  * Zentrale Icon-Komponente (T10.8). Einziger Ort, der `lucide-react` importieren
  * darf (ESLint no-restricted-imports). Neue Icons = ein Eintrag in ICONS.
  */
-export type IconName = 'trophy' | 'newspaper' | 'compare' | 'bookmark';
+export type IconName = 'trophy' | 'newspaper' | 'compare' | 'bookmark' | 'chevronDown';
 
 const ICONS: Record<IconName, LucideIcon> = {
   trophy: Trophy,
   newspaper: Newspaper,
   compare: GitCompare,
   bookmark: Bookmark,
+  chevronDown: ChevronDown,
 };
 
 /** Testbar exportiert: alle Namen und ihre Lucide-Komponente. */

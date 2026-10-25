@@ -48,7 +48,10 @@ export function useRankingViewModel({
   }, [carRepository, settingsRepository, eventBus]);
 
   const viewModel = useMemo<RankingVM>(
-    () => (settings ? toRankingViewModel(scoringEngine.rank(cars, settings.criteria)) : EMPTY),
+    () =>
+      settings
+        ? toRankingViewModel(scoringEngine.rank(cars, settings.criteria), settings.criteria)
+        : EMPTY,
     [cars, settings, scoringEngine],
   );
 

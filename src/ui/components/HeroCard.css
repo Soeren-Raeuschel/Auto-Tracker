@@ -1,0 +1,101 @@
+/* Pattern: dumb component. Tokens aus tokens.css. */
+.hero {
+  background: linear-gradient(180deg, var(--glass-top), var(--glass-bottom));
+  border: 1px solid var(--hairline);
+  box-shadow: var(--inset-highlight);
+  border-radius: var(--r-lg);
+  padding: var(--s-5);
+}
+
+.hero__eyebrow {
+  color: var(--accent);
+}
+
+.hero__grid {
+  display: grid;
+  gap: var(--s-4);
+}
+
+.hero__car {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+
+.hero__name {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+
+.hero__badge {
+  color: var(--muted);
+}
+
+.hero__side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+}
+
+.hero__score-desktop {
+  display: none;
+  font-size: 120px;
+  font-weight: 300;
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+
+.hero__facts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--s-2);
+}
+
+.hero__fact {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-3);
+  padding-block: var(--s-2);
+  border-top: 1px solid var(--hairline-soft);
+}
+
+.hero__fact-value {
+  font-size: 20px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (min-width: 1024px) {
+  .hero {
+    border-radius: var(--r-xl);
+    padding: var(--s-6);
+    min-height: 400px;
+  }
+
+  .hero__grid {
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: var(--s-7);
+  }
+
+  .hero__name {
+    font-size: 32px;
+  }
+
+  .hero__score-desktop {
+    display: block;
+  }
+
+  .hero__score-mobile {
+    display: none;
+  }
+
+  .hero__facts {
+    min-width: 260px;
+  }
+}
