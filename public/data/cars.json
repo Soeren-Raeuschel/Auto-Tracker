@@ -1,0 +1,596 @@
+[
+  {
+    "id": "xpeng-l03-ultra",
+    "brand": "Xpeng",
+    "model": "L03",
+    "bodyType": "other",
+    "powertrain": "bev",
+    "attributes": {
+      "priceEur": {
+        "value": 46600,
+        "confidence": "estimated",
+        "source": "Preis, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "panoramaRoof": {
+        "value": true,
+        "confidence": "estimated",
+        "source": "Pano, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "hud": {
+        "value": true,
+        "confidence": "estimated",
+        "source": "HUD, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "massageSeats": {
+        "value": true,
+        "confidence": "estimated",
+        "source": "Massage, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "dcMaxKw": {
+        "value": 236,
+        "confidence": "estimated",
+        "source": "DC-Ladeleistung, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      }
+    },
+    "variant": "Ultra"
+  },
+  {
+    "id": "xpeng-g6-performance",
+    "brand": "Xpeng",
+    "model": "G6",
+    "bodyType": "suv",
+    "powertrain": "bev",
+    "attributes": {
+      "priceEur": {
+        "value": 51600,
+        "confidence": "estimated",
+        "source": "Preis, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "panoramaRoof": {
+        "value": true,
+        "confidence": "estimated",
+        "source": "Pano, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "hud": {
+        "value": false,
+        "confidence": "estimated",
+        "source": "HUD meist nicht vorhanden, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "massageSeats": {
+        "value": true,
+        "confidence": "estimated",
+        "source": "Massage, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "dcMaxKw": {
+        "value": 451,
+        "confidence": "estimated",
+        "source": "DC-Ladeleistung, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      }
+    },
+    "variant": "Performance"
+  },
+  {
+    "id": "xpeng-p7plus",
+    "brand": "Xpeng",
+    "model": "P7+",
+    "bodyType": "sedan",
+    "powertrain": "bev",
+    "attributes": {
+      "priceEur": {
+        "value": 53600,
+        "confidence": "estimated",
+        "source": "Preis, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "panoramaRoof": {
+        "value": true,
+        "confidence": "estimated",
+        "source": "Pano, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "hud": {
+        "value": true,
+        "confidence": "estimated",
+        "source": "HUD, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "massageSeats": {
+        "value": true,
+        "confidence": "estimated",
+        "source": "Massage, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "dcMaxKw": {
+        "value": 446,
+        "confidence": "estimated",
+        "source": "DC-Ladeleistung, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      }
+    }
+  },
+  {
+    "id": "geely-e5-max-plus",
+    "brand": "Geely",
+    "model": "E5",
+    "bodyType": "suv",
+    "powertrain": "bev",
+    "attributes": {
+      "priceEur": {
+        "value": 42990,
+        "confidence": "estimated",
+        "source": "Preis, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "panoramaRoof": {
+        "value": true,
+        "confidence": "estimated",
+        "source": "Pano, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "hud": {
+        "value": true,
+        "confidence": "estimated",
+        "source": "HUD, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "massageSeats": {
+        "value": true,
+        "confidence": "estimated",
+        "source": "Massage, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "dcMaxKw": {
+        "value": 135,
+        "confidence": "estimated",
+        "source": "DC-Ladeleistung, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      }
+    },
+    "variant": "Max+"
+  },
+  {
+    "id": "leapmotor-c10",
+    "brand": "Leapmotor",
+    "model": "C10",
+    "bodyType": "suv",
+    "powertrain": "bev",
+    "attributes": {
+      "priceEur": {
+        "value": 41900,
+        "confidence": "estimated",
+        "source": "Preis, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "panoramaRoof": {
+        "value": true,
+        "confidence": "estimated",
+        "source": "Pano, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "hud": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "HUD nur als Option, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "massageSeats": {
+        "value": false,
+        "confidence": "estimated",
+        "source": "Massage, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "dcMaxKw": {
+        "value": 180,
+        "confidence": "estimated",
+        "source": "DC-Ladeleistung, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      }
+    },
+    "variant": "AWD"
+  },
+  {
+    "id": "hyundai-ioniq5-uniq",
+    "brand": "Hyundai",
+    "model": "Ioniq 5",
+    "bodyType": "suv",
+    "powertrain": "bev",
+    "attributes": {
+      "priceEur": {
+        "value": 52500,
+        "confidence": "estimated",
+        "source": "Preis, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "panoramaRoof": {
+        "value": true,
+        "confidence": "estimated",
+        "source": "Pano, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "hud": {
+        "value": true,
+        "confidence": "estimated",
+        "source": "HUD, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "massageSeats": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "nur Relax-Sitze, keine Massage belegt, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "dcMaxKw": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "800 V, kW nicht in Tabelle, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      }
+    },
+    "variant": "UNIQ"
+  },
+  {
+    "id": "zeekr-7x-awd",
+    "brand": "Zeekr",
+    "model": "7X",
+    "bodyType": "suv",
+    "powertrain": "bev",
+    "attributes": {
+      "priceEur": {
+        "value": 64990,
+        "confidence": "estimated",
+        "source": "Preis, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "panoramaRoof": {
+        "value": true,
+        "confidence": "estimated",
+        "source": "Pano, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "hud": {
+        "value": true,
+        "confidence": "estimated",
+        "source": "HUD, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "massageSeats": {
+        "value": true,
+        "confidence": "estimated",
+        "source": "Massage, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "dcMaxKw": {
+        "value": 480,
+        "confidence": "estimated",
+        "source": "DC-Ladeleistung, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      }
+    },
+    "variant": "AWD"
+  },
+  {
+    "id": "geely-starray",
+    "brand": "Geely",
+    "model": "Starray",
+    "bodyType": "suv",
+    "powertrain": "phev",
+    "attributes": {
+      "priceEur": {
+        "value": 37990,
+        "confidence": "estimated",
+        "source": "Preis, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "panoramaRoof": {
+        "value": true,
+        "confidence": "estimated",
+        "source": "Pano, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "hud": {
+        "value": true,
+        "confidence": "estimated",
+        "source": "HUD, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "massageSeats": {
+        "value": true,
+        "confidence": "estimated",
+        "source": "Massage, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "dcMaxKw": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "PHEV, DC nicht in Tabelle, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      }
+    }
+  },
+  {
+    "id": "skoda-peaq-90x",
+    "brand": "Skoda",
+    "model": "Peaq",
+    "bodyType": "suv",
+    "powertrain": "bev",
+    "attributes": {
+      "priceEur": {
+        "value": 60400,
+        "confidence": "estimated",
+        "source": "ab-Preis, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "panoramaRoof": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "nur Sportline, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "hud": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "HUD nur als Option, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "massageSeats": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "unbekannt, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "dcMaxKw": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "nicht in Tabelle, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      }
+    },
+    "variant": "90x"
+  },
+  {
+    "id": "mazda-cx-6e",
+    "brand": "Mazda",
+    "model": "CX-6e",
+    "bodyType": "other",
+    "powertrain": "bev",
+    "attributes": {
+      "priceEur": {
+        "value": 52990,
+        "confidence": "estimated",
+        "source": "Preis, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "panoramaRoof": {
+        "value": true,
+        "confidence": "estimated",
+        "source": "Pano, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "hud": {
+        "value": true,
+        "confidence": "estimated",
+        "source": "HUD, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "massageSeats": {
+        "value": false,
+        "confidence": "estimated",
+        "source": "Massage, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "dcMaxKw": {
+        "value": 200,
+        "confidence": "estimated",
+        "source": "DC-Ladeleistung, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      }
+    }
+  },
+  {
+    "id": "byd-tang",
+    "brand": "BYD",
+    "model": "Tang",
+    "bodyType": "suv",
+    "powertrain": "bev",
+    "attributes": {
+      "priceEur": {
+        "value": 54000,
+        "confidence": "estimated",
+        "source": "Preis, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "panoramaRoof": {
+        "value": true,
+        "confidence": "estimated",
+        "source": "Pano, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "hud": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "unbekannt, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "massageSeats": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "unbekannt, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "dcMaxKw": {
+        "value": 170,
+        "confidence": "estimated",
+        "source": "DC-Ladeleistung, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      }
+    }
+  },
+  {
+    "id": "cupra-tavascan-vz",
+    "brand": "Cupra",
+    "model": "Tavascan",
+    "bodyType": "suv",
+    "powertrain": "bev",
+    "attributes": {
+      "priceEur": {
+        "value": 53000,
+        "confidence": "estimated",
+        "source": "Preis, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "panoramaRoof": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "nur gegen Aufpreis, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "hud": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "nur gegen Aufpreis, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "massageSeats": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "unbekannt, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "dcMaxKw": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "offen, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      }
+    },
+    "variant": "VZ"
+  },
+  {
+    "id": "smart-5",
+    "brand": "smart",
+    "model": "#5",
+    "bodyType": "suv",
+    "powertrain": "bev",
+    "attributes": {
+      "priceEur": {
+        "value": 56900,
+        "confidence": "estimated",
+        "source": "ab-Preis, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "panoramaRoof": {
+        "value": true,
+        "confidence": "estimated",
+        "source": "Pano, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "hud": {
+        "value": true,
+        "confidence": "estimated",
+        "source": "HUD, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "massageSeats": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "unbekannt, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "dcMaxKw": {
+        "value": 400,
+        "confidence": "estimated",
+        "source": "DC-Ladeleistung, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      }
+    }
+  },
+  {
+    "id": "togg-t10x",
+    "brand": "Togg",
+    "model": "T10X",
+    "bodyType": "suv",
+    "powertrain": "bev",
+    "attributes": {
+      "priceEur": {
+        "value": 46190,
+        "confidence": "estimated",
+        "source": "Preis, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "panoramaRoof": {
+        "value": true,
+        "confidence": "estimated",
+        "source": "Pano, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "hud": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "unbekannt, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "massageSeats": {
+        "value": false,
+        "confidence": "estimated",
+        "source": "Massage, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "dcMaxKw": {
+        "value": 180,
+        "confidence": "estimated",
+        "source": "DC-Ladeleistung, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      }
+    }
+  },
+  {
+    "id": "deepal-s05-max",
+    "brand": "Deepal",
+    "model": "S05",
+    "bodyType": "suv",
+    "powertrain": "bev",
+    "attributes": {
+      "priceEur": {
+        "value": 44990,
+        "confidence": "estimated",
+        "source": "Preis, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "panoramaRoof": {
+        "value": true,
+        "confidence": "estimated",
+        "source": "Pano, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "hud": {
+        "value": true,
+        "confidence": "estimated",
+        "source": "HUD, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "massageSeats": {
+        "value": null,
+        "confidence": "estimated",
+        "source": "unbekannt, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      },
+      "dcMaxKw": {
+        "value": 200,
+        "confidence": "estimated",
+        "source": "DC-Ladeleistung, beim Händler prüfen",
+        "updatedAt": "2026-10-18"
+      }
+    },
+    "variant": "Max"
+  }
+]
