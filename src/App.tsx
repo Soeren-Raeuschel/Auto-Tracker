@@ -24,7 +24,7 @@ export default function App() {
           <Route path={ROUTES.ranking} element={<RankingPage container={container} />} />
           <Route path={ROUTES.settings} element={<SettingsPage container={container} />} />
           <Route path={ROUTES.carDetail} element={<CarDetailPage container={container} />} />
-          <Route path={ROUTES.compare} element={<ComparePage />} />
+          <Route path={ROUTES.compare} element={<ComparePage container={container} />} />
           <Route path={ROUTES.news} element={<NewsPage />} />
           <Route path={ROUTES.watchlist} element={<WatchlistPage />} />
           <Route path="*" element={<Navigate to={ROUTES.ranking} replace />} />
