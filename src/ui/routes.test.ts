@@ -7,6 +7,8 @@ describe('routes', () => {
     expect(ROUTES.settings).toBe('/settings');
     expect(ROUTES.carDetail).toBe('/car/:id');
     expect(ROUTES.compare).toBe('/compare');
+    expect(ROUTES.news).toBe('/news');
+    expect(ROUTES.watchlist).toBe('/watchlist');
   });
 
   it('hat keine doppelten Pfade', () => {

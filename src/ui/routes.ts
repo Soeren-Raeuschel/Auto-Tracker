@@ -1,12 +1,14 @@
 /**
  * Zentrale Routen-Konfiguration (T2.1). Reine Daten, damit die Routen testbar sind,
- * ohne React zu rendern. `/news` kommt später mit T7.3 dazu.
+ * ohne React zu rendern. `/news` und `/watchlist` sind Platzhalter bis T7.3.
  */
 export const ROUTES = {
   ranking: '/',
   settings: '/settings',
   carDetail: '/car/:id',
   compare: '/compare',
+  news: '/news',
+  watchlist: '/watchlist',
 } as const;
 
 export type RouteKey = keyof typeof ROUTES;
