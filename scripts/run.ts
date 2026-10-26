@@ -3,11 +3,13 @@
 import { FetchNewsStep } from './fetchNews';
 import { MatchNewsStep } from './matchNews';
 import { ExtractCandidatesStep } from './extractCandidates';
+import { SnapshotPricesStep } from './priceHistory';
 
 const steps: { run(): Promise<boolean> }[] = [
   new FetchNewsStep(),
   new MatchNewsStep(),
   new ExtractCandidatesStep(),
+  new SnapshotPricesStep(),
 ];
 
 for (const step of steps) {

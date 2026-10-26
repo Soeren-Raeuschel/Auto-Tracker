@@ -41,7 +41,9 @@ Regeln:
 - Erlaubte attribute-Keys sind NUR: ${ATTRIBUTE_KEYS.join(', ')}.
 - Das sind genau die Filter-Kriterien der App. Prüfe den Artikel SYSTEMATISCH auf jeden dieser Keys, auch unter alternativen Bezeichnungen:
   ${KEY_HINTS}.
-- Zusätzliche Hinweise: ${Object.entries(EXTRACTION_HINTS).map(([k, h]) => `${k}: ${h}`).join('; ')}.
+- Zusätzliche Hinweise: ${Object.entries(EXTRACTION_HINTS)
+  .map(([k, h]) => `${k}: ${h}`)
+  .join('; ')}.
 - Suchbegriffe auf der Seite können variieren (z. B. „Reichweite“, „WLTP“, „Batteriekapazität“, „Akkukapazität“, „DC-Laden“). Nutze sie alle für die Keys oben.
 - Schiebetüren, antibakterielle Materialien o. ä. gehören NICHT in attributes — nur die Keys oben.
 - Steht der Artikel als Fließtext ohne Ausstattungsliste, übernimm trotzdem alles, was zu einem Key passt. Fehlt ein Key komplett: weglassen, nicht mit null füllen.

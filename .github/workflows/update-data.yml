@@ -1,0 +1,54 @@
+name: Daten-Update
+on:
+  schedule:
+    - cron: '17 4 * * *' # taeglich 04:17 UTC
+  workflow_dispatch:
+permissions:
+  contents: write
+  issues: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      # Stand vor dem Lauf merken, um neue Kandidaten und Preisfaelle zu erkennen.
+      - name: Stand sichern
+        run: |
+          mkdir -p /tmp/before
+          cp public/data/candidates.json /tmp/before/ 2>/dev/null || echo '[]' > /tmp/before/candidates.json
+          cp public/data/price-history.json /tmp/before/ 2>/dev/null || echo '{}' > /tmp/before/price-history.json
+      - name: Pipeline ausfuehren
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: |
+          touch .env
+          npm run pipeline
+      # Commit nur bei Aenderungen; bei Fehler bleibt der letzte Stand (T11.3).
+      - name: Committen bei Aenderungen
+        run: |
+          git config user.name "data-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add public/data
+          if git diff --cached --quiet; then
+            echo "Keine Aenderungen."
+          else
+            git commit -m "chore(data): taegliches Pipeline-Update"
+            git push
+          fi
+      - name: Alerts erkennen
+        id: alerts
+        run: |
+          npx tsx scripts/alerts.ts /tmp/before | tee /tmp/alerts.txt
+          sed -n '/ALERTS_BEGIN/,/ALERTS_END/p' /tmp/alerts.txt | sed '1d;$d' > /tmp/alerts-body.md
+      - name: Issue bei neuen Vorschlaegen oder Preisfall
+        if: steps.alerts.outputs.alerts == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh issue create --title "Daten-Update: neue Vorschlaege oder Preisfall" \
+            --body-file /tmp/alerts-body.md || true

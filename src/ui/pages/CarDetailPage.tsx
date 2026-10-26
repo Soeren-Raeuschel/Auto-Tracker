@@ -10,6 +10,8 @@ import { useCarViewerViewModel } from '../viewmodels/useCarViewerViewModel';
 import { useTripViewModel } from '../viewmodels/useTripViewModel';
 import { useTcoViewModel } from '../viewmodels/useTcoViewModel';
 import { useNewsViewModel } from '../viewmodels/useNewsViewModel';
+import { usePriceHistoryViewModel } from '../viewmodels/usePriceHistoryViewModel';
+import { PriceHistoryChart } from '../components/PriceHistoryChart';
 import { newsForCar } from '../viewmodels/newsViewModel';
 import {
   confidenceLabel,
@@ -34,6 +36,7 @@ export function CarDetailPage({ container }: { container: Container }) {
   const trip = useTripViewModel(car);
   const tco = useTcoViewModel(car);
   const news = useNewsViewModel(container);
+  const price = usePriceHistoryViewModel(container, id ?? '');
   const [maxPrice, setMaxPrice] = useState('');
   const [maxKm, setMaxKm] = useState('');
   const [minYear, setMinYear] = useState('');
@@ -243,6 +246,17 @@ export function CarDetailPage({ container }: { container: Container }) {
               )}
             </GlassCard>
           )}
+
+          <GlassCard className="car-detail__card">
+            <Label>Preis-Historie</Label>
+            {price.error ? (
+              <p role="alert">Fehler: {price.error}</p>
+            ) : price.viewModel ? (
+              <PriceHistoryChart viewModel={price.viewModel} />
+            ) : (
+              <p className="label">Lade Preis-Historie ...</p>
+            )}
+          </GlassCard>
 
           <GlassCard className="car-detail__card">
             <Label>Probefahrt-Checkliste</Label>

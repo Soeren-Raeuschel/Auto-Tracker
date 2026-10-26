@@ -11,6 +11,8 @@ import { JsonCandidateRepository } from '../infrastructure/jsonCandidateReposito
 import { LocalStorageCandidateDecisionRepository } from '../infrastructure/localStorageCandidateDecisionRepository';
 import { LocalStorageSettingsRepository } from '../infrastructure/localStorageSettingsRepository';
 import { LocalStorageUserStateRepository } from '../infrastructure/localStorageUserStateRepository';
+import type { NewsRepository } from '../ports/newsRepository';
+import { JsonPriceHistoryRepository } from '../infrastructure/jsonPriceHistoryRepository';
 import { ValidatingCarRepository } from '../infrastructure/validatingCarRepository';
 import { ValidatingListRepository } from '../infrastructure/validatingListRepository';
 import { LocalStorageApiKeyRepository } from '../infrastructure/localStorageApiKeyRepository';
@@ -24,7 +26,6 @@ import { MobileDeProvider } from '../infrastructure/listings/mobileDeProvider';
 import type { CandidateRepository } from '../ports/candidateRepository';
 import type { ListingSearchProvider } from '../ports/listingSearchProvider';
 import type { ModelProvider } from '../ports/modelProvider';
-import type { NewsRepository } from '../ports/newsRepository';
 import {
   FetchModelFileChecker,
   GenericModelProvider,
@@ -78,9 +79,12 @@ export function createContainer() {
     carRepository,
     newsRepository,
     candidateRepository,
-    candidateDecisionRepository,
-    // "Stand"-Zeitstempel der News (T7.3), vom Decorator unberuehrt.
     newsUpdatedAt: () => jsonNewsRepository.getUpdatedAt(),
+    // Preis-Historie (T7.6): public/data/price-history.json, fehlende Datei = leer.
+    priceHistoryRepository: new JsonPriceHistoryRepository(
+      `${import.meta.env.BASE_URL}data/price-history.json`,
+    ),
+    candidateDecisionRepository,
     settingsRepository,
     userStateRepository,
     scoringEngine: new ScoringEngine(defaultEvaluators()),
