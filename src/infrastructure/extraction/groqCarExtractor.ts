@@ -5,7 +5,12 @@ import { parseValid, carCandidateSchema } from '../../validation/schemas';
 
 /** Groq chat endpoint (OpenAI-kompatibel). JSON-Mode via response_format. */
 export const GROQ_URL = 'https://api.groq.com/openai/v1/chat/completions';
-export const DEFAULT_GROQ_MODEL = 'llama-3.3-70b-versatile';
+export const DEFAULT_GROQ_MODEL = 'openai/gpt-oss-120b';
+/**
+ * Fallback-Modelle, falls das Standard-Modell fuer den eigenen Key nicht
+ * verfuegbar ist (Groq antwortet dann mit HTTP 404 model_not_found).
+ */
+export const FALLBACK_MODELS = ['openai/gpt-oss-20b', 'qwen/qwen3.8-27b'] as const;
 
 const ATTRIBUTE_KEYS = [
   'priceEur',
@@ -164,53 +169,74 @@ export class GroqCarExtractor implements CarExtractor {
         'Kein Groq-API-Key gesetzt. Auf console.groq.com einen kostenlosen Key erstellen und unten eintragen.',
       );
     }
-    let response: Response;
-    try {
-      response = await this.fetchFn(GROQ_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${apiKey}`,
-        },
-        body: JSON.stringify({
-          model: this.model,
-          temperature: 0,
-          response_format: { type: 'json_object' },
-          messages: [
-            { role: 'system', content: SYSTEM_PROMPT },
-            { role: 'user', content: `Quelle: ${sourceUrl}\n\nArtikel:\n${articleText}` },
-          ],
-        }),
-        signal: AbortSignal.timeout(60_000),
+    const models = [this.model, ...FALLBACK_MODELS.filter((m) => m !== this.model)];
+    let lastError: Error | null = null;
+    for (const model of models) {
+      let response: Response;
+      try {
+        response = await this.fetchFn(GROQ_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${apiKey}`,
+          },
+          body: JSON.stringify({
+            model,
+            temperature: 0,
+            response_format: { type: 'json_object' },
+            messages: [
+              { role: 'system', content: SYSTEM_PROMPT },
+              { role: 'user', content: `Quelle: ${sourceUrl}\n\nArtikel:\n${articleText}` },
+            ],
+          }),
+          signal: AbortSignal.timeout(60_000),
+        });
+      } catch {
+        throw new Error('Groq-API nicht erreichbar (Netzwerk oder Key ungueltig).');
+      }
+      if (!response.ok) {
+        const detail = await errorDetail(response);
+        if (response.status === 404) {
+          // Modell fuer diesen Key nicht verfuegbar -> naechstes Fallback-Modell.
+          lastError = new Error(`Groq-Modell "${model}" nicht verfuegbar (HTTP 404${detail}).`);
+          continue;
+        }
+        const hint =
+          response.status === 401
+            ? ' (API-Key ungültig)'
+            : response.status === 429
+              ? ' (Limit erreicht, später erneut)'
+              : '';
+        throw new Error(`Groq-Fehler HTTP ${response.status}${hint}${detail}`);
+      }
+      const payload = (await response.json()) as GroqResponse;
+      const content = payload.choices?.[0]?.message?.content;
+      if (typeof content !== 'string' || content === '') {
+        throw new Error('Groq-Antwort ohne Inhalt.');
+      }
+      const rawCars = parseResponseContent(content);
+      const candidates = rawCars
+        .map((raw) => normalizeRawCar(raw, sourceUrl))
+        .filter((candidate): candidate is CarCandidate => candidate !== null);
+      const valid = parseValid(carCandidateSchema, candidates, () => {
+        // Schema-Bruch wäre ein interner Bug in normalizeRawCar; hier nicht erwartet.
       });
-    } catch {
-      throw new Error('Groq-API nicht erreichbar (Netzwerk oder Key ungueltig).');
+      if (valid.length === 0) {
+        throw new Error('Groq hat kein gültiges Fahrzeug extrahiert. Bitte manuell prüfen.');
+      }
+      return valid;
     }
-    if (!response.ok) {
-      const status = response.status;
-      const detail =
-        status === 401
-          ? ' (API-Key ungültig)'
-          : status === 429
-            ? ' (Limit erreicht, später erneut)'
-            : '';
-      throw new Error(`Groq-Fehler HTTP ${status}${detail}`);
-    }
-    const payload = (await response.json()) as GroqResponse;
-    const content = payload.choices?.[0]?.message?.content;
-    if (typeof content !== 'string' || content === '') {
-      throw new Error('Groq-Antwort ohne Inhalt.');
-    }
-    const rawCars = parseResponseContent(content);
-    const candidates = rawCars
-      .map((raw) => normalizeRawCar(raw, sourceUrl))
-      .filter((candidate): candidate is CarCandidate => candidate !== null);
-    const valid = parseValid(carCandidateSchema, candidates, () => {
-      // Schema-Bruch wäre ein interner Bug in normalizeRawCar; hier nicht erwartet.
-    });
-    if (valid.length === 0) {
-      throw new Error('Groq hat kein gültiges Fahrzeug extrahiert. Bitte manuell prüfen.');
-    }
-    return valid;
+    throw lastError ?? new Error('Groq-Fehler: kein Modell verfuegbar.');
+  }
+}
+
+/** Liest aus einer Fehlerantwort die Groq-Fehlermeldung (z. B. model_not_found). */
+async function errorDetail(response: Response): Promise<string> {
+  try {
+    const payload = (await response.json()) as { error?: { message?: string } };
+    const message = payload.error?.message;
+    return typeof message === 'string' && message !== '' ? `: ${message}` : '';
+  } catch {
+    return '';
   }
 }

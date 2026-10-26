@@ -1,6 +1,6 @@
 // T7.4: GroqCarExtractor fuer die Pipeline (Node). Chat-Completions-API von Groq
 // per fetch, Key aus env GROQ_API_KEY, Modell aus env GROQ_MODEL (Default:
-// llama-3.3-70b-versatile, Production-Modell laut Groq-Doku geprueft am 26.10.2026).
+// openai/gpt-oss-120b, mit Fallback-Modellen siehe Browser-Extractor).
 // Prompt verlangt NUR JSON, fehlende Werte null; ungueltige Antworten werden
 // verworfen. Normalisierung kommt aus dem Browser-Extractor (eine Stelle).
 import type { CarCandidate } from '../src/domain/carCandidate';

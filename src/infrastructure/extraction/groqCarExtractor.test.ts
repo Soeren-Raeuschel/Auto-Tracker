@@ -1,5 +1,11 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { GroqCarExtractor, parseBooleanish, parseNumberish } from './groqCarExtractor';
+import {
+  FALLBACK_MODELS,
+  DEFAULT_GROQ_MODEL,
+  GroqCarExtractor,
+  parseBooleanish,
+  parseNumberish,
+} from './groqCarExtractor';
 import { LocalStorageApiKeyRepository } from '../localStorageApiKeyRepository';
 
 const storage: Record<string, string> = {};
@@ -112,6 +118,38 @@ describe('GroqCarExtractor', () => {
     const extractor = buildExtractor(fetchFn as unknown as typeof fetch);
     storage['auto-tracker:groq-key'] = 'gsk_test';
     await expect(extractor.extract(article, 'https://example.com')).rejects.toThrow('401');
+  });
+
+  it('weicht bei 404 (Modell nicht verfuegbar) auf Fallback-Modelle aus', async () => {
+    const notFound = {
+      ok: false,
+      status: 404,
+      json: async () => ({ error: { message: 'model_not_found', type: 'invalid_request_error' } }),
+    } as unknown as Response;
+    const fetchFn = vi
+      .fn<(input: string, init?: RequestInit) => Promise<Response>>()
+      .mockResolvedValueOnce(notFound)
+      .mockResolvedValueOnce(groqResponse(validContent));
+    const extractor = buildExtractor(fetchFn as unknown as typeof fetch);
+    storage['auto-tracker:groq-key'] = 'gsk_test';
+    const candidates = await extractor.extract(article, 'https://example.com');
+    expect(candidates).toHaveLength(1);
+    const models = fetchFn.mock.calls.map(
+      (call) => (JSON.parse(String((call[1] as RequestInit).body)) as { model: string }).model,
+    );
+    expect(models[0]).toBe(DEFAULT_GROQ_MODEL);
+    expect(models[1]).toBe(FALLBACK_MODELS[0]);
+  });
+
+  it('schmeisst Fehler wenn kein Modell verfuegbar ist', async () => {
+    const notFound = { ok: false, status: 404, json: async () => ({}) } as unknown as Response;
+    const fetchFn = vi.fn(async () => notFound);
+    const extractor = buildExtractor(fetchFn as unknown as typeof fetch);
+    storage['auto-tracker:groq-key'] = 'gsk_test';
+    await expect(extractor.extract(article, 'https://example.com')).rejects.toThrow(
+      'nicht verfuegbar',
+    );
+    expect(fetchFn).toHaveBeenCalledTimes(1 + FALLBACK_MODELS.length);
   });
 
   it('schmeisst ungueltige Eintraege weg (parseValid, kein Absturz)', async () => {
