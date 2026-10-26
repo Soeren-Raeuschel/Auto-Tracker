@@ -91,7 +91,7 @@ describe('GroqCarExtractor', () => {
     expect(extracted.powertrain).toBe('bev');
     expect(extracted.attributes.priceEur?.value).toBe(52000);
     expect(extracted.attributes.panoramaRoof?.value).toBe(true);
-    expect(extracted.attributes.hud?.value).toBeNull();
+    expect(extracted.attributes.hud).toBeUndefined();
     expect(extracted.sourceUrl).toBe('https://example.com/artikel');
     // Auth-Header gesetzt?
     const request = (fetchFn as ReturnType<typeof vi.fn>).mock.calls[0] as unknown as [

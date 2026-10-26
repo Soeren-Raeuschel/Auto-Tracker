@@ -1,4 +1,5 @@
 import type { CarCandidate } from '../../domain/carCandidate';
+import { attributeCatalog } from '../../domain/attributeCatalog';
 import type { ApiKeyRepository } from '../../ports/apiKeyRepository';
 import type { CarExtractor } from '../../ports/carExtractor';
 import { parseValid, carCandidateSchema } from '../../validation/schemas';
@@ -12,24 +13,38 @@ export const DEFAULT_GROQ_MODEL = 'openai/gpt-oss-120b';
  */
 export const FALLBACK_MODELS = ['openai/gpt-oss-20b', 'qwen/qwen3.8-27b'] as const;
 
-const ATTRIBUTE_KEYS = [
-  'priceEur',
-  'rangeKm',
-  'batteryKwh',
-  'consumptionKwh100',
-  'dcMaxKw',
-  'panoramaRoof',
-  'hud',
-  'massageSeats',
-] as const;
+/** Keys + Labels dynamisch aus dem Katalog — der Import sucht genau nach den Filter-Kriterien der App. */
+const ATTRIBUTE_KEYS = attributeCatalog.map((a) => a.key) as string[];
+
+/** Boolean-Keys ableiten statt hardcoden — sonst werden neue Bool-Attribute als Zahl geparst. */
+const BOOLEAN_KEYS: ReadonlySet<string> = new Set(
+  attributeCatalog.filter((a) => a.kind === 'boolean').map((a) => a.key),
+);
+
+/** Prompt-Bausteine aus dem Katalog, damit Prompt und Kriterien immer synchron sind. */
+const KEY_HINTS = attributeCatalog
+  .map((a) => `${a.key} = ${a.label}${a.unit ? ` (${a.unit})` : ''}`)
+  .join('; ');
+
+const EXTRACTION_HINTS: Record<string, string> = {
+  priceEur: 'auch geschätzter/Einstiegspreis zählt',
+  rangeKm: 'bevorzugt WLTP',
+  dcMaxKw: 'Ladeleistung in kW, nicht Ladezeit in Minuten',
+};
 
 const SYSTEM_PROMPT = `Du bist ein Assistent für Elektroauto-Daten. Extrahiere aus dem gegebenen Artikel alle Fahrzeuge und gib sie als JSON zurück.
 
 Antworte NUR mit einem JSON-Objekt in dieser Form:
-{"cars":[{"brand":"Markenname","model":"Modellname","variant":"Ausstattungslinie oder null","bodyType":"suv|sedan|hatchback|wagon|other","powertrain":"bev|phev|reev","attributes":{"priceEur":{"value":46600,"source":"Preisliste"},"rangeKm":{"value":null,"source":""}}}]
+{"cars":[{"brand":"Markenname","model":"Modellname","variant":"Ausstattungslinie oder null","bodyType":"suv|sedan|hatchback|wagon|other","powertrain":"bev|phev|reev","attributes":{"priceEur":{"value":46600,"source":"Preisliste"},"rangeKm":{"value":420,"source":"Datenblatt"}}}]}
 
 Regeln:
 - Erlaubte attribute-Keys sind NUR: ${ATTRIBUTE_KEYS.join(', ')}.
+- Das sind genau die Filter-Kriterien der App. Prüfe den Artikel SYSTEMATISCH auf jeden dieser Keys, auch unter alternativen Bezeichnungen:
+  ${KEY_HINTS}.
+- Zusätzliche Hinweise: ${Object.entries(EXTRACTION_HINTS).map(([k, h]) => `${k}: ${h}`).join('; ')}.
+- Suchbegriffe auf der Seite können variieren (z. B. „Reichweite“, „WLTP“, „Batteriekapazität“, „Akkukapazität“, „DC-Laden“). Nutze sie alle für die Keys oben.
+- Schiebetüren, antibakterielle Materialien o. ä. gehören NICHT in attributes — nur die Keys oben.
+- Steht der Artikel als Fließtext ohne Ausstattungsliste, übernimm trotzdem alles, was zu einem Key passt. Fehlt ein Key komplett: weglassen, nicht mit null füllen.
 - Zahlen ohne Währung/Einheiten (z. B. 46600, nicht "46.600 €"). Booleans als true/false.
 - Wenn ein Wert im Artikel steht, übernimm ihn. Wenn er fehlt und du ihn sicher aus deinem eigenen Wissen kennst, ergänze ihn. Wenn du unsicher bist: value null.
 - Bei E-Reichweite von Reichweiten-Streckern (EREV) nutze die rein elektrische WLTP-Reichweite.
@@ -113,10 +128,11 @@ export function normalizeRawCar(raw: RawCar, sourceUrl: string): CarCandidate | 
   for (const key of ATTRIBUTE_KEYS) {
     const rawAttribute = rawAttributes[key];
     if (rawAttribute === undefined) continue;
-    const isBooleanKey = key === 'panoramaRoof' || key === 'hud' || key === 'massageSeats';
+    const isBooleanKey = BOOLEAN_KEYS.has(key);
     const value = isBooleanKey
       ? parseBooleanish(rawAttribute.value)
       : parseNumberish(rawAttribute.value);
+    if (value === null) continue; // Kein Wert ermittelbar -> Attribut gar nicht anlegen.
     const rawSource = rawAttribute.source;
     const source =
       typeof rawSource === 'string' && rawSource.trim() !== ''
