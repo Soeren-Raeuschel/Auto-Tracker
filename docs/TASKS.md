@@ -98,7 +98,8 @@ Node-Skripte in `scripts/`. Läuft per GitHub Action, Free-Tier-Limits beachten.
 ## Phase H: Politur
 - [x] T8.3 Fehler- und Leerzustände überall (inkl. `--danger`), Ladeanzeige, "Stand"-Zeitstempel bei Repo-Daten.
   Erledigt: Reine Logik `feedbackViewModel.ts` (`pickFeedbackState` mit Priorität Fehler > Lade > leer, `formatStandTimestamp` de-DE) mit 7 Tests; Komponente `FeedbackState` (Fehler mit `--danger` und `role="alert"`, Ladeanzeige, Leerzustand, Tokens). `JsonCarRepository`/`JsonCandidateRepository`/`JsonPriceHistoryRepository` erfassen Last-Modified als `getUpdatedAt`, Container exponiert `carsUpdatedAt`/`candidatesUpdatedAt`/`priceHistoryUpdatedAt`. "Stand:" jetzt auf Ranking, Kandidaten, Preis-Historie; News bereits vorhanden (jetzt einheitlich formatiert). Fehler-, Lade- und Leerzustände auf Ranking, News, Kandidaten, Vergleich, Detailseite über `FeedbackState`; leeres Ranking mit Filtern bekommt Leerzustand. `npm run check` grün.
-- [ ] T10.7 Feinschliff: Fokus-/Hover-Zustände, Kontrast, Layout bei 390 px und 1440 px Breite prüfen (nur auf Nachfrage mit Screenshot).
+- [x] T10.7 Feinschliff: Fokus-/Hover-Zustände, Kontrast, Layout bei 390 px und 1440 px Breite prüfen (nur auf Nachfrage mit Screenshot).
+  Erledigt: Hover-/Fokus-Zustände ergänzt für SuggestionList-Links, Filter-Chips (auch 44 px Trefferhöhe), CriteriaPanel-Close und ImportPage-Inputs/-Buttons; ImportPage von Hex-Werten auf Tokens umgestellt (--hairline, --glass-top, --danger, --accent). Kontrast geprüft (--muted ca. 5:1 auf --bg, DESIGN-Konforme). Layout: 390 px via TabBar-Padding/Safe Areas ok; ab 1440 px Inhalt auf max. 1240 px zentriert. Screenshots nicht angefordert, `npm run check` grün.
 - [ ] T11.6 Optional, nur auf Wunsch: Command-Muster für Undo/Redo bei Kriterien-Änderungen.
 
 ## Phase Q: Qualität (laufend, siehe docs/QUALITY.md)

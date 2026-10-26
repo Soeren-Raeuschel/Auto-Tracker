@@ -13,9 +13,17 @@
 .app-shell__content {
   position: relative;
   z-index: 1;
+  max-width: 1240px;
   padding: calc(var(--s-6) + env(safe-area-inset-top)) 20px
     calc(100px + env(safe-area-inset-bottom));
   min-width: 0;
+}
+
+/* Sehr breite Screens (1440+): Inhalt zentriert, keine endlosen Zeilen. */
+@media (min-width: 1440px) {
+  .app-shell__content {
+    margin-inline: auto;
+  }
 }
 
 .app-shell__tabbar {

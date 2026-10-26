@@ -73,7 +73,7 @@
 }
 
 .ranking__chip {
-  min-height: 36px;
+  min-height: 44px;
   padding: 0 var(--s-3);
   border-radius: var(--r-pill);
   border: 1px solid var(--hairline);
@@ -83,7 +83,13 @@
   cursor: pointer;
   transition:
     color var(--t-base) var(--ease),
-    border-color var(--t-base) var(--ease);
+    border-color var(--t-base) var(--ease),
+    background-color var(--t-base) var(--ease);
+}
+
+.ranking__chip:hover {
+  background: var(--hover);
+  color: var(--text);
 }
 
 .ranking__chip:focus-visible {
