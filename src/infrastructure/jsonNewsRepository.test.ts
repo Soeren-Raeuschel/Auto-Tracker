@@ -8,7 +8,13 @@ const make =
       ok: status < 400,
       status,
       json: async () => JSON.parse(body),
-      headers: { get: (name: string) => headers[name.toLowerCase()] ?? null },
+      headers: {
+        get: (name: string) =>
+          headers[name.toLowerCase()] ??
+          (name.toLowerCase() === 'content-type' && status < 400
+            ? 'application/json'
+            : null),
+      },
     }) as unknown as Response;
 
 const valid = JSON.stringify([
@@ -43,6 +49,15 @@ describe('JsonNewsRepository', () => {
   it('throws on other HTTP errors', async () => {
     const repo = new JsonNewsRepository('u', make(500, ''));
     await expect(repo.list()).rejects.toThrow('500');
+  });
+
+  it('returns an empty list when the server sends HTML (SPA fallback)', async () => {
+    const html = make(200, '<!doctype html><html></html>', {
+      'content-type': 'text/html',
+    });
+    const repo = new JsonNewsRepository('u', html);
+    expect(await repo.list()).toEqual([]);
+    expect(repo.getUpdatedAt()).toBeNull();
   });
 
   it('logs skipped invalid entries in the validating decorator chain', async () => {

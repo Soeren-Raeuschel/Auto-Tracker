@@ -18,6 +18,10 @@ export class JsonNewsRepository implements NewsRepository {
     const response = await this.fetchFn(this.url);
     if (response.status === 404) return [];
     if (!response.ok) throw new Error(`Could not load news (${response.status})`);
+    // SPA-Fallback-Abwehr: Dev-Server/Hosting antwortet bei fehlender Datei
+    // mit index.html (Status 200). HTML ist dann keine gueltige Liste.
+    const contentType = response.headers.get('content-type') ?? '';
+    if (!contentType.includes('json')) return [];
     this.lastModified = response.headers.get('last-modified');
     return (await response.json()) as NewsItem[];
   }

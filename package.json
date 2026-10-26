@@ -14,7 +14,7 @@
     "format": "prettier --write src *.ts *.js *.cjs *.json .prettierrc",
     "format:check": "prettier --check src *.ts *.js *.cjs *.json .prettierrc",
     "arch": "depcruise src --config .dependency-cruiser.cjs",
-    "pipeline": "tsx scripts/run.ts",
+    "pipeline": "tsx --env-file=.env scripts/run.ts",
     "check": "npm run lint && npm run format:check && npm run typecheck && npm run arch && npm run test:coverage"
   },
   "dependencies": {

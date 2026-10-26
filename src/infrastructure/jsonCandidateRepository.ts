@@ -16,6 +16,10 @@ export class JsonCandidateRepository implements CandidateRepository {
     const response = await this.fetchFn(this.url);
     if (response.status === 404) return [];
     if (!response.ok) throw new Error(`Could not load candidates (${response.status})`);
+    // SPA-Fallback-Abwehr: Dev-Server/Hosting antwortet bei fehlender Datei
+    // mit index.html (Status 200). HTML ist keine gueltige Liste.
+    const contentType = response.headers.get('content-type') ?? '';
+    if (!contentType.includes('json')) return [];
     return (await response.json()) as CarCandidate[];
   }
 }
