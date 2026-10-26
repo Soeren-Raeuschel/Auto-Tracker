@@ -10,10 +10,14 @@ export function PriceHistoryChart({ viewModel }: { viewModel: PriceChartVM }) {
   }
   return (
     <div className="price-history">
-      <p className="price-history__latest">
-        <span className="label">Aktueller Preis</span> {viewModel.latestLabel}
-      </p>
-      {viewModel.path && (
+      <div className="price-history__summary">
+        <div>
+          <span className="price-history__eyebrow label">Aktueller Preis</span>
+          <strong className="price-history__latest">{viewModel.latestLabel}</strong>
+        </div>
+        {viewModel.span && <span className="price-history__period label">{viewModel.span}</span>}
+      </div>
+      {viewModel.path ? (
         <svg
           className="price-history__chart"
           viewBox={VIEWBOX}
@@ -27,11 +31,19 @@ export function PriceHistoryChart({ viewModel }: { viewModel: PriceChartVM }) {
             </circle>
           ))}
         </svg>
+      ) : (
+        <div className="price-history__empty-chart">Erster erfasster Preis</div>
       )}
-      <p className="price-history__meta label">
-        {viewModel.span ? `${viewModel.span} · ` : ''}min {viewModel.minLabel} · max{' '}
-        {viewModel.maxLabel}
-      </p>
+      <div className="price-history__range" aria-label="Preisbereich">
+        <span>
+          <span className="label">Tiefster Preis</span>
+          <strong>{viewModel.minLabel}</strong>
+        </span>
+        <span>
+          <span className="label">Höchster Preis</span>
+          <strong>{viewModel.maxLabel}</strong>
+        </span>
+      </div>
     </div>
   );
 }
