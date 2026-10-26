@@ -1,15 +1,76 @@
 /* Detailseite (T3.2). Tokens aus tokens.css, keine Logik im Markup. */
 .car-detail {
+  width: 100%;
+  max-width: 1120px;
+  margin-inline: auto;
   display: grid;
   gap: var(--s-4);
   align-content: start;
 }
 
+.car-detail > .label {
+  margin-bottom: calc(var(--s-2) * -1);
+}
+
+.car-detail > h1 {
+  margin: 0 0 var(--s-2);
+  max-width: 900px;
+  font-size: 36px;
+  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  overflow-wrap: anywhere;
+}
+
 .car-detail__card {
-  padding: var(--s-4) var(--s-5);
+  min-width: 0;
+  padding: var(--s-5);
   display: grid;
+  gap: var(--s-4);
+}
+
+.car-detail__card:has(.car-viewer) {
+  padding: var(--s-4);
   gap: var(--s-3);
 }
+
+.car-detail__card:has(.car-viewer) .label {
+  padding-inline: var(--s-1);
+}
+
+.car-detail__card:has(.car-detail__status) {
+  gap: var(--s-3);
+}
+
+@media (min-width: 768px) {
+  .car-detail > h1 {
+    font-size: 38px;
+  }
+
+  .car-detail__card:has(.car-viewer),
+  .car-detail__card:has(.car-detail__status),
+  .car-detail__card:has(.car-detail__attributes) {
+    grid-column: 1 / -1;
+  }
+
+  .car-detail__card:not(:has(.car-viewer)):not(:has(.car-detail__status)):not(:has(.car-detail__attributes)) {
+    grid-column: span 1;
+  }
+}
+
+@media (min-width: 1024px) {
+  .car-detail {
+    gap: var(--s-5);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .car-detail > .label,
+  .car-detail > h1,
+  .car-detail > .feedback-state {
+    grid-column: 1 / -1;
+  }
+}
+
 
 .car-detail__status {
   display: flex;
