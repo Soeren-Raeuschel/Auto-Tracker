@@ -17,3 +17,17 @@ jobs:
       - run: npm run build
       - run: npm audit --omit=dev
         continue-on-error: true # Advisory nicht zum CI-Blocker machen
+
+  e2e:
+    # T12.2: Smoke-Tests gegen den Preview-Build.
+    runs-on: ubuntu-latest
+    needs: check
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e

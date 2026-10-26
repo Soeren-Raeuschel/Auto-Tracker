@@ -14,4 +14,8 @@ dist/
 # OS/editor
 .DS_Store
 
+# Playwright (T12.2)
+test-results/
+playwright-report/
+
 .clinerules

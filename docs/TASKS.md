@@ -104,7 +104,8 @@ Node-Skripte in `scripts/`. Läuft per GitHub Action, Free-Tier-Limits beachten.
 
 ## Phase Q: Qualität (laufend, siehe docs/QUALITY.md)
 - [x] T12.1 Werkzeuge: ESLint (typescript-eslint, react-hooks, jsx-a11y), Prettier, dependency-cruiser (Schichtregeln), Coverage-Schwellen, CI, Dependabot, `npm run check`.
-- [ ] T12.2 E2E-Smoke-Tests (nach Phase D): `@playwright/test` (erlaubt), 3 Kernpfade: Ranking lädt, Gewicht ändern sortiert um, Auto zur Watchlist hinzufügen. Läuft in der CI gegen den Preview-Build.
+- [x] T12.2 E2E-Smoke-Tests (nach Phase D): `@playwright/test` (erlaubt), 3 Kernpfade: Ranking lädt, Gewicht ändern sortiert um, Auto zur Watchlist hinzufügen. Läuft in der CI gegen den Preview-Build.
+  Erledigt: `@playwright/test` als devDependency, `playwright.config.ts` (chromium, webServer `npm run build && npm run preview` auf Port 4173), `e2e/smoke.spec.ts` mit den drei Kernpfaden (Ranking lädt, Gewicht Preis 3 -> 0 sortiert live um, Watchlist-Statuswechsel mit Persistenzprüfung; HashRouter-Links berücksichtigt). Neues Skript `npm run test:e2e`; CI (`ci.yml`) bekommt Job `e2e` gegen den Preview-Build (chromium installiert, `needs: check`). Lokal 3/3 passed, `npm run check` grün.
 - [ ] T12.3 Integrationstests für die Pipeline (zusammen mit Phase G): Schritte mit Test-Feeds und Fake-fetch, kein Netzwerk. Groq-Antworten: gültig, ungültig, leer.
 - [ ] T12.4 Sicherheit (zusammen mit T9.3): Content-Security-Policy per Meta-Tag, keine Inline-Skripte, `npm audit` prüfen, nirgends Secrets im Repo.
 - [ ] T12.5 Lighthouse-Prüfung nach Phase E (manuell): Performance und Accessibility je mindestens 90, Ergebnis kurz in docs/QUALITY.md notieren.
