@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { GlassCard } from '../components/GlassCard';
 import { Icon } from '../components/Icon';
 import { PrimaryButton } from '../components/PrimaryButton';
@@ -50,6 +51,7 @@ export function ImportPage({ container }: { container: Container }) {
     <section className="import-page">
       <h1 className="label">Auto importieren</h1>
       <p className="import-page__hint">
+        <Link to="/candidates">KI-Kandidaten aus der News-Pipeline prüfen →</Link>
         Website-URL einfügen (Test, Preisliste, Hersteller). Die App lädt den Seitentext über einen
         Lese-Proxy und Groq extrahiert die Fahrzeugdaten. Fehlende Werte ergänzt Groq aus eigenem
         Wissen – alle Werte sind mit <code>ai-extracted</code> markiert.

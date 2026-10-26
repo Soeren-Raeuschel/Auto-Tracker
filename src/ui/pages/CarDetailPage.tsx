@@ -9,6 +9,8 @@ import { useCarDetailViewModel } from '../viewmodels/useCarDetailViewModel';
 import { useCarViewerViewModel } from '../viewmodels/useCarViewerViewModel';
 import { useTripViewModel } from '../viewmodels/useTripViewModel';
 import { useTcoViewModel } from '../viewmodels/useTcoViewModel';
+import { useNewsViewModel } from '../viewmodels/useNewsViewModel';
+import { newsForCar } from '../viewmodels/newsViewModel';
 import {
   confidenceLabel,
   listingLinks,
@@ -31,6 +33,7 @@ export function CarDetailPage({ container }: { container: Container }) {
   const viewer = useCarViewerViewModel(container, car);
   const trip = useTripViewModel(car);
   const tco = useTcoViewModel(car);
+  const news = useNewsViewModel(container);
   const [maxPrice, setMaxPrice] = useState('');
   const [maxKm, setMaxKm] = useState('');
   const [minYear, setMinYear] = useState('');
@@ -260,6 +263,28 @@ export function CarDetailPage({ container }: { container: Container }) {
               ))}
             </ul>
           </GlassCard>
+
+          {viewModel && newsForCar(news.items, viewModel.id).rows.length > 0 && (
+            <GlassCard className="car-detail__card">
+              <Label>News zu diesem Auto</Label>
+              {news.viewModel.stand && (
+                <p className="car-detail__trip-hint label">Stand: {news.viewModel.stand}</p>
+              )}
+              <ul className="car-detail__news">
+                {newsForCar(news.items, viewModel.id, news.viewModel.stand).rows.map((row) => (
+                  <li key={row.id} className="car-detail__news-item">
+                    <span className="label">
+                      {row.source} · {row.dateDisplay}
+                    </span>
+                    <a href={row.url} target="_blank" rel="noopener noreferrer">
+                      {row.title}
+                    </a>
+                    {row.summary !== '' && <p>{row.summary}</p>}
+                  </li>
+                ))}
+              </ul>
+            </GlassCard>
+          )}
 
           <GlassCard className="car-detail__card">
             <Label>Notizen</Label>

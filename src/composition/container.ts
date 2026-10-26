@@ -2,11 +2,17 @@
 import { BackupService } from '../application/backupService';
 import { EventBus } from '../application/eventBus';
 import type { Car } from '../domain/car';
+import type { CarCandidate } from '../domain/carCandidate';
+import type { NewsItem } from '../domain/news';
 import { CachingListRepository } from '../infrastructure/cachingListRepository';
 import { JsonCarRepository } from '../infrastructure/jsonCarRepository';
+import { JsonNewsRepository } from '../infrastructure/jsonNewsRepository';
+import { JsonCandidateRepository } from '../infrastructure/jsonCandidateRepository';
+import { LocalStorageCandidateDecisionRepository } from '../infrastructure/localStorageCandidateDecisionRepository';
 import { LocalStorageSettingsRepository } from '../infrastructure/localStorageSettingsRepository';
 import { LocalStorageUserStateRepository } from '../infrastructure/localStorageUserStateRepository';
 import { ValidatingCarRepository } from '../infrastructure/validatingCarRepository';
+import { ValidatingListRepository } from '../infrastructure/validatingListRepository';
 import { LocalStorageApiKeyRepository } from '../infrastructure/localStorageApiKeyRepository';
 import { LocalStorageImportedCarsRepository } from '../infrastructure/localStorageImportedCarsRepository';
 import { MergedCarRepository } from '../infrastructure/mergedCarRepository';
@@ -15,8 +21,10 @@ import { GroqCarExtractor } from '../infrastructure/extraction/groqCarExtractor'
 import { AutoScout24Provider } from '../infrastructure/listings/autoScout24Provider';
 import { KleinanzeigenProvider } from '../infrastructure/listings/kleinanzeigenProvider';
 import { MobileDeProvider } from '../infrastructure/listings/mobileDeProvider';
+import type { CandidateRepository } from '../ports/candidateRepository';
 import type { ListingSearchProvider } from '../ports/listingSearchProvider';
 import type { ModelProvider } from '../ports/modelProvider';
+import type { NewsRepository } from '../ports/newsRepository';
 import {
   FetchModelFileChecker,
   GenericModelProvider,
@@ -26,6 +34,7 @@ import { SpecificModelProvider } from '../infrastructure/models/specificModelPro
 import { defaultEvaluators } from '../scoring/evaluators';
 import { ScoringEngine } from '../scoring/scoringEngine';
 import { SuggestionService } from '../application/suggestionService';
+import { carCandidateSchema, newsItemSchema } from '../validation/schemas';
 import { defaultSettings } from './defaultSettings';
 
 export function createContainer() {
@@ -48,8 +57,30 @@ export function createContainer() {
     ),
   );
 
+  // News (T7.3): Decorator-Kette cache(validate(json)); fehlende Datei = leere Liste.
+  const jsonNewsRepository = new JsonNewsRepository(`${import.meta.env.BASE_URL}data/news.json`);
+  const newsRepository: NewsRepository = new CachingListRepository<NewsItem>(
+    new ValidatingListRepository<NewsItem>(jsonNewsRepository, newsItemSchema),
+  );
+
+  // KI-Kandidaten (T7.5): gleiche Decorator-Kette, plus lokale Entscheidungen.
+  const candidateRepository: CandidateRepository = new CachingListRepository<CarCandidate>(
+    new ValidatingListRepository<CarCandidate>(
+      new JsonCandidateRepository(`${import.meta.env.BASE_URL}data/candidates.json`),
+      carCandidateSchema,
+    ),
+  );
+  const candidateDecisionRepository = new LocalStorageCandidateDecisionRepository(
+    window.localStorage,
+  );
+
   return {
     carRepository,
+    newsRepository,
+    candidateRepository,
+    candidateDecisionRepository,
+    // "Stand"-Zeitstempel der News (T7.3), vom Decorator unberuehrt.
+    newsUpdatedAt: () => jsonNewsRepository.getUpdatedAt(),
     settingsRepository,
     userStateRepository,
     scoringEngine: new ScoringEngine(defaultEvaluators()),

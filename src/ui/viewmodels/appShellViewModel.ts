@@ -12,7 +12,7 @@ export interface NavItem {
 
 export const NAV_ITEMS: readonly NavItem[] = [
   { key: 'ranking', label: 'Ranking', path: ROUTES.ranking, icon: 'trophy', disabled: false },
-  { key: 'news', label: 'News', path: ROUTES.news, icon: 'newspaper', disabled: true },
+  { key: 'news', label: 'News', path: ROUTES.news, icon: 'newspaper', disabled: false },
   { key: 'compare', label: 'Vergleich', path: ROUTES.compare, icon: 'compare', disabled: false },
   {
     key: 'watchlist',

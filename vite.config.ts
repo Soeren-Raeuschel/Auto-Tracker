@@ -46,7 +46,7 @@ export default defineConfig({
   base: './', // works on GitHub Pages and Netlify
   test: {
     environment: 'node',
-    include: ['src/**/*.test.ts'],
+    include: ['src/**/*.test.ts', 'scripts/**/*.test.ts'],
     coverage: {
       provider: 'v8',
       include: [

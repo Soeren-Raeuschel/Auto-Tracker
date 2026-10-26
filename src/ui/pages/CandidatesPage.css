@@ -1,0 +1,135 @@
+.candidates-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-5);
+  max-width: 720px;
+}
+
+.candidates-page h1 {
+  margin: 0;
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.candidates-page__hint,
+.candidates-page__message {
+  margin: 0;
+  color: var(--text-2);
+  font-size: 14px;
+}
+
+.candidates-page__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+}
+
+.candidates-page__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  padding: var(--s-5);
+}
+
+.candidates-page__title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.candidates-page__source {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  min-height: 44px;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.candidates-page__edit {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--s-3);
+}
+
+.candidates-page__edit label {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-1);
+}
+
+.candidates-page__edit input {
+  min-height: 44px;
+  padding: 0 var(--s-3);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-sm);
+  background: var(--glass-bottom);
+  color: var(--text);
+}
+
+.candidates-page__rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-1) var(--s-4);
+}
+
+.candidates-page__rows li {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s-3);
+  font-size: 14px;
+}
+
+.candidates-page__rows li span:first-child {
+  color: var(--muted);
+}
+
+.candidates-page__row--missing span:last-child {
+  color: var(--muted);
+}
+
+.candidates-page__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+}
+
+.candidates-page__dismiss {
+  min-height: 44px;
+  padding: 0 var(--s-4);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-pill);
+  background: transparent;
+  color: var(--text-2);
+}
+
+.candidates-page__dismiss:hover {
+  background: var(--hover);
+  color: var(--danger);
+}
+
+.candidates-page__empty {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  padding: var(--s-6);
+  color: var(--muted);
+}
+
+.candidates-page__back a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+@media (min-width: 1024px) {
+  .candidates-page h1 {
+    font-size: 38px;
+  }
+}

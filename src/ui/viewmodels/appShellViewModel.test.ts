@@ -31,9 +31,12 @@ describe('appShellViewModel', () => {
     );
   });
 
-  it('deaktivierte Eintraege sind nie aktiv', () => {
+  it('deaktivierte Eintraege sind nie aktiv, aktivierte markiert die Route', () => {
     const vm = toAppShellViewModel('/news');
-    expect(vm.find((item) => item.key === 'news')?.active).toBe(false);
-    expect(vm.find((item) => item.key === 'news')?.disabled).toBe(true);
+    expect(vm.find((item) => item.key === 'watchlist')?.active).toBe(false);
+    expect(vm.find((item) => item.key === 'watchlist')?.disabled).toBe(true);
+    // News ist seit T7.3 aktiv und markiert /news.
+    expect(vm.find((item) => item.key === 'news')?.active).toBe(true);
+    expect(vm.find((item) => item.key === 'news')?.disabled).toBe(false);
   });
 });

@@ -1,0 +1,124 @@
+[
+  {
+    "carId": "arcfox-alpha-t5-520max",
+    "brand": "Arcfox",
+    "model": "Alpha T5",
+    "aliases": ["Arcfox Alpha T5", "Alpha T5"]
+  },
+  {
+    "carId": "byd-great-han",
+    "brand": "BYD",
+    "model": "Great Han",
+    "aliases": ["Great Han", "BYD Han"]
+  },
+  {
+    "carId": "byd-sealion-7-awd",
+    "brand": "BYD",
+    "model": "Sealion 7 AWD",
+    "aliases": ["Sealion 7", "BYD Sealion"]
+  },
+  {
+    "carId": "byd-sealion-8-rwd",
+    "brand": "BYD",
+    "model": "Sealion 8 RWD",
+    "aliases": ["Sealion 8"]
+  },
+  { "carId": "byd-tang", "brand": "BYD", "model": "Tang", "aliases": ["BYD Tang"] },
+  {
+    "carId": "cupra-tavascan-vz",
+    "brand": "Cupra",
+    "model": "Tavascan VZ",
+    "aliases": ["Tavascan"]
+  },
+  {
+    "carId": "deepal-s05-max",
+    "brand": "Deepal",
+    "model": "S05 Max",
+    "aliases": ["Deepal S05", "Deepal S05 Max"]
+  },
+  {
+    "carId": "geely-e5-max-plus",
+    "brand": "Geely",
+    "model": "E5 Max Plus",
+    "aliases": ["Geely E5", "Galaxy E5"]
+  },
+  { "carId": "geely-galaxy-e8", "brand": "Geely", "model": "Galaxy E8", "aliases": ["Galaxy E8"] },
+  {
+    "carId": "geely-starray",
+    "brand": "Geely",
+    "model": "Starray",
+    "aliases": ["Starray", "Star Ray"]
+  },
+  {
+    "carId": "huawei-aito-m7",
+    "brand": "AITO",
+    "model": "M7",
+    "aliases": ["AITO M7", "Aito M7", "Huawei AITO M7"]
+  },
+  {
+    "carId": "hyundai-ioniq5-uniq",
+    "brand": "Hyundai",
+    "model": "Ioniq 5 Uniq",
+    "aliases": ["Ioniq 5", "IONIQ 5"]
+  },
+  {
+    "carId": "leapmotor-b03x-promax",
+    "brand": "Leapmotor",
+    "model": "B03X ProMax",
+    "aliases": ["Leapmotor B03X", "B03X"]
+  },
+  {
+    "carId": "leapmotor-c10",
+    "brand": "Leapmotor",
+    "model": "C10",
+    "aliases": ["Leapmotor C10", "C10"]
+  },
+  {
+    "carId": "mazda-cx-6e",
+    "brand": "Mazda",
+    "model": "CX-6e",
+    "aliases": ["Mazda CX-6e", "CX-6e"]
+  },
+  {
+    "carId": "peugeot-3008-phev-225",
+    "brand": "Peugeot",
+    "model": "3008 PHEV 225",
+    "aliases": ["Peugeot 3008", "3008 Hybrid"]
+  },
+  {
+    "carId": "skoda-peaq-90x",
+    "brand": "Škoda",
+    "model": "Peaq 90X",
+    "aliases": ["Skoda Peaq", "Peaq"]
+  },
+  { "carId": "smart-5", "brand": "Smart", "model": "5", "aliases": ["Smart #5", "Smart 5"] },
+  { "carId": "togg-t10x", "brand": "Togg", "model": "T10X", "aliases": ["Togg T10X", "T10X"] },
+  {
+    "carId": "volvo-es90-ultra",
+    "brand": "Volvo",
+    "model": "ES90 Ultra",
+    "aliases": ["Volvo ES90", "ES90"]
+  },
+  { "carId": "xiaomi-yu7", "brand": "Xiaomi", "model": "YU7", "aliases": ["Xiaomi YU7", "YU7"] },
+  {
+    "carId": "xpeng-g6-performance",
+    "brand": "XPeng",
+    "model": "G6 Performance",
+    "aliases": ["XPeng G6", "Xpeng G6"]
+  },
+  {
+    "carId": "xpeng-l03-ultra",
+    "brand": "XPeng",
+    "model": "L03 Ultra",
+    "aliases": ["XPeng L03", "L03"]
+  },
+  {
+    "carId": "xpeng-mona-l05",
+    "brand": "XPeng",
+    "model": "MONA L05",
+    "aliases": ["XPeng MONA", "MONA M03", "MONA L05"]
+  },
+  { "carId": "xpeng-p7plus", "brand": "XPeng", "model": "P7+", "aliases": ["XPeng P7", "P7+"] },
+  { "carId": "zeekr-7x-awd", "brand": "Zeekr", "model": "7X AWD", "aliases": ["Zeekr 7X", "7X"] },
+  { "carId": "zeekr-x-awd", "brand": "Zeekr", "model": "X AWD", "aliases": ["Zeekr X", "Zeekr X"] }
+]

@@ -1,9 +1,59 @@
-/** Platzhalter bis T7.3: News-Ansicht mit echten Daten aus public/data/news.json. */
-export function NewsPage() {
+import { Link } from 'react-router-dom';
+import type { Container } from '../../composition/container';
+import { GlassCard } from '../components/GlassCard';
+import { Icon } from '../components/Icon';
+import { useNewsViewModel } from '../viewmodels/useNewsViewModel';
+import './NewsPage.css';
+
+/** News-Ansicht `/news` (T7.3). Rendert nur, alle Werte aus dem ViewModel. */
+export function NewsPage({ container }: { container: Container }) {
+  const { viewModel, loading, error } = useNewsViewModel(container);
+
   return (
-    <section>
-      <h1 className="label">News</h1>
-      <p>Noch keine News – die Ansicht kommt mit T7.3.</p>
+    <section className="news-page">
+      <p className="label">Auto-Tracker</p>
+      <h1>News</h1>
+      {viewModel.stand && <p className="news-page__stand label">Stand: {viewModel.stand}</p>}
+      {error && <p role="alert">Fehler: {error}</p>}
+      {loading && <p>Lade News ...</p>}
+
+      {viewModel.empty && !loading && !error && (
+        <GlassCard className="news-page__empty">
+          <Icon name="inbox" size={22} />
+          <p>Noch keine News. Die Pipeline schreibt public/data/news.json.</p>
+        </GlassCard>
+      )}
+
+      <ul className="news-page__list">
+        {viewModel.rows.map((row) => (
+          <li key={row.id}>
+            <GlassCard className="news-page__item">
+              <p className="news-page__meta label">
+                {row.source} · {row.dateDisplay}
+              </p>
+              <h2 className="news-page__title">{row.title}</h2>
+              {row.summary !== '' && <p className="news-page__summary">{row.summary}</p>}
+              {row.carIds.length > 0 && (
+                <p className="news-page__cars label">
+                  {row.carIds.map((carId) => (
+                    <Link key={carId} to={`/car/${carId}`} viewTransition>
+                      {carId}
+                    </Link>
+                  ))}
+                </p>
+              )}
+              <a
+                className="news-page__link"
+                href={row.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Artikel lesen <Icon name="search" size={16} />
+              </a>
+            </GlassCard>
+          </li>
+        ))}
+      </ul>
     </section>
   );
 }
