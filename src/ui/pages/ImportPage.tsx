@@ -110,9 +110,22 @@ export function ImportPage({ container }: { container: Container }) {
 
       {viewModel.previews.length > 0 && (
         <div className="import-page__previews">
+          <p className="import-page__selection-hint" role="status">
+            {viewModel.previews.length > 1
+              ? 'Mehrere Autos gefunden. Wähle aus, welche importiert werden sollen.'
+              : 'Auto gefunden. Auswahl für Import prüfen.'}{' '}
+            {viewModel.selectedCount} von {viewModel.previews.length} ausgewählt.
+          </p>
           {viewModel.previews.map((preview) => (
             <GlassCard key={preview.id} className="import-page__preview">
-              <h2 className="label">{preview.label}</h2>
+              <label className="import-page__selection">
+                <input
+                  type="checkbox"
+                  checked={viewModel.selectedIds.has(preview.id)}
+                  onChange={() => viewModel.toggleSelection(preview.id)}
+                />
+                <span className="label">{preview.label}</span>
+              </label>
               <ul className="import-page__rows">
                 {preview.rows.map((row) => (
                   <li key={row.key} className={row.missing ? 'import-page__row--missing' : ''}>
@@ -127,8 +140,8 @@ export function ImportPage({ container }: { container: Container }) {
       )}
 
       {viewModel.pending.length > 0 && (
-        <PrimaryButton onClick={onTake}>
-          <Icon name="check" size={16} /> {viewModel.pending.length} Auto(s) übernehmen (sofort in
+        <PrimaryButton onClick={onTake} disabled={viewModel.selectedCount === 0}>
+          <Icon name="check" size={16} /> {viewModel.selectedCount} Auto(s) übernehmen (sofort in
           der App sichtbar)
         </PrimaryButton>
       )}

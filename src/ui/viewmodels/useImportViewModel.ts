@@ -36,6 +36,7 @@ export function useImportViewModel(deps: ImportDeps) {
   const [error, setError] = useState<string | null>(null);
   const [previews, setPreviews] = useState<CarPreviewVM[]>([]);
   const [pending, setPending] = useState<Car[]>([]);
+  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const [imported, setImported] = useState<Car[]>([]);
   const [baseCount, setBaseCount] = useState(0);
 
@@ -53,6 +54,15 @@ export function useImportViewModel(deps: ImportDeps) {
     apiKeyRepository.set(apiKey);
   }, [apiKey, apiKeyRepository]);
 
+  const toggleSelection = useCallback((id: string) => {
+    setSelectedIds((current) => {
+      const next = new Set(current);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  }, []);
+
   const analyze = useCallback(async () => {
     const trimmed = url.trim();
     if (trimmed === '') {
@@ -68,6 +78,7 @@ export function useImportViewModel(deps: ImportDeps) {
       const candidates = await carExtractor.extract(pageText, trimmed);
       const cars = toImportableCars(candidates);
       setPending(cars);
+      setSelectedIds(new Set(cars.map((car) => car.id)));
       setPreviews(cars.map(toCarPreviewVM));
       setStatus('ready');
     } catch (e: unknown) {
@@ -78,14 +89,16 @@ export function useImportViewModel(deps: ImportDeps) {
 
   const addToGarage = useCallback(async () => {
     const stored = await importedCarRepository.list();
-    const { added, skipped } = mergeImported(stored, pending);
+    const selected = pending.filter((car) => selectedIds.has(car.id));
+    const { added, skipped } = mergeImported(stored, selected);
     await importedCarRepository.save([...stored, ...added]);
     setPending([]);
+    setSelectedIds(new Set());
     setPreviews([]);
     setStatus('idle');
     await refresh();
     return { added: added.length, skipped: skipped.length };
-  }, [importedCarRepository, pending, refresh]);
+  }, [importedCarRepository, pending, refresh, selectedIds]);
 
   const removeImported = useCallback(
     async (id: string) => {
@@ -116,6 +129,9 @@ export function useImportViewModel(deps: ImportDeps) {
     error,
     previews,
     pending,
+    selectedIds,
+    selectedCount: pending.filter((car) => selectedIds.has(car.id)).length,
+    toggleSelection,
     importedVMs,
     baseCount,
     analyze,
