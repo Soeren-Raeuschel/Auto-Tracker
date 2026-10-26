@@ -13,9 +13,20 @@ const OUTPUT = `${root}public/data/news-raw.json`;
 export class FetchNewsStep extends PipelineStep {
   readonly name = 'fetchNews';
 
+  constructor(
+    // T12.3: Test-Feeds ueber Fake-fetch und Pfade injizierbar, Default wie bisher.
+    private readonly fetchLike: (url: string) => Promise<Response> = (url) => fetch(url),
+    private readonly sourcesPath: string = SOURCES,
+    private readonly outputPath: string = OUTPUT,
+  ) {
+    super();
+  }
+
   protected async execute(): Promise<void> {
-    const sources = JSON.parse(await readFile(SOURCES, 'utf8')) as { feeds: SourceFeed[] };
-    const items = await collectNews(sources.feeds, (url) => fetch(url));
-    await writeFile(OUTPUT, `${JSON.stringify(items, null, 2)}\n`, 'utf8');
+    const sources = JSON.parse(await readFile(this.sourcesPath, 'utf8')) as {
+      feeds: SourceFeed[];
+    };
+    const items = await collectNews(sources.feeds, this.fetchLike);
+    await writeFile(this.outputPath, `${JSON.stringify(items, null, 2)}\n`, 'utf8');
   }
 }

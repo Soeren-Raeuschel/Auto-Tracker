@@ -12,19 +12,34 @@ const root = fileURLToPath(new URL('..', import.meta.url));
 const CARS = `${root}public/data/cars.json`;
 const OUTPUT = `${root}public/data/price-history.json`;
 
+// T12.3: Pfade injizierbar (Integrationstest mit temporaeren Dateien), Default wie bisher.
+export interface SnapshotPricesPaths {
+  cars?: string;
+  output?: string;
+}
+
 export class SnapshotPricesStep extends PipelineStep {
   readonly name = 'snapshotPrices';
+
+  private readonly carsPath: string;
+  private readonly outputPath: string;
+
+  constructor(paths: SnapshotPricesPaths = {}) {
+    super();
+    this.carsPath = paths.cars ?? CARS;
+    this.outputPath = paths.output ?? OUTPUT;
+  }
 
   protected async execute(): Promise<void> {
     let existing: PriceHistory = {};
     try {
-      existing = JSON.parse(await readFile(OUTPUT, 'utf8')) as PriceHistory;
+      existing = JSON.parse(await readFile(this.outputPath, 'utf8')) as PriceHistory;
     } catch {
       // Erster Lauf oder kaputte Datei: neu anfangen, niemals abbrechen.
     }
-    const cars = JSON.parse(await readFile(CARS, 'utf8')) as Car[];
+    const cars = JSON.parse(await readFile(this.carsPath, 'utf8')) as Car[];
     const today = new Date().toISOString().slice(0, 10);
     const history = sortHistory(buildPriceHistory(existing, cars, today));
-    await writeFile(OUTPUT, `${JSON.stringify(history, null, 2)}\n`, 'utf8');
+    await writeFile(this.outputPath, `${JSON.stringify(history, null, 2)}\n`, 'utf8');
   }
 }
