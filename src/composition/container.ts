@@ -49,13 +49,9 @@ export function createContainer() {
   const importedCarRepository = new LocalStorageImportedCarsRepository(window.localStorage);
 
   // Decorator chain: cache( validate( merge( json, imported ) ) )
+  const jsonCarRepository = new JsonCarRepository(`${import.meta.env.BASE_URL}data/cars.json`);
   const carRepository = new CachingListRepository<Car>(
-    new ValidatingCarRepository(
-      new MergedCarRepository(
-        new JsonCarRepository(`${import.meta.env.BASE_URL}data/cars.json`),
-        importedCarRepository,
-      ),
-    ),
+    new ValidatingCarRepository(new MergedCarRepository(jsonCarRepository, importedCarRepository)),
   );
 
   // News (T7.3): Decorator-Kette cache(validate(json)); fehlende Datei = leere Liste.
@@ -65,14 +61,19 @@ export function createContainer() {
   );
 
   // KI-Kandidaten (T7.5): gleiche Decorator-Kette, plus lokale Entscheidungen.
+  const jsonCandidateRepository = new JsonCandidateRepository(
+    `${import.meta.env.BASE_URL}data/candidates.json`,
+  );
   const candidateRepository: CandidateRepository = new CachingListRepository<CarCandidate>(
-    new ValidatingListRepository<CarCandidate>(
-      new JsonCandidateRepository(`${import.meta.env.BASE_URL}data/candidates.json`),
-      carCandidateSchema,
-    ),
+    new ValidatingListRepository<CarCandidate>(jsonCandidateRepository, carCandidateSchema),
   );
   const candidateDecisionRepository = new LocalStorageCandidateDecisionRepository(
     window.localStorage,
+  );
+
+  // Preis-Historie (T7.6): public/data/price-history.json, fehlende Datei = leer.
+  const jsonPriceHistoryRepository = new JsonPriceHistoryRepository(
+    `${import.meta.env.BASE_URL}data/price-history.json`,
   );
 
   return {
@@ -80,10 +81,12 @@ export function createContainer() {
     newsRepository,
     candidateRepository,
     newsUpdatedAt: () => jsonNewsRepository.getUpdatedAt(),
+    // "Stand"-Zeitstempel der Repo-Daten (T8.3).
+    carsUpdatedAt: () => jsonCarRepository.getUpdatedAt(),
+    candidatesUpdatedAt: () => jsonCandidateRepository.getUpdatedAt(),
+    priceHistoryUpdatedAt: () => jsonPriceHistoryRepository.getUpdatedAt(),
     // Preis-Historie (T7.6): public/data/price-history.json, fehlende Datei = leer.
-    priceHistoryRepository: new JsonPriceHistoryRepository(
-      `${import.meta.env.BASE_URL}data/price-history.json`,
-    ),
+    priceHistoryRepository: jsonPriceHistoryRepository,
     candidateDecisionRepository,
     settingsRepository,
     userStateRepository,

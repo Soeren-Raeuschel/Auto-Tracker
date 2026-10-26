@@ -96,7 +96,8 @@ Node-Skripte in `scripts/`. Läuft per GitHub Action, Free-Tier-Limits beachten.
   Erledigt: Anmerkung — die genannte CI existierte im Repo NICHT, daher minimale `.github/workflows/ci.yml` angelegt (npm run check + build + npm audit, Job-ID `ci`). `deploy.yml`: on push main, `needs: ci`, Build, 404-SPA-Fallback, Pages-Deploy über configure-pages/upload-pages-artifact/deploy-pages.
 
 ## Phase H: Politur
-- [ ] T8.3 Fehler- und Leerzustände überall (inkl. `--danger`), Ladeanzeige, "Stand"-Zeitstempel bei Repo-Daten.
+- [x] T8.3 Fehler- und Leerzustände überall (inkl. `--danger`), Ladeanzeige, "Stand"-Zeitstempel bei Repo-Daten.
+  Erledigt: Reine Logik `feedbackViewModel.ts` (`pickFeedbackState` mit Priorität Fehler > Lade > leer, `formatStandTimestamp` de-DE) mit 7 Tests; Komponente `FeedbackState` (Fehler mit `--danger` und `role="alert"`, Ladeanzeige, Leerzustand, Tokens). `JsonCarRepository`/`JsonCandidateRepository`/`JsonPriceHistoryRepository` erfassen Last-Modified als `getUpdatedAt`, Container exponiert `carsUpdatedAt`/`candidatesUpdatedAt`/`priceHistoryUpdatedAt`. "Stand:" jetzt auf Ranking, Kandidaten, Preis-Historie; News bereits vorhanden (jetzt einheitlich formatiert). Fehler-, Lade- und Leerzustände auf Ranking, News, Kandidaten, Vergleich, Detailseite über `FeedbackState`; leeres Ranking mit Filtern bekommt Leerzustand. `npm run check` grün.
 - [ ] T10.7 Feinschliff: Fokus-/Hover-Zustände, Kontrast, Layout bei 390 px und 1440 px Breite prüfen (nur auf Nachfrage mit Screenshot).
 - [ ] T11.6 Optional, nur auf Wunsch: Command-Muster für Undo/Redo bei Kriterien-Änderungen.
 

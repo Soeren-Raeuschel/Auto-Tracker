@@ -13,6 +13,7 @@ import { useSuggestionViewModel } from '../viewmodels/useSuggestionViewModel';
 import { SuggestionList } from '../components/SuggestionList';
 import { useCriteriaPanelViewModel } from '../viewmodels/useCriteriaPanelViewModel';
 import { useFlipReorder } from '../viewmodels/useFlipReorder';
+import { FeedbackState } from '../components/FeedbackState';
 import { staggerDelayMs } from '../viewmodels/motionViewModel';
 import { STATUS_FILTER_LABELS, POWERTRAIN_FILTER_LABELS } from '../viewmodels/rankingViewModel';
 import { ROUTES } from '../routes';
@@ -38,7 +39,10 @@ const POWERTRAIN_OPTION_LABELS: Record<(typeof POWERTRAIN_OPTIONS)[number], stri
 
 /** Ranking-Seite auf `/` (T10.4, T10.5, T3.4). Rendert nur, alle Werte aus den ViewModels. */
 export function RankingPage({ container }: { container: Container }) {
-  const { viewModel, filters, updateFilters, error, loading } = useRankingViewModel(container);
+  const { viewModel, filters, updateFilters, error, stand, loading } = useRankingViewModel({
+    ...container,
+    getUpdatedAt: container.carsUpdatedAt,
+  });
   const { viewModel: suggestions, error: suggestionError } = useSuggestionViewModel(container);
   const { sliders, error: panelError, setWeight } = useCriteriaPanelViewModel(container);
   const [panelOpen, setPanelOpen] = useState(false);
@@ -57,6 +61,7 @@ export function RankingPage({ container }: { container: Container }) {
         <div>
           <p className="label">Auto-Tracker</p>
           <h1>Rangliste</h1>
+          {stand && <p className="label">{stand}</p>}
         </div>
         <button
           type="button"
@@ -124,12 +129,15 @@ export function RankingPage({ container }: { container: Container }) {
         </div>
       </div>
 
-      {error && <p role="alert">Fehler: {error}</p>}
-      {panelError && <p role="alert">Fehler: {panelError}</p>}
+      {error && <FeedbackState kind="error" message={`Fehler: ${error}`} />}
+      {panelError && <FeedbackState kind="error" message={`Fehler: ${panelError}`} />}
       {/* T10.6: Skeleton-Ladezustand statt Text */}
       {loading && !error && <SkeletonList rows={5} />}
       {suggestions && !error && !loading && <SuggestionList suggestions={suggestions} />}
-      {suggestionError && <p role="alert">Fehler: {suggestionError}</p>}
+      {suggestionError && <FeedbackState kind="error" message={`Fehler: ${suggestionError}`} />}
+      {!error && !loading && !viewModel.hero && viewModel.rest.length === 0 && (
+        <FeedbackState kind="empty" message="Keine Autos für diese Filter." />
+      )}
       {!error && !loading && (
         <div className="ranking__layout">
           <div className="ranking__list" ref={listRef}>

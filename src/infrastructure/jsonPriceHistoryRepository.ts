@@ -6,6 +6,8 @@ import type { PriceHistory, PriceHistoryRepository } from '../ports/priceHistory
  * als leer — die App bricht nie. Kaputte Eintraege werden uebersprungen.
  */
 export class JsonPriceHistoryRepository implements PriceHistoryRepository {
+  private lastModified: string | null = null;
+
   constructor(
     private readonly url: string,
     private readonly fetchFn: typeof fetch = (input, init) => fetch(input, init),
@@ -18,6 +20,7 @@ export class JsonPriceHistoryRepository implements PriceHistoryRepository {
     // SPA-Fallback-Abwehr wie bei JsonNewsRepository.
     const contentType = response.headers.get('content-type') ?? '';
     if (!contentType.includes('json')) return {};
+    this.lastModified = response.headers?.get?.('last-modified') ?? null;
     const raw = (await response.json()) as unknown;
     if (raw === null || typeof raw !== 'object' || Array.isArray(raw)) return {};
     const history: PriceHistory = {};
@@ -34,5 +37,10 @@ export class JsonPriceHistoryRepository implements PriceHistoryRepository {
       if (valid.length > 0) history[carId] = valid;
     }
     return history;
+  }
+
+  /** Menschenlesbarer "Stand" (T8.3) oder null, wenn der Server keine Angabe macht. */
+  getUpdatedAt(): string | null {
+    return this.lastModified;
   }
 }

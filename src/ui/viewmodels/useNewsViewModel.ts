@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import type { Container } from '../../composition/container';
 import type { NewsItem } from '../../domain/news';
 import { toNewsPageViewModel, type NewsPageVM } from './newsViewModel';
+import { formatStandTimestamp } from './feedbackViewModel';
 
 /** ViewModel-Hook der News-Ansicht (T7.3): laedt news.json ueber das Repository. */
 export function useNewsViewModel(container: Container) {
@@ -19,7 +20,7 @@ export function useNewsViewModel(container: Container) {
       .then((loaded) => {
         if (!active) return;
         setItems(loaded);
-        setViewModel(toNewsPageViewModel(loaded, newsUpdatedAt()));
+        setViewModel(toNewsPageViewModel(loaded, formatStandTimestamp(newsUpdatedAt())));
         setError(null);
       })
       .catch((e: unknown) => {

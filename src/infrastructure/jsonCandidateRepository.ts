@@ -7,6 +7,8 @@ import type { CandidateRepository } from '../ports/candidateRepository';
  * Validierung passiert im Container ueber ValidatingListRepository.
  */
 export class JsonCandidateRepository implements CandidateRepository {
+  private lastModified: string | null = null;
+
   constructor(
     private readonly url: string,
     private readonly fetchFn: typeof fetch = (input, init) => fetch(input, init),
@@ -20,6 +22,12 @@ export class JsonCandidateRepository implements CandidateRepository {
     // mit index.html (Status 200). HTML ist keine gueltige Liste.
     const contentType = response.headers.get('content-type') ?? '';
     if (!contentType.includes('json')) return [];
+    this.lastModified = response.headers?.get?.('last-modified') ?? null;
     return (await response.json()) as CarCandidate[];
+  }
+
+  /** Menschenlesbarer "Stand" (T8.3) oder null, wenn der Server keine Angabe macht. */
+  getUpdatedAt(): string | null {
+    return this.lastModified;
   }
 }

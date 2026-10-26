@@ -7,6 +7,7 @@ import type { CarRepository } from '../../ports/carRepository';
 import type { SettingsRepository } from '../../ports/settingsRepository';
 import type { UserStateRepository } from '../../ports/userStateRepository';
 import type { ScoringEngine } from '../../scoring/scoringEngine';
+import { formatStandTimestamp } from './feedbackViewModel';
 import {
   toRankingViewModel,
   applyRankingFilters,
@@ -21,6 +22,8 @@ export interface RankingDeps {
   userStateRepository: UserStateRepository;
   scoringEngine: ScoringEngine;
   eventBus: EventBus;
+  /** Optionaler "Stand" der Repo-Daten (T8.3), null wenn unbekannt. */
+  getUpdatedAt?: () => string | null;
 }
 
 const EMPTY: RankingVM = { hero: null, rest: [] };
@@ -32,12 +35,14 @@ export function useRankingViewModel({
   userStateRepository,
   scoringEngine,
   eventBus,
+  getUpdatedAt,
 }: RankingDeps) {
   const [cars, setCars] = useState<Car[]>([]);
   const [settings, setSettings] = useState<Settings | null>(null);
   const [states, setStates] = useState<UserCarState[]>([]);
   const [filters, setFilters] = useState<RankingFilters>(DEFAULT_RANKING_FILTERS);
   const [error, setError] = useState<string | null>(null);
+  const [stand, setStand] = useState<string | null>(null);
 
   useEffect(() => {
     let active = true;
@@ -47,6 +52,7 @@ export function useRankingViewModel({
         setCars(loadedCars);
         setSettings(loadedSettings);
         setStates(loadedStates);
+        setStand(formatStandTimestamp(getUpdatedAt?.() ?? null));
       })
       .catch((e: unknown) => {
         if (active) setError(e instanceof Error ? e.message : String(e));
@@ -70,7 +76,7 @@ export function useRankingViewModel({
       unsubscribeSettings();
       unsubscribeUserState();
     };
-  }, [carRepository, settingsRepository, userStateRepository, eventBus]);
+  }, [carRepository, settingsRepository, userStateRepository, eventBus, getUpdatedAt]);
 
   const viewModel = useMemo<RankingVM>(() => {
     if (!settings) return EMPTY;
@@ -82,5 +88,12 @@ export function useRankingViewModel({
   const updateFilters = (next: Partial<RankingFilters>) =>
     setFilters((current) => ({ ...current, ...next }));
 
-  return { viewModel, filters, updateFilters, error, loading: settings === null && error === null };
+  return {
+    viewModel,
+    filters,
+    updateFilters,
+    error,
+    stand,
+    loading: settings === null && error === null,
+  };
 }

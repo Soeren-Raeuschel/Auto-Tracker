@@ -1,0 +1,24 @@
+.feedback-state {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  padding: var(--s-4) var(--s-5);
+  border-radius: var(--r-md);
+  background: linear-gradient(180deg, var(--glass-top), var(--glass-bottom));
+  border: 1px solid var(--hairline);
+  color: var(--text-2);
+}
+
+.feedback-state p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.feedback-state[data-kind='error'] {
+  border-color: color-mix(in srgb, var(--danger) 45%, transparent);
+  color: var(--danger);
+}
+
+.feedback-state[data-kind='empty'] {
+  color: var(--muted);
+}

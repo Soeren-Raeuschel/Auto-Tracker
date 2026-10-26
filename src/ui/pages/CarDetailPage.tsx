@@ -13,6 +13,7 @@ import { useNewsViewModel } from '../viewmodels/useNewsViewModel';
 import { usePriceHistoryViewModel } from '../viewmodels/usePriceHistoryViewModel';
 import { PriceHistoryChart } from '../components/PriceHistoryChart';
 import { newsForCar } from '../viewmodels/newsViewModel';
+import { FeedbackState } from '../components/FeedbackState';
 import {
   confidenceLabel,
   listingLinks,
@@ -51,8 +52,8 @@ export function CarDetailPage({ container }: { container: Container }) {
     <section className="car-detail">
       <p className="label">Auto-Tracker</p>
       <h1>{viewModel ? viewModel.label : 'Auto-Details'}</h1>
-      {error && <p role="alert">Fehler: {error}</p>}
-      {loading && <p>Lade Daten ...</p>}
+      {error && <FeedbackState kind="error" message={`Fehler: ${error}`} />}
+      {loading && !error && <FeedbackState kind="loading" message="Lade Daten ..." />}
       {viewModel && (
         <>
           <GlassCard className="car-detail__card">
@@ -249,12 +250,13 @@ export function CarDetailPage({ container }: { container: Container }) {
 
           <GlassCard className="car-detail__card">
             <Label>Preis-Historie</Label>
+            {price.stand && <p className="label">{price.stand}</p>}
             {price.error ? (
-              <p role="alert">Fehler: {price.error}</p>
+              <FeedbackState kind="error" message={`Fehler: ${price.error}`} />
             ) : price.viewModel ? (
               <PriceHistoryChart viewModel={price.viewModel} />
             ) : (
-              <p className="label">Lade Preis-Historie ...</p>
+              <FeedbackState kind="loading" message="Lade Preis-Historie ..." />
             )}
           </GlassCard>
 
@@ -282,7 +284,7 @@ export function CarDetailPage({ container }: { container: Container }) {
             <GlassCard className="car-detail__card">
               <Label>News zu diesem Auto</Label>
               {news.viewModel.stand && (
-                <p className="car-detail__trip-hint label">Stand: {news.viewModel.stand}</p>
+                <p className="car-detail__trip-hint label">{news.viewModel.stand}</p>
               )}
               <ul className="car-detail__news">
                 {newsForCar(news.items, viewModel.id, news.viewModel.stand).rows.map((row) => (

@@ -6,15 +6,22 @@ import { createCarFromCandidate } from '../../application/carFactory';
 import { mergeImported } from '../../application/importService';
 import { candidateKey, type CandidatesVM } from './candidatesViewModel';
 import { toCandidatesViewModel } from './candidatesViewModel';
+import { formatStandTimestamp } from './feedbackViewModel';
 
 /** ViewModel-Hook der Kandidaten-Freigabe (T7.5): laden, uebernehmen, verwerfen. */
 export function useCandidatesViewModel(container: Container) {
-  const { candidateRepository, candidateDecisionRepository, importedCarRepository } = container;
+  const {
+    candidateRepository,
+    candidateDecisionRepository,
+    importedCarRepository,
+    candidatesUpdatedAt,
+  } = container;
   const [candidates, setCandidates] = useState<CarCandidate[]>([]);
   const [dismissed, setDismissed] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
+  const [stand, setStand] = useState<string | null>(null);
 
   useEffect(() => {
     let active = true;
@@ -24,6 +31,7 @@ export function useCandidatesViewModel(container: Container) {
         if (!active) return;
         setCandidates(loaded);
         setDismissed(decided);
+        setStand(formatStandTimestamp(candidatesUpdatedAt()));
         setError(null);
       })
       .catch((e: unknown) => {
@@ -35,7 +43,7 @@ export function useCandidatesViewModel(container: Container) {
     return () => {
       active = false;
     };
-  }, [candidateRepository, candidateDecisionRepository]);
+  }, [candidateRepository, candidateDecisionRepository, candidatesUpdatedAt]);
 
   const approve = useCallback(
     async (candidate: CarCandidate): Promise<void> => {
@@ -66,5 +74,5 @@ export function useCandidatesViewModel(container: Container) {
 
   const viewModel: CandidatesVM = toCandidatesViewModel(candidates, dismissed);
 
-  return { viewModel, loading, error, message, approve, dismiss };
+  return { viewModel, loading, error, message, stand, approve, dismiss };
 }

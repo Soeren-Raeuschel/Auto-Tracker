@@ -6,12 +6,13 @@ import { GlassCard } from '../components/GlassCard';
 import { Icon } from '../components/Icon';
 import { PrimaryButton } from '../components/PrimaryButton';
 import { useCandidatesViewModel } from '../viewmodels/useCandidatesViewModel';
+import { FeedbackState } from '../components/FeedbackState';
 import { applyEdit, type EditableCandidate } from '../viewmodels/candidatesViewModel';
 import './CandidatesPage.css';
 
 /** Kandidaten-Freigabe (T7.5): pruefen, bearbeiten, uebernehmen oder verwerfen. */
 export function CandidatesPage({ container }: { container: Container }) {
-  const { viewModel, loading, error, message, approve, dismiss } =
+  const { viewModel, loading, error, message, stand, approve, dismiss } =
     useCandidatesViewModel(container);
   const [edits, setEdits] = useState<Record<string, EditableCandidate>>({});
 
@@ -28,8 +29,9 @@ export function CandidatesPage({ container }: { container: Container }) {
         Vorschläge aus der News-Pipeline (public/data/candidates.json). Übernommene Autos landen als
         Ergänzung im lokalen Speicher, cars.json bleibt Repo-Daten.
       </p>
-      {error && <p role="alert">Fehler: {error}</p>}
-      {loading && <p>Lade Kandidaten ...</p>}
+      {error && <FeedbackState kind="error" message={`Fehler: ${error}`} />}
+      {loading && !error && <FeedbackState kind="loading" message="Lade Kandidaten ..." />}
+      {stand && !loading && !error && <p className="label">{stand}</p>}
       {message && (
         <p className="candidates-page__message" role="status">
           <Icon name="check" size={16} /> {message}

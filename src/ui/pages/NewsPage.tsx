@@ -3,6 +3,7 @@ import type { Container } from '../../composition/container';
 import { GlassCard } from '../components/GlassCard';
 import { Icon } from '../components/Icon';
 import { useNewsViewModel } from '../viewmodels/useNewsViewModel';
+import { FeedbackState } from '../components/FeedbackState';
 import './NewsPage.css';
 
 /** News-Ansicht `/news` (T7.3). Rendert nur, alle Werte aus dem ViewModel. */
@@ -13,9 +14,9 @@ export function NewsPage({ container }: { container: Container }) {
     <section className="news-page">
       <p className="label">Auto-Tracker</p>
       <h1>News</h1>
-      {viewModel.stand && <p className="news-page__stand label">Stand: {viewModel.stand}</p>}
-      {error && <p role="alert">Fehler: {error}</p>}
-      {loading && <p>Lade News ...</p>}
+      {viewModel.stand && <p className="news-page__stand label">{viewModel.stand}</p>}
+      {error && <FeedbackState kind="error" message={`Fehler: ${error}`} />}
+      {loading && !error && <FeedbackState kind="loading" message="Lade News ..." />}
 
       {viewModel.empty && !loading && !error && (
         <GlassCard className="news-page__empty">

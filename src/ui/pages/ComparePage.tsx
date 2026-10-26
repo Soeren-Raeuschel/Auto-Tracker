@@ -3,6 +3,7 @@ import type { Container } from '../../composition/container';
 import { GlassCard } from '../components/GlassCard';
 import { Label } from '../components/Label';
 import { useCompareViewModel } from '../viewmodels/useCompareViewModel';
+import { FeedbackState } from '../components/FeedbackState';
 import { idsToParam, idsWithSlot, parseCompareIds } from '../viewmodels/compareViewModel';
 import './ComparePage.css';
 
@@ -24,8 +25,8 @@ export function ComparePage({ container }: { container: Container }) {
     <section className="compare">
       <p className="label">Auto-Tracker</p>
       <h1>Vergleich</h1>
-      {error && <p role="alert">Fehler: {error}</p>}
-      {loading && <p>Lade Daten ...</p>}
+      {error && <FeedbackState kind="error" message={`Fehler: ${error}`} />}
+      {loading && !error && <FeedbackState kind="loading" message="Lade Daten ..." />}
 
       <GlassCard className="compare__picker">
         <Label>Vergleichen</Label>
@@ -107,7 +108,10 @@ export function ComparePage({ container }: { container: Container }) {
       ) : (
         !loading &&
         !error && (
-          <p className="compare__hint">Mindestens zwei Autos auswählen, um zu vergleichen.</p>
+          <FeedbackState
+            kind="empty"
+            message="Mindestens zwei Autos auswählen, um zu vergleichen."
+          />
         )
       )}
     </section>
