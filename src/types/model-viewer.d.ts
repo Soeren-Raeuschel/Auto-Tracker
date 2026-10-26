@@ -4,16 +4,19 @@
  * Das Element selbst wird zur Laufzeit per dynamischem import() registriert,
  * hier geht es nur um die JSX-Typen fuer den Compiler.
  */
-import type { HTMLAttributes } from 'react';
+import type { HTMLAttributes, Ref } from 'react';
 
 /** Attribut-Auswahl von <model-viewer> (https://modelviewer.dev), kebab-case. */
 export interface ModelViewerAttributes extends HTMLAttributes<HTMLElement> {
   src?: string;
+  ref?: Ref<HTMLElement>;
   alt?: string;
   'camera-controls'?: boolean | string;
+  class?: string;
   'auto-rotate'?: boolean | string;
   'rotation-per-second'?: string;
   'camera-orbit'?: string;
+  'camera-target'?: string;
   'field-of-view'?: string;
   'shadow-intensity'?: number | string;
   'environment-image'?: string;

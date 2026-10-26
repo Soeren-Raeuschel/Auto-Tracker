@@ -8,4 +8,5 @@ heruntergeladen. Für jede abgelegte Datei Quelle und Lizenz eintragen.
 
 | Datei | Quelle | Lizenz |
 |---|---|---|
-| _(noch keine)_ | — | — |
+| `suv.glb` | https://pixabay.com/3d-models/suv-car-vehicle-blue-transport-1402/ | Content License  |
+| `sedan.glb` | https://pixabay.com/3d-models/sports-car-car-vehicle-red-1371/ | Content License |

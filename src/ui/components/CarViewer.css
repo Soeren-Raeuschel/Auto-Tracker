@@ -6,7 +6,7 @@
 
 .car-viewer__model {
   width: 100%;
-  height: 320px;
+  height: 440px;
   border-radius: var(--r-md);
   background: linear-gradient(180deg, var(--glass-top), var(--glass-bottom));
   border: 1px solid var(--hairline);

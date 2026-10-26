@@ -11,9 +11,7 @@ const make =
       headers: {
         get: (name: string) =>
           headers[name.toLowerCase()] ??
-          (name.toLowerCase() === 'content-type' && status < 400
-            ? 'application/json'
-            : null),
+          (name.toLowerCase() === 'content-type' && status < 400 ? 'application/json' : null),
       },
     }) as unknown as Response;
 

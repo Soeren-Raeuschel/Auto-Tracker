@@ -19,7 +19,11 @@ export class FetchModelFileChecker implements ModelFileChecker {
   async exists(url: string): Promise<boolean> {
     try {
       const response = await this.fetchFn(url, { method: 'HEAD' });
-      return response.ok;
+      if (!response.ok) return false;
+      // SPA-Fallback (z. B. Vite Dev-Server) antwortet auf fehlende Dateien
+      // mit 200 + index.html. Das zaehlt nicht als Modell.
+      const contentType = response.headers.get('content-type') ?? '';
+      return !contentType.includes('text/html');
     } catch {
       return false;
     }
@@ -31,9 +35,30 @@ export function modelFileName(bodyType: BodyType): string {
   return `${bodyType}.glb`;
 }
 
+/**
+ * Fallback-Kette: fuer BodyTypes ohne eigene GLB wird ein aehnliches Modell
+ * genutzt, damit immer ein 3D-Modell angezeigt wird, solange mindestens eine
+ * GLB hinterlegt ist. Eigene Datei geht immer vor.
+ */
+const MODEL_FALLBACKS: Record<BodyType, BodyType[]> = {
+  suv: ['other', 'sedan'],
+  sedan: ['suv'],
+  hatchback: ['sedan', 'suv'],
+  wagon: ['sedan', 'suv'],
+  other: ['suv', 'sedan'],
+};
+
+/** Kandidaten-URLs in Reihenfolge: eigene Datei zuerst, dann Fallbacks. */
+export function modelUrlCandidates(baseUrl: string, bodyType: BodyType): string[] {
+  const base = baseUrl.replace(/\/$/, '');
+  return [bodyType, ...MODEL_FALLBACKS[bodyType]].map(
+    (type) => `${base}/models/${modelFileName(type)}`,
+  );
+}
+
 /** URL der generischen Modelldatei (ausnutzbar fuer Tests). */
 export function genericModelUrl(baseUrl: string, bodyType: BodyType): string {
-  return `${baseUrl.replace(/\/$/, '')}/models/${modelFileName(bodyType)}`;
+  return modelUrlCandidates(baseUrl, bodyType)[0] ?? `${baseUrl}/models/${bodyType}.glb`;
 }
 
 /** T5.2: Modell pro bodyType aus public/models/<bodyType>.glb. */
@@ -44,8 +69,9 @@ export class GenericModelProvider implements ModelProvider {
   ) {}
 
   async getModel(car: Car): Promise<ModelRef | null> {
-    const url = genericModelUrl(this.baseUrl, car.bodyType);
-    if (!(await this.checker.exists(url))) return null;
-    return { url, kind: 'generic' };
+    for (const url of modelUrlCandidates(this.baseUrl, car.bodyType)) {
+      if (await this.checker.exists(url)) return { url, kind: 'generic' };
+    }
+    return null;
   }
 }
